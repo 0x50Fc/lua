@@ -7,7 +7,5 @@ local s = Logic.Scene:new();
 
 print(s:toString());
 
-print(Logic.Scene);
-
 end
 main()

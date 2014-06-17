@@ -7,8 +7,10 @@ function Object:new(...)
     
     setmetatable(object,{ __index = self });
     
+    object.super = self.super;
+    
     if object.init then
-        object.init(...);
+        object:init(...);
     end
     
     return object;

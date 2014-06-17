@@ -5,7 +5,9 @@ local function main()
 
 local s = Logic.Scene:new();
 
-print(s:toString());
+s:setValue("a",123);
+
+print(s:className());
 
 end
 main()

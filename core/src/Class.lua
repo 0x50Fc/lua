@@ -7,6 +7,7 @@ function Object:new(...)
     
     setmetatable(object,{ __index = self });
     
+    object.class = self;
     object.super = self.super;
     
     if object.init then
@@ -17,14 +18,26 @@ function Object:new(...)
 end
 
 function Object:toString()
-    return "Object";
+  return "Object";
+end
+
+function Object:className()
+  return self.class.name; 
+end
+
+function Object:isKindClassOf(class)
+  local c = self.class;
+  while c and c ~= class do
+    c = c.super;
+  end
+  return c == class;
 end
 
 Class = {};
 
-function Class:extend(superClass)
+function Class:extend(className,superClass)
 
-    local class = {};
+    local class = {name = className};
     
     if superClass then 
         class.super = superClass;
@@ -34,9 +47,17 @@ function Class:extend(superClass)
         setmetatable(class,{ __index = Object });
     end  
 
+    Class[className] = class;
+    
     return class;
    
 end
 
-
+function Class:isKindClassOf(class,ofClass)
+  local c = class;
+  while c and c ~= ofClass do
+    c = c.super;
+  end
+  return c == ofClass;
+end
 

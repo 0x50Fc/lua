@@ -14,23 +14,44 @@ function Object:new(...)
         object:init(...);
     end
     
+
     return object;
 end
 
-function Object:toString()
+function Object.toString(self)
   return "Object";
 end
 
-function Object:className()
+function Object:toString()
+  return Object.toString(self)
+end
+
+function Object.className(self)
   return self.class.name; 
 end
 
-function Object:isKindClassOf(class)
+function Object:className()
+  return Object.className(self);
+end
+
+function Object.isKindClassOf(self,class)
   local c = self.class;
   while c and c ~= class do
     c = c.super;
   end
   return c == class;
+end
+
+function Object:isKindClassOf(class)
+  return Object.isKindClassOf(self,class);
+end
+
+function Object:init(...)
+  Object.init(self,...);
+end
+
+function Object.init(self,...)
+
 end
 
 Class = {};
@@ -40,11 +61,11 @@ function Class:extend(className,superClass)
     local class = {name = className};
     
     if superClass then 
-        class.super = superClass;
         setmetatable(class,{ __index = superClass });
+        class.super = superClass;
     else 
-        class.super = Object;
         setmetatable(class,{ __index = Object });
+        class.super = Object;
     end  
 
     Class[className] = class;

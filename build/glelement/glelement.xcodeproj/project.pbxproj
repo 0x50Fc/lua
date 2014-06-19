@@ -1,0 +1,345 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1107B8011952E68900E68726 /* libelement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B7FE1952E66A00E68726 /* libelement.a */; };
+		1107B8051952E6C300E68726 /* GLElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8031952E6C300E68726 /* GLElement.cpp */; };
+		1107B8081952E86900E68726 /* GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8061952E86800E68726 /* GL.cpp */; };
+		1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8141952F08900E68726 /* GLLayerElement.cpp */; };
+		1107B8191952F29400E68726 /* GLContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8171952F29400E68726 /* GLContext.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1107B7FD1952E66A00E68726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1107B7F81952E66A00E68726 /* element.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11789DED195282230052891F;
+			remoteInfo = element;
+		};
+		1107B7FF1952E67500E68726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1107B7F81952E66A00E68726 /* element.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 11789DEC195282230052891F;
+			remoteInfo = element;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1107B7CD1952E64900E68726 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1107B7CF1952E64900E68726 /* libglelement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libglelement.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1107B7D21952E64900E68726 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1107B7D61952E64900E68726 /* glelement-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "glelement-Prefix.pch"; sourceTree = "<group>"; };
+		1107B7E01952E64900E68726 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1107B7E31952E64900E68726 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1107B7F81952E66A00E68726 /* element.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = element.xcodeproj; path = ../element/element.xcodeproj; sourceTree = "<group>"; };
+		1107B8031952E6C300E68726 /* GLElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLElement.cpp; sourceTree = "<group>"; };
+		1107B8041952E6C300E68726 /* GLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLElement.h; sourceTree = "<group>"; };
+		1107B8061952E86800E68726 /* GL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GL.cpp; sourceTree = "<group>"; };
+		1107B8071952E86800E68726 /* GL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL.h; sourceTree = "<group>"; };
+		1107B8141952F08900E68726 /* GLLayerElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLLayerElement.cpp; sourceTree = "<group>"; };
+		1107B8151952F08900E68726 /* GLLayerElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLayerElement.h; sourceTree = "<group>"; };
+		1107B8171952F29400E68726 /* GLContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLContext.cpp; sourceTree = "<group>"; };
+		1107B8181952F29400E68726 /* GLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLContext.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1107B7CC1952E64900E68726 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1107B8011952E68900E68726 /* libelement.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1107B7C61952E64900E68726 = {
+			isa = PBXGroup;
+			children = (
+				1107B7F81952E66A00E68726 /* element.xcodeproj */,
+				1107B7D41952E64900E68726 /* glelement */,
+				1107B7D11952E64900E68726 /* Frameworks */,
+				1107B7D01952E64900E68726 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1107B7D01952E64900E68726 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1107B7CF1952E64900E68726 /* libglelement.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1107B7D11952E64900E68726 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1107B7D21952E64900E68726 /* Foundation.framework */,
+				1107B7E01952E64900E68726 /* XCTest.framework */,
+				1107B7E31952E64900E68726 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1107B7D41952E64900E68726 /* glelement */ = {
+			isa = PBXGroup;
+			children = (
+				1107B8021952E6A400E68726 /* cc */,
+				1107B7D51952E64900E68726 /* Supporting Files */,
+			);
+			path = glelement;
+			sourceTree = "<group>";
+		};
+		1107B7D51952E64900E68726 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1107B7D61952E64900E68726 /* glelement-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1107B7F91952E66A00E68726 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1107B7FE1952E66A00E68726 /* libelement.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1107B8021952E6A400E68726 /* cc */ = {
+			isa = PBXGroup;
+			children = (
+				1107B8031952E6C300E68726 /* GLElement.cpp */,
+				1107B8041952E6C300E68726 /* GLElement.h */,
+				1107B8061952E86800E68726 /* GL.cpp */,
+				1107B8071952E86800E68726 /* GL.h */,
+				1107B8141952F08900E68726 /* GLLayerElement.cpp */,
+				1107B8151952F08900E68726 /* GLLayerElement.h */,
+				1107B8171952F29400E68726 /* GLContext.cpp */,
+				1107B8181952F29400E68726 /* GLContext.h */,
+			);
+			name = cc;
+			path = ../../../cc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1107B7CE1952E64900E68726 /* glelement */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1107B7F21952E64900E68726 /* Build configuration list for PBXNativeTarget "glelement" */;
+			buildPhases = (
+				1107B7CB1952E64900E68726 /* Sources */,
+				1107B7CC1952E64900E68726 /* Frameworks */,
+				1107B7CD1952E64900E68726 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1107B8001952E67500E68726 /* PBXTargetDependency */,
+			);
+			name = glelement;
+			productName = glelement;
+			productReference = 1107B7CF1952E64900E68726 /* libglelement.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1107B7C71952E64900E68726 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = hailong.org;
+			};
+			buildConfigurationList = 1107B7CA1952E64900E68726 /* Build configuration list for PBXProject "glelement" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1107B7C61952E64900E68726;
+			productRefGroup = 1107B7D01952E64900E68726 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1107B7F91952E66A00E68726 /* Products */;
+					ProjectRef = 1107B7F81952E66A00E68726 /* element.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1107B7CE1952E64900E68726 /* glelement */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1107B7FE1952E66A00E68726 /* libelement.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libelement.a;
+			remoteRef = 1107B7FD1952E66A00E68726 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1107B7CB1952E64900E68726 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */,
+				1107B8081952E86900E68726 /* GL.cpp in Sources */,
+				1107B8191952F29400E68726 /* GLContext.cpp in Sources */,
+				1107B8051952E6C300E68726 /* GLElement.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1107B8001952E67500E68726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = element;
+			targetProxy = 1107B7FF1952E67500E68726 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1107B7F01952E64900E68726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1107B7F11952E64900E68726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1107B7F31952E64900E68726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/glelement.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "glelement/glelement-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1107B7F41952E64900E68726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/glelement.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "glelement/glelement-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1107B7CA1952E64900E68726 /* Build configuration list for PBXProject "glelement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1107B7F01952E64900E68726 /* Debug */,
+				1107B7F11952E64900E68726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1107B7F21952E64900E68726 /* Build configuration list for PBXNativeTarget "glelement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1107B7F31952E64900E68726 /* Debug */,
+				1107B7F41952E64900E68726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1107B7C71952E64900E68726 /* Project object */;
+}

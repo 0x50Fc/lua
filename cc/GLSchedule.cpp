@@ -1,24 +1,25 @@
 //
-//  GLElement.cpp
+//  GLSchedule.cpp
 //  glelement
 //
 //  Created by zhang hailong on 14-6-19.
 //  Copyright (c) 2014年 hailong.org. All rights reserved.
 //
 
-#include "GLElement.h"
+#include "GLSchedule.h"
 
+#include "GLTask.h"
 
 namespace cc {
     
+    IMP_CLASS(GLSchedule,Object)
     
-    IMP_CLASS(GLElement, Element)
     
-    GLElement::GLElement(){
+    GLSchedule::GLSchedule(){
         
     }
     
-    GLElement::~GLElement(){
+    GLSchedule::~GLSchedule(){
         
         std::vector<GLTask *>::iterator i = _tasks.begin();
         
@@ -34,7 +35,7 @@ namespace cc {
         
     }
     
-    void GLElement::tick(GLSchedule * schedule){
+    void GLSchedule::tick(){
         
         std::vector<GLTask *>::iterator i = _tasks.begin();
         
@@ -43,13 +44,13 @@ namespace cc {
             GLTask * task = * i;
             
             if(task->start == 0.0){
-                task->start = schedule->timestamp;
+                task->start = timestamp;
             }
             
-            if(schedule->timestamp - task->start >= task->afterDelay){
+            if(timestamp - task->start >= task->afterDelay){
                 
                 if(task->callback){
-                    (* task->callback)(schedule,this,task);
+                    (* task->callback)(this,this,task);
                 }
                 
                 i = _tasks.erase(i);
@@ -60,14 +61,14 @@ namespace cc {
         }
         
     }
-  
-    void GLElement::schedule(GLTask * task){
+    
+    void GLSchedule::schedule(GLTask * task){
         task->start = 0;
         task->retain();
         _tasks.push_back(task);
     }
     
-    void GLElement::unschedule(GLTask * task){
+    void GLSchedule::unschedule(GLTask * task){
         
         std::vector<GLTask *>::iterator i = _tasks.begin();
         
@@ -84,5 +85,6 @@ namespace cc {
             
         }
     }
+
     
 }

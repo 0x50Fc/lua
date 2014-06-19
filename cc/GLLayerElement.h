@@ -29,9 +29,20 @@ namespace cc {
         
         virtual void begin(GLContext * context);
         
+        virtual void drawBackground(GLContext * context);
+        
+        virtual void drawBorder(GLContext * context);
+        
+        virtual void onDraw(GLContext * context);
+        
         virtual void draw(GLContext * context);
         
-        GLVector4 frame;
+        GLVector2 center;
+        GLVector2 size;
+        
+        virtual GLVector4 frame();
+        
+        virtual void setFrame(GLVector4 frame);
         
         virtual GLImage * backgroundImage();
         

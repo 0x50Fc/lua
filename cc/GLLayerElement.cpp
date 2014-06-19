@@ -27,19 +27,50 @@ namespace cc {
     void GLLayerElement::draw(GLContext * context){
         GLCanvasElement::draw(context);
         
+        drawBackground(context);
+        
+        onDraw(context);
+        
+        drawBorder(context);
+        
+    }
+    
+    void GLLayerElement::drawBackground(GLContext * context){
+        
+        if(_backgroundColor.a != 0.0){
+            
+        }
+        
+    }
+    
+    void GLLayerElement::drawBorder(GLContext * context){
+        
+    }
+    
+    void GLLayerElement::onDraw(GLContext * context){
         
     }
     
     void GLLayerElement::begin(GLContext * context){
         
-        float x = context->x(frame.origin.x);
-        float y = context->y(frame.origin.y);
-        float w = context->x(frame.size.width);
-        float h = context->y(frame.size.height);
+        float x = context->x(center.x);
+        float y = context->y(center.y);
         
-        position = GLVector3Make(x - w / 2.0f, y - h / 2.0f, context->state()->zIndex);
+        position = GLVector3Make(x, y , context->state()->zIndex);
         
         GLCanvasElement::begin(context);
+    }
+    
+    GLVector4 GLLayerElement::frame(){
+        GLVector4 v4 = {center.x - size.width / 2.0f,center.y - size.height / 2.0f,size.width,size.height};
+        return v4;
+    }
+    
+    void GLLayerElement::setFrame(GLVector4 frame){
+        size.width = frame.size.width;
+        size.height = frame.size.height;
+        center.x = frame.origin.x + size.width / 2.0f;
+        center.y = frame.origin.y + size.height / 2.0f;
     }
     
     GLImage * GLLayerElement::backgroundImage(){

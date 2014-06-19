@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "GLElement.h"
+#include "GLContext.h"
 
 namespace cc {
     
@@ -36,6 +37,7 @@ namespace cc {
         float scale;
         GLVector3 position;
         GLMatrix4 transform;
+        bool hidden;
     };
     
 }

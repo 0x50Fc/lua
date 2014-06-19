@@ -17,6 +17,7 @@ namespace cc {
         transform = GLMatrix4Identity;
         alpha = 1.0f;
         scale = 1.0f;
+        hidden = false;
     }
     
     GLCanvasElement::~GLCanvasElement(){

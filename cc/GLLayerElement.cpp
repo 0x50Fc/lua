@@ -19,17 +19,68 @@ namespace cc {
     }
     
     GLLayerElement::~GLLayerElement(){
+        if(_backgroundImage){
+            _backgroundImage->release();
+        }
+    }
+    
+    void GLLayerElement::draw(GLContext * context){
+        GLCanvasElement::draw(context);
+        
         
     }
     
-    void GLElement::draw(GLContext * context){
+    void GLLayerElement::begin(GLContext * context){
         
+        float x = context->x(frame.origin.x);
+        float y = context->y(frame.origin.y);
+        float w = context->x(frame.size.width);
+        float h = context->y(frame.size.height);
+        
+        position = GLVector3Make(x - w / 2.0f, y - h / 2.0f, context->state()->zIndex);
+        
+        GLCanvasElement::begin(context);
     }
     
-    void GLElement::begin(GLContext * context){
-        
-        position = GLVector3Make(<#float x#>, <#float y#>, <#float z#>)
-        
+    GLImage * GLLayerElement::backgroundImage(){
+        return _backgroundImage;
     }
+    
+    void GLLayerElement::setBackgroundImage(GLImage * image){
+        if(_backgroundImage != image){
+            if(image){
+                image->retain();
+            }
+            if(_backgroundImage){
+                _backgroundImage->release();
+            }
+            _backgroundImage = image;
+        }
+    }
+    
+    GLColor3d GLLayerElement::backgroundColor(){
+        return _backgroundColor;
+    }
+    
+    void GLLayerElement::setBackgroundColor(GLColor3d color){
+        _backgroundColor = color;
+    }
+    
+    float GLLayerElement::borderWidth(){
+        return _borderWidth;
+    }
+    
+    void GLLayerElement::setBorderWidth(float width){
+        _borderWidth = width;
+    }
+    
+    GLColor3d GLLayerElement::borderColor(){
+        return _borderColor;
+    }
+    
+    void GLLayerElement::setBorderColor(GLColor3d color){
+        _borderColor = color;
+    }
+    
     
 }

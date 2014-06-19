@@ -56,6 +56,10 @@ namespace cc {
         _state->transform = GLMatrix4Rotate(_state->transform, radians, x, y, z);
     }
     
+    void GLContext::transform(GLMatrix4 transform){
+        _state->transform = GLMatrix4Multiply(_state->transform, transform);
+    }
+    
     void GLContext::alpha(float alpha){
         _state->alpha = _state->alpha * alpha;
     }
@@ -87,12 +91,20 @@ namespace cc {
         _state = s;
     }
     
-    virtual float x(float screenX);
+    float GLContext::x(float screenX){
+        return screenX / _width;
+    }
     
-    virtual float y(float screenY);
+    float GLContext::y(float screenY){
+        return screenY / _height;
+    }
     
-    virtual float screenX(float x);
+    float GLContext::screenX(float x){
+        return x * _width;
+    }
     
-    virtual float screenY(float y);
+    float GLContext::screenY(float y){
+        return y * _height;
+    }
     
 }

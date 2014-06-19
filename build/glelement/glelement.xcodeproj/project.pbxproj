@@ -12,6 +12,8 @@
 		1107B8081952E86900E68726 /* GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8061952E86800E68726 /* GL.cpp */; };
 		1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8141952F08900E68726 /* GLLayerElement.cpp */; };
 		1107B8191952F29400E68726 /* GLContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8171952F29400E68726 /* GLContext.cpp */; };
+		1185C63919530EBC00F06AED /* GLImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C63719530EBC00F06AED /* GLImage.cpp */; };
+		1185C6421953142B00F06AED /* GLCanvasElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6401953142B00F06AED /* GLCanvasElement.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,10 @@
 		1107B8151952F08900E68726 /* GLLayerElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLayerElement.h; sourceTree = "<group>"; };
 		1107B8171952F29400E68726 /* GLContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLContext.cpp; sourceTree = "<group>"; };
 		1107B8181952F29400E68726 /* GLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLContext.h; sourceTree = "<group>"; };
+		1185C63719530EBC00F06AED /* GLImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLImage.cpp; sourceTree = "<group>"; };
+		1185C63819530EBC00F06AED /* GLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLImage.h; sourceTree = "<group>"; };
+		1185C6401953142B00F06AED /* GLCanvasElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCanvasElement.cpp; sourceTree = "<group>"; };
+		1185C6411953142B00F06AED /* GLCanvasElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCanvasElement.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +136,16 @@
 			children = (
 				1107B8031952E6C300E68726 /* GLElement.cpp */,
 				1107B8041952E6C300E68726 /* GLElement.h */,
-				1107B8061952E86800E68726 /* GL.cpp */,
-				1107B8071952E86800E68726 /* GL.h */,
+				1185C6401953142B00F06AED /* GLCanvasElement.cpp */,
+				1185C6411953142B00F06AED /* GLCanvasElement.h */,
 				1107B8141952F08900E68726 /* GLLayerElement.cpp */,
 				1107B8151952F08900E68726 /* GLLayerElement.h */,
+				1107B8061952E86800E68726 /* GL.cpp */,
+				1107B8071952E86800E68726 /* GL.h */,
 				1107B8171952F29400E68726 /* GLContext.cpp */,
 				1107B8181952F29400E68726 /* GLContext.h */,
+				1185C63719530EBC00F06AED /* GLImage.cpp */,
+				1185C63819530EBC00F06AED /* GLImage.h */,
 			);
 			name = cc;
 			path = ../../../cc;
@@ -212,7 +222,9 @@
 				1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */,
 				1107B8081952E86900E68726 /* GL.cpp in Sources */,
 				1107B8191952F29400E68726 /* GLContext.cpp in Sources */,
+				1185C6421953142B00F06AED /* GLCanvasElement.cpp in Sources */,
 				1107B8051952E6C300E68726 /* GLElement.cpp in Sources */,
+				1185C63919530EBC00F06AED /* GLImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +313,11 @@
 				DSTROOT = /tmp/glelement.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "glelement/glelement-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					__MACOS__,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -313,6 +330,7 @@
 				DSTROOT = /tmp/glelement.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "glelement/glelement-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = __MACOS__;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -338,6 +356,7 @@
 				1107B7F41952E64900E68726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

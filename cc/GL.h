@@ -12,6 +12,28 @@
 #include <iostream>
 #include <math.h>
 
+#ifdef __MACOS__
+
+#ifdef __MACOSX__
+
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glext.h>
+
+#else
+#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES2/glext.h>
+#endif
+
+#elif defined __ANDROID__
+
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+
+#define GL_BGRA	GL_BGRA_EXT
+
+#endif
+
 namespace cc {
     
     typedef union _GLMatrix2{

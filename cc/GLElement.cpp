@@ -15,26 +15,16 @@ namespace cc {
     IMP_CLASS(GLElement, Element)
     
     GLElement::GLElement(){
-        transform = GLMatrix4Identity;
-        alpha = 1.0f;
-        scale = GLVector3Make(1.0f, 1.0f, 1.0f);
+        
     }
     
     GLElement::~GLElement(){
         
     }
     
-    void GLElement::draw(GLContext * context){
+    void GLElement::tick(){
         
     }
     
-    
-    void GLElement::begin(GLContext * context){
-        
-    }
-    
-    void GLElement::end(GLContext * context){
-        
-    }
     
 }

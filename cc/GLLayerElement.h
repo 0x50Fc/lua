@@ -11,12 +11,13 @@
 
 #include <iostream>
 
-#include "GLElement.h"
+#include "GLCanvasElement.h"
+#include "GLImage.h"
 
 namespace cc {
     
     
-    class GLLayerElement : public GLElement {
+    class GLLayerElement : public GLCanvasElement {
       
     public:
         
@@ -31,6 +32,30 @@ namespace cc {
         virtual void draw(GLContext * context);
         
         GLVector4 frame;
+        
+        virtual GLImage * backgroundImage();
+        
+        virtual void setBackgroundImage(GLImage * image);
+        
+        virtual GLColor3d backgroundColor();
+        
+        virtual void setBackgroundColor(GLColor3d color);
+        
+        virtual float borderWidth();
+        
+        virtual void setBorderWidth(float width);
+        
+        virtual GLColor3d borderColor();
+        
+        virtual void setBorderColor(GLColor3d color);
+        
+        
+    private:
+        
+        GLImage * _backgroundImage;
+        GLColor3d _backgroundColor;
+        float _borderWidth;
+        GLColor3d _borderColor;
         
     };
     

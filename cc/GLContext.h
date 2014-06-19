@@ -56,6 +56,8 @@ namespace cc {
         
         virtual void alpha(float alpha);
         
+        virtual void transform(GLMatrix4 transform);
+        
         virtual void zIndex();
         
         virtual GLContextState * state();

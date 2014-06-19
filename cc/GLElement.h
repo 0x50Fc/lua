@@ -26,18 +26,9 @@ namespace cc {
         
         virtual ~GLElement();
         
-        virtual void begin(GLContext * context);
-        
-        virtual void end(GLContext * context);
-        
-        virtual void draw(GLContext * context);
+        virtual void tick();
         
         DEC_CLASS
-        
-        float alpha;
-        GLVector3 position;
-        GLVector3 scale;
-        GLMatrix4 transform;
     };
     
 }

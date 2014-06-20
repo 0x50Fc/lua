@@ -13,7 +13,8 @@
 		1107B9281954415800E68726 /* UIElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B9211954415800E68726 /* UIElement.cpp */; };
 		1107B9291954415800E68726 /* UIStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B9231954415800E68726 /* UIStyle.cpp */; };
 		1107B92A1954415800E68726 /* UIStyleSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B9251954415800E68726 /* UIStyleSheet.cpp */; };
-		1107B92D195441AC00E68726 /* UILayoutElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B92B195441AC00E68726 /* UILayoutElement.cpp */; };
+		1185C654195464CC00F06AED /* UILayoutElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C652195464CC00F06AED /* UILayoutElement.cpp */; };
+		1185C6571954692F00F06AED /* UICanvasElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6551954692F00F06AED /* UICanvasElement.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +61,10 @@
 		1107B9241954415800E68726 /* UIStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStyle.h; sourceTree = "<group>"; };
 		1107B9251954415800E68726 /* UIStyleSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIStyleSheet.cpp; sourceTree = "<group>"; };
 		1107B9261954415800E68726 /* UIStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStyleSheet.h; sourceTree = "<group>"; };
-		1107B92B195441AC00E68726 /* UILayoutElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutElement.cpp; sourceTree = "<group>"; };
-		1107B92C195441AC00E68726 /* UILayoutElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutElement.h; sourceTree = "<group>"; };
+		1185C652195464CC00F06AED /* UILayoutElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutElement.cpp; sourceTree = "<group>"; };
+		1185C653195464CC00F06AED /* UILayoutElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutElement.h; sourceTree = "<group>"; };
+		1185C6551954692F00F06AED /* UICanvasElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UICanvasElement.mm; sourceTree = "<group>"; };
+		1185C6561954692F00F06AED /* UICanvasElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICanvasElement.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +113,8 @@
 			children = (
 				1107B9101954412F00E68726 /* cc */,
 				1107B8D61954280100E68726 /* Supporting Files */,
-				1107B92B195441AC00E68726 /* UILayoutElement.cpp */,
-				1107B92C195441AC00E68726 /* UILayoutElement.h */,
+				1185C6551954692F00F06AED /* UICanvasElement.mm */,
+				1185C6561954692F00F06AED /* UICanvasElement.h */,
 			);
 			path = uielement;
 			sourceTree = "<group>";
@@ -143,6 +146,8 @@
 				1107B9241954415800E68726 /* UIStyle.h */,
 				1107B9251954415800E68726 /* UIStyleSheet.cpp */,
 				1107B9261954415800E68726 /* UIStyleSheet.h */,
+				1185C652195464CC00F06AED /* UILayoutElement.cpp */,
+				1185C653195464CC00F06AED /* UILayoutElement.h */,
 			);
 			name = cc;
 			path = ../../../cc;
@@ -217,7 +222,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1107B9281954415800E68726 /* UIElement.cpp in Sources */,
-				1107B92D195441AC00E68726 /* UILayoutElement.cpp in Sources */,
+				1185C654195464CC00F06AED /* UILayoutElement.cpp in Sources */,
+				1185C6571954692F00F06AED /* UICanvasElement.mm in Sources */,
 				1107B92A1954415800E68726 /* UIStyleSheet.cpp in Sources */,
 				1107B9291954415800E68726 /* UIStyle.cpp in Sources */,
 				1107B9271954415800E68726 /* UI.cpp in Sources */,
@@ -356,6 +362,7 @@
 				1107B8F51954280100E68726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

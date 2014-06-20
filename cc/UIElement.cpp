@@ -173,5 +173,37 @@ namespace ui {
         return defaultValue;
     }
     
+    UIFont UIElement::fontValue(const char * key,UIFont defaultValue){
+        const char * v = stringValue(key, NULL);
+        if(v){
+            
+            UIFont f;
+            char name[64] = "",size[64] = "",style[64] = "";
+            
+            sscanf(v, "%s %s %s",name,size,style);
+            
+            if(* style == '\0'){
+                f.size = atof(name);
+                if(strcmp(size, "bold") == 0){
+                    f.style = UIFontStyleBold;
+                }
+                else if(strcmp(size, "italic") == 0){
+                    f.style = UIFontStyleItalic;
+                }
+            }
+            else {
+                strncpy(f.name, name, sizeof(name));
+                f.size = atof(size);
+                if(strcmp(style, "bold") == 0){
+                    f.style = UIFontStyleBold;
+                }
+                else if(strcmp(style, "italic") == 0){
+                    f.style = UIFontStyleItalic;
+                }
+            }
+            return f;
+        }
+        return defaultValue;
+    }
     
 }

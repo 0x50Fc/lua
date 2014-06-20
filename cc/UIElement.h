@@ -48,6 +48,8 @@ namespace ui {
         
         virtual UIColor colorValue(const char * key,UIColor defaultValue);
         
+        virtual UIFont fontValue(const char * key,UIFont defaultValue);
+        
         DEC_CLASS
         
     private:

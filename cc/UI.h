@@ -46,6 +46,25 @@ namespace ui {
             :left(left),top(top),right(right),bottom(bottom){};
     };
     
+    enum UIFontStyle {
+        UIFontStyleNone,UIFontStyleBold,UIFontStyleItalic
+    };
+    
+    struct UIFont {
+        char name[64];
+        float size;
+        UIFontStyle style;
+        UIFont():name(""),size(14),style(UIFontStyleNone){};
+        UIFont(float size):name(""),size(size),style(UIFontStyleNone){};
+        UIFont(float size,UIFontStyle style):name(""),size(size),style(style){};
+        UIFont(const char * fontName,float size,UIFontStyle style):size(size),style(style){
+            strncpy(name,fontName,sizeof(name));
+        };
+        UIFont(const char * fontName,float size):size(size),style(UIFontStyleNone){
+            strncpy(name,fontName,sizeof(name));
+        };
+    };
+    
     extern float UIAutoValue;
 }
 

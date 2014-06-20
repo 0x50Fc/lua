@@ -55,17 +55,17 @@ namespace ui {
     
     UISize UILayoutElement::layoutChildren(UIEdge padding){
    
-        UIRect frame = frame();
-	    UISize size();
-	    UISize insetSize = new Size(frame.size.width - padding.left - padding.right
+        UIRect frame = this->frame();
+	    UISize size;
+	    UISize insetSize(frame.size.width - padding.left - padding.right
                                   , frame.size.height - padding.top - padding.bottom);
 	    
 	    const char * layout = stringValue("layout", NULL);
  
-	    if(layout &&& strcmp(layout, "flow") == 0){
+	    if(layout && strcmp(layout, "flow") == 0){
 	        
 	    	float x = padding.left;
-	    	float y = padding.top
+	    	float y = padding.top;
 	        float lineHeight = 0;
 	        float width = padding.left + padding.right;
 	        float maxWidth = frame.size.width;
@@ -82,14 +82,13 @@ namespace ui {
                     
                     UILayoutElement * layoutElement = (UILayoutElement *) element;
                     
-                    float margin = floatValueOf("margin", insetSize.width, 0);
+                    float v = floatValueOf("margin", insetSize.width, 0);
                     
                     UIEdge margin(
-                                  floatValueOf("margin-left", insetSize.width, margin),
-                                  floatValueOf("margin-top", insetSize.height, margin),
-                                  floatValueOf("margin-right", insetSize.width, margin),
-                                  floatValueOf("margin-bottom", insetSize.height, margin),
-                    );
+                                  floatValueOf("margin-left", insetSize.width, v),
+                                  floatValueOf("margin-top", insetSize.height, v),
+                                  floatValueOf("margin-right", insetSize.width, v),
+                                  floatValueOf("margin-bottom", insetSize.height, v));
                     
                     layoutElement->setMargin(margin);
                     
@@ -100,8 +99,8 @@ namespace ui {
                     
                     if(( x + r.size.width + margin.left + margin.right <= maxWidth - padding.left)){
 		                
-		            	r.x = x + margin.left;
-		            	r.y = y + margin.top;
+		            	r.origin.x = x + margin.left;
+		            	r.origin.y = y + margin.top;
 		            	
 		                x += r.size.width + margin.left + margin.right;
 		                
@@ -116,8 +115,8 @@ namespace ui {
 		                x = padding.left;
 		                y += lineHeight;
 		                lineHeight = r.size.height + margin.top + margin.bottom;
-		                r.x = x + margin.left;
-		                r.y = y + margin.top;
+		                r.origin.x = x + margin.left;
+		                r.origin.y = y + margin.top;
 		                x += r.size.width + margin.left + margin.right;
 		                if(width < x + padding.right){
 		                    width = x + padding.right;
@@ -147,43 +146,43 @@ namespace ui {
                     
 	        		layoutElement->layout(insetSize);
 		            
-		            Rect r = layoutElement.getFrame();
+		            UIRect r = layoutElement->frame();
 		            
-		            String left = element.stringValue("left","0");
-		            String right = element.stringValue("right","0");
-		            String top = element.stringValue("top","0");
-		            String bottom = element.stringValue("bottom","0");
-		            
-		            if("auto".equals(left)){
-		                if("auto".equals(right)){
-		                    r.x = (frame.getWidth() - r.getWidth()) / 2.0f;
+                    float left = layoutElement->floatValueOf("left", insetSize.width, 0);
+                    float top = layoutElement->floatValueOf("top", insetSize.width, 0);
+                    float right = layoutElement->floatValueOf("right", insetSize.width, 0);
+                    float bottom = layoutElement->floatValueOf("bottom", insetSize.width, 0);
+                    
+		            if(left == UIAutoValue){
+		                if(right == UIAutoValue){
+		                    r.origin.x = (frame.size.width - r.size.width) / 2.0f;
 		                }
 		                else{
-		                    r.x = (frame.getWidth() - r.getWidth() - padding.right - Float.valueOf(right));
+		                    r.origin.x = (frame.size.width - r.size.width - padding.right - right);
 		                }
 		            }
 		            else{
-		                r.x = padding.left + Float.valueOf(left);
+		                r.origin.x = padding.left + left;
 		            }
 		            
-		            if("auto".equals(top)){
-		                if("auto".equals(bottom)){
-		                    r.y = (frame.getHeight() - r.getHeight()) / 2.0f;
+		            if(top == UIAutoValue){
+		                if(bottom == UIAutoValue){
+		                    r.origin.y = (frame.size.height - r.size.height) / 2.0f;
 		                }
 		                else{
-		                    r.y = frame.getHeight() - r.getHeight() - padding.bottom - Float.valueOf(bottom);
+		                    r.origin.y = frame.size.height - r.size.height - padding.bottom - bottom;
 		                }
 		            }
 		            else{
-		                r.y = padding.top + Float.valueOf(top);
+		                r.origin.y = padding.top + top;
 		            }
 		            
-		            if(r.getX() + r.getWidth() + padding.right > size.getWidth()){
-		                size.width = r.getX() +r.getWidth() +padding.right;
+		            if(r.origin.x + r.size.width + padding.right > size.width){
+		                size.width = r.origin.x + r.size.width +padding.right;
 		            }
 		            
-		            if(r.getY() + r.getHeight() + padding.bottom > size.getHeight()){
-		                size.height = r.getY() +r.getHeight() +padding.bottom;
+		            if(r.origin.x + r.size.height + padding.bottom > size.height){
+		                size.height = r.origin.y + r.size.height +padding.bottom;
 		            }
 	        	}
 	        }
@@ -197,13 +196,13 @@ namespace ui {
     
     UISize UILayoutElement::layout(UISize size){
         
-        float padding = floatValueOf("padding", size.width, 0);
+        float v = floatValueOf("padding", size.width, 0);
         
         UIEdge padding(
-                       floatValueOf("padding-left", size.width, padding),
-                       floatValueOf("padding-top", size.height, padding),
-                       floatValueOf("padding-right", size.width, padding),
-                       floatValueOf("padding-height", size.height, padding),
+                       floatValueOf("padding-left", size.width, v),
+                       floatValueOf("padding-top", size.height, v),
+                       floatValueOf("padding-right", size.width, v),
+                       floatValueOf("padding-height", size.height, v)
         );
         
         setPadding(padding);
@@ -211,7 +210,7 @@ namespace ui {
         UIRect frame (
                       0,0,
                       floatValueOf("width", size.width, 0),
-                      floatValueOf("height", size.height, 0),
+                      floatValueOf("height", size.height, 0)
         );
         
         setFrame(frame);

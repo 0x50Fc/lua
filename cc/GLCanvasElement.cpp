@@ -13,11 +13,13 @@ namespace cc {
     
     IMP_CLASS(GLCanvasElement, GLElement)
     
-    GLCanvasElement::GLCanvasElement(){
-        transform = GLMatrix4Identity;
-        alpha = 1.0f;
-        scale = 1.0f;
-        hidden = false;
+    GLCanvasElement::GLCanvasElement()
+    :transform(GLMatrix4Identity)
+    ,alpha(1.0)
+    ,scale(1.0)
+    ,hidden(false)
+    ,position({0.0,0.0}){
+
     }
     
     GLCanvasElement::~GLCanvasElement(){
@@ -45,4 +47,39 @@ namespace cc {
         context->restoreState();
         
     }
+    
+    Value GLCanvasElement::value(const char * key){
+        
+        if(strcmp(key, "hidden") == 0){
+            return Value(hidden);
+        }
+        else if(strcmp(key, "alpha") == 0){
+            return Value((double)alpha);
+        }
+        else if(strcmp(key, "scale") == 0){
+            return Value((double)scale);
+        }
+        else {
+            return GLElement::value(key);
+        }
+        
+    }
+    
+    void GLCanvasElement::setValue(const char * key,Value value){
+        
+        if(strcmp(key, "hidden") == 0){
+            hidden = ValueToBoolean(value, false);
+        }
+        else if(strcmp(key, "alpha") == 0){
+            alpha = ValueToDouble(value, 0.0);
+        }
+        else if(strcmp(key, "scale") == 0){
+            scale = ValueToDouble(value, 0.0);
+        }
+        else {
+            GLElement::setValue(key,value);
+        }
+        
+    }
+    
 }

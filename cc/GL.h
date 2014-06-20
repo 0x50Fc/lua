@@ -21,6 +21,8 @@
 #include <OpenGL/glext.h>
 
 #else
+#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES1/glext.h>
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #endif
@@ -39,20 +41,20 @@ namespace cc {
     typedef union _GLMatrix2{
         struct
         {
-            float m00, m01;
-            float m10, m11;
+            GLfloat m00, m01;
+            GLfloat m10, m11;
         };
-        float m[4];
+        GLfloat m[4];
     }GLMatrix2;
     
     typedef union _GLMatrix3{
         struct
         {
-            float m00, m01, m02;
-            float m10, m11, m12;
-            float m20, m21, m22;
+            GLfloat m00, m01, m02;
+            GLfloat m10, m11, m12;
+            GLfloat m20, m21, m22;
         };
-        float m[9];
+        GLfloat m[9];
     }GLMatrix3;
     
     extern const GLMatrix3 GLMatrix3Identity;
@@ -61,52 +63,60 @@ namespace cc {
     {
         struct
         {
-            float m00, m01, m02, m03;
-            float m10, m11, m12, m13;
-            float m20, m21, m22, m23;
-            float m30, m31, m32, m33;
+            GLfloat m00, m01, m02, m03;
+            GLfloat m10, m11, m12, m13;
+            GLfloat m20, m21, m22, m23;
+            GLfloat m30, m31, m32, m33;
         };
-        float m[16];
+        GLfloat m[16];
     } GLMatrix4;
     
     typedef union _GLVector2
     {
-        struct { float x, y; };
-        struct { float s, t; };
-        struct { float width, height; };
-        float v[2];
+        struct { GLfloat x, y; };
+        struct { GLfloat s, t; };
+        struct { GLfloat width, height; };
+        GLfloat v[2];
     }GLVector2;
     
     typedef union _GLVector3
     {
-        struct { float x, y, z; };
-        struct { float r, g, b; };
-        struct { float s, t, p; };
-        float v[3];
+        struct { GLfloat x, y, z; };
+        struct { GLfloat r, g, b; };
+        struct { GLfloat s, t, p; };
+        GLfloat v[3];
     }GLVector3;
     
     typedef union _GLVector4
     {
-        struct { float x, y, z, w; };
-        struct { float r, g, b, a; };
-        struct { float s, t, p, q; };
+        struct { GLfloat x, y, z, w; };
+        struct { GLfloat r, g, b, a; };
+        struct { GLfloat s, t, p, q; };
         struct {
             GLVector2 origin;
             GLVector2 size;
         };
-        float v[4];
-    }GLVector4 ;
-    
+        
+        GLfloat v[4];
+        
+    } GLVector4 ;
+
     typedef GLVector4 GLColor3d;
+    
+    int GLColor3dToIntValue(GLColor3d color);
+    
+    GLColor3d GLColor3dFromIntValue(int value);
+    
+    GLColor3d GLColor3dFromString(const char * value);
     
     extern const GLMatrix4 GLMatrix4Identity;
     
-    static __inline__ float GLVector3Length(GLVector3 Vector);
-    static __inline__ float GLVector3Length2(GLVector3 Vector);
-    static __inline__ float GLVector4Length(GLVector4 Vector);
-    static __inline__ float GLVector4Length2(GLVector4 Vector);
+    static __inline__ GLfloat GLVector3Length(GLVector3 Vector);
+    static __inline__ GLfloat GLVector3Length2(GLVector3 Vector);
+    static __inline__ GLfloat GLVector4Length(GLVector4 Vector);
+    static __inline__ GLfloat GLVector4Length2(GLVector4 Vector);
     static __inline__ GLVector3 GLVector3Normalize(GLVector3 Vector);
-    static __inline__ GLVector3 GLVector3Make(float x, float y, float z);
+    static __inline__ GLVector3 GLVector3Make(GLfloat x, GLfloat y, GLfloat z);
     
     extern GLMatrix3 cid_Matrix3InvertTranspose(GLMatrix3 Matrix);
     
@@ -114,50 +124,50 @@ namespace cc {
     
     static __inline__ GLMatrix3 GLMatrix4ToMatrix3(GLMatrix4 Matrix4);
     
-    static __inline__ GLVector3 GLVector3MultiplyScalar(GLVector3 Vector, float value);
+    static __inline__ GLVector3 GLVector3MultiplyScalar(GLVector3 Vector, GLfloat value);
     static __inline__ GLVector3 GLVector3Add(GLVector3 VectorLeft, GLVector3 VectorRight);
     static __inline__ GLVector3 GLVector3Sub(GLVector3 VectorLeft, GLVector3 VectorRight);
     
-    static __inline__ GLVector3 GLVector3Anim(GLVector3 from,GLVector3 to,float value);
+    static __inline__ GLVector3 GLVector3Anim(GLVector3 from,GLVector3 to,GLfloat value);
     
-    static __inline__ GLVector3 GLVector3AnimOffset(GLVector3 from,GLVector3 to,float value);
+    static __inline__ GLVector3 GLVector3AnimOffset(GLVector3 from,GLVector3 to,GLfloat value);
     
     static __inline__ GLVector3 GLVector3Project(GLVector3 a, GLVector3 b,GLVector3 c);
     
-    static __inline__ float GLVector3Project_scalar(GLVector3 a, GLVector3 b,GLVector3 c);
+    static __inline__ GLfloat GLVector3Project_scalar(GLVector3 a, GLVector3 b,GLVector3 c);
     
-    static __inline__ float GLVector3Dot(GLVector3 a, GLVector3 b);
-    
-    static __inline__ GLMatrix3 GLMatrix3Multiply(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight);
-    
-    static __inline__ GLMatrix3 GLMatrix3MultiplyAnim(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight,float value);
+    static __inline__ GLfloat GLVector3Dot(GLVector3 a, GLVector3 b);
     
     static __inline__ GLMatrix3 GLMatrix3Multiply(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight);
     
-    static __inline__ GLMatrix3 GLMatrix3MultiplyScalar(GLMatrix3 MatrixLeft, float value);
+    static __inline__ GLMatrix3 GLMatrix3MultiplyAnim(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight,GLfloat value);
+    
+    static __inline__ GLMatrix3 GLMatrix3Multiply(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight);
+    
+    static __inline__ GLMatrix3 GLMatrix3MultiplyScalar(GLMatrix3 MatrixLeft, GLfloat value);
     
     static __inline__ GLMatrix3 GLMatrix3Add(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight);
     static __inline__ GLMatrix3 GLMatrix3Sub(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight);
     
     static __inline__ GLMatrix3 GLMatrix3MakeProject(GLVector3 v3);
     
-    static __inline__ GLMatrix3 GLMatrix3MakeScale(float sx, float sy, float sz);
-    static __inline__ GLMatrix3 GLMatrix3MakeRotation(float radians, float x, float y, float z);
+    static __inline__ GLMatrix3 GLMatrix3MakeScale(GLfloat sx, GLfloat sy, GLfloat sz);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotation(GLfloat radians, GLfloat x, GLfloat y, GLfloat z);
     
-    static __inline__ GLMatrix3 GLMatrix3MakeRotationX(float radians);
-    static __inline__ GLMatrix3 GLMatrix3MakeRotationY(float radians);
-    static __inline__ GLMatrix3 GLMatrix3MakeRotationZ(float radians);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotationX(GLfloat radians);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotationY(GLfloat radians);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotationZ(GLfloat radians);
     
-    static __inline__ GLMatrix3 GLMatrix3Scale(GLMatrix3 Matrix, float sx, float sy, float sz);
-    static __inline__ GLMatrix3 GLMatrix3Rotate(GLMatrix3 Matrix, float radians, float x, float y, float z);
-    static __inline__ GLMatrix3 GLMatrix3RotateX(GLMatrix3 Matrix, float radians);
-    static __inline__ GLMatrix3 GLMatrix3RotateY(GLMatrix3 Matrix, float radians);
-    static __inline__ GLMatrix3 GLMatrix3RotateZ(GLMatrix3 Matrix, float radians);
+    static __inline__ GLMatrix3 GLMatrix3Scale(GLMatrix3 Matrix, GLfloat sx, GLfloat sy, GLfloat sz);
+    static __inline__ GLMatrix3 GLMatrix3Rotate(GLMatrix3 Matrix, GLfloat radians, GLfloat x, GLfloat y, GLfloat z);
+    static __inline__ GLMatrix3 GLMatrix3RotateX(GLMatrix3 Matrix, GLfloat radians);
+    static __inline__ GLMatrix3 GLMatrix3RotateY(GLMatrix3 Matrix, GLfloat radians);
+    static __inline__ GLMatrix3 GLMatrix3RotateZ(GLMatrix3 Matrix, GLfloat radians);
     
     
     static __inline__ GLMatrix4 GLMatrix4Multiply(GLMatrix4 MatrixLeft, GLMatrix4 MatrixRight);
     
-    static __inline__ GLVector3 GLMatrix4MultiplyVector3(GLMatrix4 MatrixLeft, GLVector3 VectorRight,float v3);
+    static __inline__ GLVector3 GLMatrix4MultiplyVector3(GLMatrix4 MatrixLeft, GLVector3 VectorRight,GLfloat v3);
     
     static __inline__ GLVector4 GLMatrix4MultiplyVector4(GLMatrix4 MatrixLeft, GLVector4 VectorRight);
     
@@ -165,22 +175,22 @@ namespace cc {
     
     static __inline__ GLMatrix4 GLMatrix4MakeProject(GLVector3 v3);
     
-    static __inline__ GLMatrix4 GLMatrix4MakeTranslation(float tx, float ty, float tz);
-    static __inline__ GLMatrix4 GLMatrix4MakeScale(float sx, float sy, float sz);
-    static __inline__ GLMatrix4 GLMatrix4MakeRotation(float radians, float x, float y, float z);
+    static __inline__ GLMatrix4 GLMatrix4MakeTranslation(GLfloat tx, GLfloat ty, GLfloat tz);
+    static __inline__ GLMatrix4 GLMatrix4MakeScale(GLfloat sx, GLfloat sy, GLfloat sz);
+    static __inline__ GLMatrix4 GLMatrix4MakeRotation(GLfloat radians, GLfloat x, GLfloat y, GLfloat z);
     
-    static __inline__ GLMatrix4 GLMatrix4MakeRotationX(float radians);
-    static __inline__ GLMatrix4 GLMatrix4MakeRotationY(float radians);
-    static __inline__ GLMatrix4 GLMatrix4MakeRotationZ(float radians);
+    static __inline__ GLMatrix4 GLMatrix4MakeRotationX(GLfloat radians);
+    static __inline__ GLMatrix4 GLMatrix4MakeRotationY(GLfloat radians);
+    static __inline__ GLMatrix4 GLMatrix4MakeRotationZ(GLfloat radians);
     
-    static __inline__ GLMatrix4 GLMatrix4Translate(GLMatrix4 Matrix, float tx, float ty, float tz);
-    static __inline__ GLMatrix4 GLMatrix4Scale(GLMatrix4 Matrix, float sx, float sy, float sz);
-    static __inline__ GLMatrix4 GLMatrix4Rotate(GLMatrix4 Matrix, float radians, float x, float y, float z);
-    static __inline__ GLMatrix4 GLMatrix4RotateX(GLMatrix4 Matrix, float radians);
-    static __inline__ GLMatrix4 GLMatrix4RotateY(GLMatrix4 Matrix, float radians);
-    static __inline__ GLMatrix4 GLMatrix4RotateZ(GLMatrix4 Matrix, float radians);
+    static __inline__ GLMatrix4 GLMatrix4Translate(GLMatrix4 Matrix, GLfloat tx, GLfloat ty, GLfloat tz);
+    static __inline__ GLMatrix4 GLMatrix4Scale(GLMatrix4 Matrix, GLfloat sx, GLfloat sy, GLfloat sz);
+    static __inline__ GLMatrix4 GLMatrix4Rotate(GLMatrix4 Matrix, GLfloat radians, GLfloat x, GLfloat y, GLfloat z);
+    static __inline__ GLMatrix4 GLMatrix4RotateX(GLMatrix4 Matrix, GLfloat radians);
+    static __inline__ GLMatrix4 GLMatrix4RotateY(GLMatrix4 Matrix, GLfloat radians);
+    static __inline__ GLMatrix4 GLMatrix4RotateZ(GLMatrix4 Matrix, GLfloat radians);
     
-    static __inline__ GLMatrix4 GLMatrix4MultiplyScalar(GLMatrix4 Matrix4 ,float value);
+    static __inline__ GLMatrix4 GLMatrix4MultiplyScalar(GLMatrix4 Matrix4 ,GLfloat value);
     static __inline__ GLMatrix4 GLMatrix4Add(GLMatrix4 MatrixLeft ,GLMatrix4 MatrixRight);
     static __inline__ GLMatrix4 GLMatrix4Sub(GLMatrix4 MatrixLeft ,GLMatrix4 MatrixRight);
     
@@ -190,46 +200,46 @@ namespace cc {
     
     static __inline__ GLMatrix4 GLMatrix3ToMatrix4(GLMatrix3 Matrix);
     
-    static __inline__ GLMatrix4 GLMatrix4MultiplyAnim(GLMatrix4 MatrixLeft, GLMatrix4 MatrixRight,float value);
+    static __inline__ GLMatrix4 GLMatrix4MultiplyAnim(GLMatrix4 MatrixLeft, GLMatrix4 MatrixRight,GLfloat value);
     
     static __inline__ GLVector4 GLQuatToAxis(GLVector4 q);
     
     static __inline__ GLVector4 GLAxisToQuat(GLVector4 a);
     
-    static __inline__ float GLVector3Length(GLVector3 Vector)
+    static __inline__ GLfloat GLVector3Length(GLVector3 Vector)
     {
         return sqrt(Vector.v[0] * Vector.v[0] + Vector.v[1] * Vector.v[1] + Vector.v[2] * Vector.v[2]);
     }
     
-    static __inline__ float GLVector3Length2(GLVector3 Vector)
+    static __inline__ GLfloat GLVector3Length2(GLVector3 Vector)
     {
         return Vector.v[0] * Vector.v[0] + Vector.v[1] * Vector.v[1] + Vector.v[2] * Vector.v[2];
     }
     
-    static __inline__ float GLVector4Length(GLVector4 Vector)
+    static __inline__ GLfloat GLVector4Length(GLVector4 Vector)
     {
         return sqrt(Vector.v[0] * Vector.v[0] + Vector.v[1] * Vector.v[1] + Vector.v[2] * Vector.v[2] + Vector.v[3] * Vector.v[3]);
     }
     
-    static __inline__ float GLVector4Length2(GLVector4 Vector)
+    static __inline__ GLfloat GLVector4Length2(GLVector4 Vector)
     {
         return Vector.v[0] * Vector.v[0] + Vector.v[1] * Vector.v[1] + Vector.v[2] * Vector.v[2] + Vector.v[3] * Vector.v[3];
     }
     
     static __inline__ GLVector3 GLVector3Normalize(GLVector3 Vector)
     {
-        float scale = 1.0f / GLVector3Length(Vector);
+        GLfloat scale = 1.0f / GLVector3Length(Vector);
         GLVector3 v = { Vector.v[0] * scale, Vector.v[1] * scale, Vector.v[2] * scale };
         return v;
     }
     
-    static __inline__ GLVector3 GLVector3Make(float x, float y, float z)
+    static __inline__ GLVector3 GLVector3Make(GLfloat x, GLfloat y, GLfloat z)
     {
         GLVector3 v = { x, y, z };
         return v;
     }
     
-    static __inline__ GLVector3 GLVector3MultiplyScalar(GLVector3 Vector, float value)
+    static __inline__ GLVector3 GLVector3MultiplyScalar(GLVector3 Vector, GLfloat value)
     {
         GLVector3 v = { Vector.v[0] * value,
             Vector.v[1] * value,
@@ -251,25 +261,25 @@ namespace cc {
         return v;
     }
     
-    static __inline__ GLVector3 GLVector3Anim(GLVector3 from,GLVector3 to,float value){
+    static __inline__ GLVector3 GLVector3Anim(GLVector3 from,GLVector3 to,GLfloat value){
         GLVector3 v = { from.x + (to.x - from.x) * value,
             from.y + (to.y - from.y) * value,
             from.z + (to.z - from.z) * value };
         return v;
     }
     
-    static __inline__ GLVector3 GLVector3AnimOffset(GLVector3 from,GLVector3 to,float value){
+    static __inline__ GLVector3 GLVector3AnimOffset(GLVector3 from,GLVector3 to,GLfloat value){
         GLVector3 v = { (to.x - from.x) * value,
             (to.y - from.y) * value,
             (to.z - from.z) * value };
         return v;
     }
     
-    static __inline__ float GLVector3Dot(GLVector3 a, GLVector3 b){
+    static __inline__ GLfloat GLVector3Dot(GLVector3 a, GLVector3 b){
         return a.x * b.x + a.y * b.y + a.z * b.z;
     }
     
-    static __inline__ float GLVector3Project_scalar(GLVector3 a, GLVector3 b,GLVector3 c){
+    static __inline__ GLfloat GLVector3Project_scalar(GLVector3 a, GLVector3 b,GLVector3 c){
         GLVector3 ab = GLVector3Sub(b, a);
         GLVector3 ac = GLVector3Sub(c, a);
         return GLVector3Dot(ab,ac) / GLVector3Dot(ab,ab);
@@ -319,7 +329,7 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLVector3 GLMatrix4MultiplyVector3(GLMatrix4 MatrixLeft, GLVector3 VectorRight ,float v3)
+    static __inline__ GLVector3 GLMatrix4MultiplyVector3(GLMatrix4 MatrixLeft, GLVector3 VectorRight ,GLfloat v3)
     {
         GLVector3 v = { MatrixLeft.m[0] * VectorRight.v[0] + MatrixLeft.m[4] * VectorRight.v[1] + MatrixLeft.m[8] * VectorRight.v[2] + MatrixLeft.m[12] * v3,
             MatrixLeft.m[1] * VectorRight.v[0] + MatrixLeft.m[5] * VectorRight.v[1] + MatrixLeft.m[9] * VectorRight.v[2] + MatrixLeft.m[13] * v3,
@@ -344,7 +354,7 @@ namespace cc {
         return GLVector3MultiplyScalar(v3, 1.0f / v4.v[3]);
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MakeTranslation(float tx, float ty, float tz)
+    static __inline__ GLMatrix4 GLMatrix4MakeTranslation(GLfloat tx, GLfloat ty, GLfloat tz)
     {
         GLMatrix4 m = GLMatrix4Identity;
         m.m[12] = tx;
@@ -353,7 +363,7 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MakeScale(float sx, float sy, float sz)
+    static __inline__ GLMatrix4 GLMatrix4MakeScale(GLfloat sx, GLfloat sy, GLfloat sz)
     {
         GLMatrix4 m = GLMatrix4Identity;
         m.m[0] = sx;
@@ -362,12 +372,12 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MakeRotation(float radians, float x, float y, float z)
+    static __inline__ GLMatrix4 GLMatrix4MakeRotation(GLfloat radians, GLfloat x, GLfloat y, GLfloat z)
     {
         GLVector3 v = GLVector3Normalize(GLVector3Make(x, y, z));
-        float cos = cosf(radians);
-        float cosp = 1.0f - cos;
-        float sin = sinf(radians);
+        GLfloat cos = cosf(radians);
+        GLfloat cosp = 1.0f - cos;
+        GLfloat sin = sinf(radians);
         
         GLMatrix4 m = { cos + cosp * v.v[0] * v.v[0],
             cosp * v.v[0] * v.v[1] + v.v[2] * sin,
@@ -389,10 +399,10 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MakeRotationX(float radians)
+    static __inline__ GLMatrix4 GLMatrix4MakeRotationX(GLfloat radians)
     {
-        float cos = cosf(radians);
-        float sin = sinf(radians);
+        GLfloat cos = cosf(radians);
+        GLfloat sin = sinf(radians);
         
         GLMatrix4 m = { 1.0f, 0.0f, 0.0f, 0.0f,
             0.0f, cos, sin, 0.0f,
@@ -402,10 +412,10 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MakeRotationY(float radians)
+    static __inline__ GLMatrix4 GLMatrix4MakeRotationY(GLfloat radians)
     {
-        float cos = cosf(radians);
-        float sin = sinf(radians);
+        GLfloat cos = cosf(radians);
+        GLfloat sin = sinf(radians);
         
         GLMatrix4 m = { cos, 0.0f, -sin, 0.0f,
             0.0f, 1.0f, 0.0f, 0.0f,
@@ -415,10 +425,10 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MakeRotationZ(float radians)
+    static __inline__ GLMatrix4 GLMatrix4MakeRotationZ(GLfloat radians)
     {
-        float cos = cosf(radians);
-        float sin = sinf(radians);
+        GLfloat cos = cosf(radians);
+        GLfloat sin = sinf(radians);
         
         GLMatrix4 m = { cos, sin, 0.0f, 0.0f,
             -sin, cos, 0.0f, 0.0f,
@@ -428,7 +438,7 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4Translate(GLMatrix4 Matrix, float tx, float ty, float tz)
+    static __inline__ GLMatrix4 GLMatrix4Translate(GLMatrix4 Matrix, GLfloat tx, GLfloat ty, GLfloat tz)
     {
         GLMatrix4 m = { Matrix.m[0], Matrix.m[1], Matrix.m[2], Matrix.m[3],
             Matrix.m[4], Matrix.m[5], Matrix.m[6], Matrix.m[7],
@@ -440,7 +450,7 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4Scale(GLMatrix4 Matrix, float sx, float sy, float sz)
+    static __inline__ GLMatrix4 GLMatrix4Scale(GLMatrix4 Matrix, GLfloat sx, GLfloat sy, GLfloat sz)
     {
         
         GLMatrix4 m = { Matrix.m[0] * sx, Matrix.m[1] * sx, Matrix.m[2] * sx, Matrix.m[3] * sx,
@@ -450,31 +460,31 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4Rotate(GLMatrix4 Matrix, float radians, float x, float y, float z)
+    static __inline__ GLMatrix4 GLMatrix4Rotate(GLMatrix4 Matrix, GLfloat radians, GLfloat x, GLfloat y, GLfloat z)
     {
         GLMatrix4 rm = GLMatrix4MakeRotation(radians, x, y, z);
         return GLMatrix4Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix4 GLMatrix4RotateX(GLMatrix4 Matrix, float radians)
+    static __inline__ GLMatrix4 GLMatrix4RotateX(GLMatrix4 Matrix, GLfloat radians)
     {
         GLMatrix4 rm = GLMatrix4MakeRotationX(radians);
         return GLMatrix4Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix4 GLMatrix4RotateY(GLMatrix4 Matrix, float radians)
+    static __inline__ GLMatrix4 GLMatrix4RotateY(GLMatrix4 Matrix, GLfloat radians)
     {
         GLMatrix4 rm = GLMatrix4MakeRotationY(radians);
         return GLMatrix4Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix4 GLMatrix4RotateZ(GLMatrix4 Matrix, float radians)
+    static __inline__ GLMatrix4 GLMatrix4RotateZ(GLMatrix4 Matrix, GLfloat radians)
     {
         GLMatrix4 rm = GLMatrix4MakeRotationZ(radians);
         return GLMatrix4Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MultiplyScalar(GLMatrix4 Matrix4 ,float value){
+    static __inline__ GLMatrix4 GLMatrix4MultiplyScalar(GLMatrix4 Matrix4 ,GLfloat value){
         GLMatrix4 m4 = {
             Matrix4.m00 * value,Matrix4.m01 * value,Matrix4.m02 * value,Matrix4.m03 * value,
             Matrix4.m10 * value,Matrix4.m11 * value,Matrix4.m12 * value,Matrix4.m13 * value,
@@ -531,7 +541,7 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MultiplyScalar(GLMatrix3 MatrixLeft, float value){
+    static __inline__ GLMatrix3 GLMatrix3MultiplyScalar(GLMatrix3 MatrixLeft, GLfloat value){
         GLMatrix3 m3 = {
             MatrixLeft.m00 * value,MatrixLeft.m01 * value,MatrixLeft.m02 * value,
             MatrixLeft.m10 * value,MatrixLeft.m11 * value,MatrixLeft.m12 * value,
@@ -586,7 +596,7 @@ namespace cc {
         return v;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MakeScale(float sx, float sy, float sz){
+    static __inline__ GLMatrix3 GLMatrix3MakeScale(GLfloat sx, GLfloat sy, GLfloat sz){
         GLMatrix3 m = GLMatrix3Identity;
         m.m[0] = sx;
         m.m[4] = sy;
@@ -594,12 +604,12 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MakeRotation(float radians, float x, float y, float z){
+    static __inline__ GLMatrix3 GLMatrix3MakeRotation(GLfloat radians, GLfloat x, GLfloat y, GLfloat z){
         GLVector3 v3 = {x,y,z};
         GLVector3 v = GLVector3Normalize(v3);
-        float cos = cosf(radians);
-        float cosp = 1.0f - cos;
-        float sin = sinf(radians);
+        GLfloat cos = cosf(radians);
+        GLfloat cosp = 1.0f - cos;
+        GLfloat sin = sinf(radians);
         
         GLMatrix3 m = { cos + cosp * v.v[0] * v.v[0],
             cosp * v.v[0] * v.v[1] + v.v[2] * sin,
@@ -616,9 +626,9 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MakeRotationX(float radians){
-        float cos = cosf(radians);
-        float sin = sinf(radians);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotationX(GLfloat radians){
+        GLfloat cos = cosf(radians);
+        GLfloat sin = sinf(radians);
         
         GLMatrix3 m = { 1.0f, 0.0f, 0.0f,
             0.0f, cos, sin,
@@ -627,9 +637,9 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MakeRotationY(float radians){
-        float cos = cosf(radians);
-        float sin = sinf(radians);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotationY(GLfloat radians){
+        GLfloat cos = cosf(radians);
+        GLfloat sin = sinf(radians);
         
         GLMatrix3 m = { cos, 0.0f, -sin,
             0.0f, 1.0f, 0.0f,
@@ -638,9 +648,9 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MakeRotationZ(float radians){
-        float cos = cosf(radians);
-        float sin = sinf(radians);
+    static __inline__ GLMatrix3 GLMatrix3MakeRotationZ(GLfloat radians){
+        GLfloat cos = cosf(radians);
+        GLfloat sin = sinf(radians);
         
         GLMatrix3 m = { cos, sin, 0.0f,
             -sin, cos, 0.0f,
@@ -649,35 +659,35 @@ namespace cc {
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3Scale(GLMatrix3 Matrix, float sx, float sy, float sz){
+    static __inline__ GLMatrix3 GLMatrix3Scale(GLMatrix3 Matrix, GLfloat sx, GLfloat sy, GLfloat sz){
         GLMatrix3 m = { Matrix.m[0] * sx, Matrix.m[1] * sx, Matrix.m[2] * sx,
             Matrix.m[3] * sy, Matrix.m[4] * sy, Matrix.m[5] * sy,
             Matrix.m[6] * sz, Matrix.m[7] * sz, Matrix.m[8] * sz };
         return m;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3Rotate(GLMatrix3 Matrix, float radians, float x, float y, float z){
+    static __inline__ GLMatrix3 GLMatrix3Rotate(GLMatrix3 Matrix, GLfloat radians, GLfloat x, GLfloat y, GLfloat z){
         GLMatrix3 rm = GLMatrix3MakeRotation(radians, x, y, z);
         return GLMatrix3Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix3 GLMatrix3RotateX(GLMatrix3 Matrix, float radians){
+    static __inline__ GLMatrix3 GLMatrix3RotateX(GLMatrix3 Matrix, GLfloat radians){
         GLMatrix3 rm = GLMatrix3MakeRotationX(radians);
         return GLMatrix3Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix3 GLMatrix3RotateY(GLMatrix3 Matrix, float radians){
+    static __inline__ GLMatrix3 GLMatrix3RotateY(GLMatrix3 Matrix, GLfloat radians){
         GLMatrix3 rm = GLMatrix3MakeRotationY(radians);
         return GLMatrix3Multiply(Matrix, rm);
     }
     
-    static __inline__ GLMatrix3 GLMatrix3RotateZ(GLMatrix3 Matrix, float radians){
+    static __inline__ GLMatrix3 GLMatrix3RotateZ(GLMatrix3 Matrix, GLfloat radians){
         GLMatrix3 rm = GLMatrix3MakeRotationZ(radians);
         return GLMatrix3Multiply(Matrix, rm);
     }
     
     static __inline__ GLMatrix3 GLquato_Matrix3(GLVector4 quat) {
-        float length = GLVector4Length2(quat);
+        GLfloat length = GLVector4Length2(quat);
         GLMatrix3 m3 = GLMatrix3Identity;
         if (length == 0.0f)
         {
@@ -687,7 +697,7 @@ namespace cc {
         }
         else
         {
-            float rlength;
+            GLfloat rlength;
             
             if (length != 1.0)
             {
@@ -698,7 +708,7 @@ namespace cc {
                 rlength = 2.0;
             }
             
-            float wx, wy, wz, xx, yy, yz, xy, xz, zz, x2, y2, z2;
+            GLfloat wx, wy, wz, xx, yy, yz, xy, xz, zz, x2, y2, z2;
             
             x2 = rlength* quat.x;
             y2 = rlength* quat.y;
@@ -733,7 +743,7 @@ namespace cc {
     }
     
     static __inline__ GLVector4 GLMatrix3ToQuat(GLMatrix3 m) {
-        float s;
+        GLfloat s;
         GLVector4 tq,q;
         int    i, j;
         
@@ -783,21 +793,21 @@ namespace cc {
         return q;
     }
     
-    static __inline__ GLMatrix3 GLMatrix3MultiplyAnim(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight,float value){
+    static __inline__ GLMatrix3 GLMatrix3MultiplyAnim(GLMatrix3 MatrixLeft, GLMatrix3 MatrixRight,GLfloat value){
         GLVector4 fv = GLMatrix3ToQuat(MatrixLeft);
         GLVector4 tv = GLMatrix3ToQuat(MatrixRight);
         
-        //float w = fv.w + (tv.w - fv.w) * value;
+        //GLfloat w = fv.w + (tv.w - fv.w) * value;
         
-        float fw =  2.0f * acos(fv.w);
-        float tw =  2.0f * acos(tv.w);
+        GLfloat fw =  2.0f * acos(fv.w);
+        GLfloat tw =  2.0f * acos(tv.w);
         if(fw > M_PI){
             fw = fw - 2.0f * M_PI;
         }
         if(tw > M_PI){
             tw = tw - 2.0f * M_PI;
         }
-        float w = fw + (tw - fw) * value;
+        GLfloat w = fw + (tw - fw) * value;
         if(w < 0){
             w = 2.0f * M_PI + w;
         }
@@ -823,7 +833,7 @@ namespace cc {
         return m4;
     }
     
-    static __inline__ GLMatrix4 GLMatrix4MultiplyAnim(GLMatrix4 MatrixLeft, GLMatrix4 MatrixRight,float value){
+    static __inline__ GLMatrix4 GLMatrix4MultiplyAnim(GLMatrix4 MatrixLeft, GLMatrix4 MatrixRight,GLfloat value){
         GLMatrix3 m3 = GLMatrix3MultiplyAnim(GLMatrix4ToMatrix3(MatrixLeft),GLMatrix4ToMatrix3(MatrixRight),value);
         GLMatrix4 m4 = GLMatrix3ToMatrix4(m3);
         m4.m30 = MatrixLeft.m30 + (MatrixRight.m30 - MatrixLeft.m30) * value;
@@ -834,7 +844,7 @@ namespace cc {
     
     static __inline__ GLVector4 GLquato_axis(GLVector4 q){
         GLVector4 v4;
-        float scale = sqrtf(q.x * q.x + q.y * q.y + q.z * q.z);
+        GLfloat scale = sqrtf(q.x * q.x + q.y * q.y + q.z * q.z);
         v4.w = 2.0f * acos(q.w);
         if(scale ==0.0f){
             v4.x = v4.y = v4.z = 0.0f;

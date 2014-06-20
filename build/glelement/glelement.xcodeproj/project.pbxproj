@@ -12,6 +12,7 @@
 		1107B8081952E86900E68726 /* GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8061952E86800E68726 /* GL.cpp */; };
 		1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8141952F08900E68726 /* GLLayerElement.cpp */; };
 		1107B8191952F29400E68726 /* GLContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8171952F29400E68726 /* GLContext.cpp */; };
+		1107B8211953DC2100E68726 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B81F1953DC2100E68726 /* GLProgram.cpp */; };
 		1185C63919530EBC00F06AED /* GLImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C63719530EBC00F06AED /* GLImage.cpp */; };
 		1185C6421953142B00F06AED /* GLCanvasElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6401953142B00F06AED /* GLCanvasElement.cpp */; };
 		1185C6491953202300F06AED /* GLTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6471953202300F06AED /* GLTask.cpp */; };
@@ -63,6 +64,8 @@
 		1107B8151952F08900E68726 /* GLLayerElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLayerElement.h; sourceTree = "<group>"; };
 		1107B8171952F29400E68726 /* GLContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLContext.cpp; sourceTree = "<group>"; };
 		1107B8181952F29400E68726 /* GLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLContext.h; sourceTree = "<group>"; };
+		1107B81F1953DC2100E68726 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
+		1107B8201953DC2100E68726 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
 		1185C63719530EBC00F06AED /* GLImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLImage.cpp; sourceTree = "<group>"; };
 		1185C63819530EBC00F06AED /* GLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLImage.h; sourceTree = "<group>"; };
 		1185C6401953142B00F06AED /* GLCanvasElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCanvasElement.cpp; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				1185C64B1953213900F06AED /* GLSchedule.h */,
 				1185C64D195323AA00F06AED /* GLRun.cpp */,
 				1185C64E195323AA00F06AED /* GLRun.h */,
+				1107B81F1953DC2100E68726 /* GLProgram.cpp */,
+				1107B8201953DC2100E68726 /* GLProgram.h */,
 			);
 			name = cc;
 			path = ../../../cc;
@@ -239,6 +244,7 @@
 				1107B8191952F29400E68726 /* GLContext.cpp in Sources */,
 				1185C6421953142B00F06AED /* GLCanvasElement.cpp in Sources */,
 				1107B8051952E6C300E68726 /* GLElement.cpp in Sources */,
+				1107B8211953DC2100E68726 /* GLProgram.cpp in Sources */,
 				1185C6491953202300F06AED /* GLTask.cpp in Sources */,
 				1185C64F195323AA00F06AED /* GLRun.cpp in Sources */,
 				1185C63919530EBC00F06AED /* GLImage.cpp in Sources */,

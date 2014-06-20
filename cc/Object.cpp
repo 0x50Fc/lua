@@ -15,8 +15,8 @@ namespace cc {
     cc::Class Object::clazz = {NULL,"Object",Object_alloc,sizeof(Object)};
     
 
-    Object::Object(){
-        _retainCount = 1;
+    Object::Object():_retainCount(1){
+
     }
     
     Object::~Object(){
@@ -57,7 +57,7 @@ namespace cc {
     }
     
     bool Object::isKindOfClass(Class * ofClass){
-        return ClassIsKindOf(& clazz, ofClass);
+        return ClassIsKindOf(getClass(), ofClass);
     }
     
     bool ClassIsKindOf(Class * clazz,Class * ofClass){
@@ -69,4 +69,7 @@ namespace cc {
         return clazz != NULL;
     }
     
+    Class * Object::getClass(){
+        return & Object::clazz;
+    }
 }

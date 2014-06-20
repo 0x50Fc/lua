@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1107B81E1953D94700E68726 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B81C1953D94700E68726 /* Log.cpp */; };
 		11789D60195281A00052891F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11789D5F195281A00052891F /* Foundation.framework */; };
 		11789DC1195281D10052891F /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 11789D85195281D10052891F /* lapi.c */; };
 		11789DC2195281D10052891F /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 11789D87195281D10052891F /* lauxlib.c */; };
@@ -104,6 +105,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1107B81C1953D94700E68726 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
+		1107B81D1953D94700E68726 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		11789D5C195281A00052891F /* liblua.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblua.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		11789D5F195281A00052891F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11789D63195281A00052891F /* lua-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lua-Prefix.pch"; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 				11789E21195282910052891F /* Object.h */,
 				11B21C9819529055001B3A23 /* Context.cpp */,
 				11B21C9919529055001B3A23 /* Context.h */,
+				1107B81C1953D94700E68726 /* Log.cpp */,
+				1107B81D1953D94700E68726 /* Log.h */,
 			);
 			name = cc;
 			path = ../../cc;
@@ -423,6 +428,7 @@
 				11789DCE195281D10052891F /* linit.c in Sources */,
 				11789DD0195281D10052891F /* llex.c in Sources */,
 				11789DC5195281D10052891F /* lcode.c in Sources */,
+				1107B81E1953D94700E68726 /* Log.cpp in Sources */,
 				11789DCA195281D10052891F /* ldo.c in Sources */,
 				11789DD5195281D10052891F /* lopcodes.c in Sources */,
 				11789DE2195281D10052891F /* lzio.c in Sources */,
@@ -630,6 +636,7 @@
 				11B21CA719529D6D001B3A23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

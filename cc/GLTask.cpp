@@ -12,7 +12,7 @@ namespace cc {
     
     IMP_CLASS(GLTask, Object)
     
-    GLTask::GLTask(){
+    GLTask::GLTask():afterDelay(0),start(0),callback(NULL){
         
     }
     

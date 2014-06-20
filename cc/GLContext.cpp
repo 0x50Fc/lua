@@ -8,11 +8,21 @@
 
 #include "GLContext.h"
 
+#include "Log.h"
+
 namespace cc {
+    
+    IMP_CLASS(GLContext, Object)
+    
+    GLContext::GLContext():_width(0),_height(0){
+        projectTransform = GLMatrix4MakeScale(1.0f, - 1.0f , -1.0f);
+        _state = new GLContextState();
+    }
     
     GLContext::GLContext(int width,int height){
         _width = width;
         _height = height;
+        projectTransform = GLMatrix4MakeScale(1.0f, - 1.0f , -1.0f);
         _state = new GLContextState();
     }
     
@@ -29,6 +39,15 @@ namespace cc {
             s = t;
         }
         
+        std::map<std::string,GLProgram *>::iterator i = _programs.begin();
+        
+        while (i != _programs.end()) {
+            
+            i->second->release();
+
+            i ++;
+        }
+        
     }
     
     int GLContext::width(){
@@ -42,6 +61,9 @@ namespace cc {
     void GLContext::setViewport(int width,int height){
         _width = width;
         _height = height;
+        projectTransform = cc::GLMatrix4MakeTranslation(-1.0, 1.0, 0.0);
+        projectTransform = cc::GLMatrix4Scale(projectTransform, 2.0f
+                                                   , - 2.0 * width / height, -1.0);
     }
     
     void GLContext::translation(float x,float y,float z){
@@ -91,20 +113,31 @@ namespace cc {
         _state = s;
     }
     
-    float GLContext::x(float screenX){
-        return screenX / _width;
+    GLfloat GLContext::global(GLfloat screen){
+        return screen / _width;
     }
     
-    float GLContext::y(float screenY){
-        return screenY / _height;
+    GLfloat GLContext::screen(GLfloat global){
+        return global * _width;
     }
     
-    float GLContext::screenX(float x){
-        return x * _width;
+    GLProgram * GLContext::program(const char * key){
+        std::map<std::string,GLProgram *>::iterator i = _programs.find(key);
+        return i != _programs.end() ? i->second : NULL;
     }
     
-    float GLContext::screenY(float y){
-        return y * _height;
+    void GLContext::setProgram(const char * key,GLProgram * program){
+        
+        program->retain();
+        
+        std::map<std::string,GLProgram *>::iterator i = _programs.find(key);
+        
+        if(i != _programs.end()){
+            i->second->release();
+            i->second = program;
+        }
+        else {
+            _programs[key] = program;
+        }
     }
-    
 }

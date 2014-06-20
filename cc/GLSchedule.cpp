@@ -15,7 +15,7 @@ namespace cc {
     IMP_CLASS(GLSchedule,Object)
     
     
-    GLSchedule::GLSchedule(){
+    GLSchedule::GLSchedule():timestamp(0){
         
     }
     

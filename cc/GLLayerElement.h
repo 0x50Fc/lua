@@ -13,9 +13,28 @@
 
 #include "GLCanvasElement.h"
 #include "GLImage.h"
+#include "GLProgram.h"
 
 namespace cc {
     
+    
+    class GLLayerElementProgram : public GLProgram {
+        
+    public:
+        
+        GLLayerElementProgram();
+        
+        GLint position;
+        GLint txtCoord;
+        GLint transform;
+        GLint projectTransform;
+        GLint backgroundColor;
+        GLint backgroundImage;
+        GLint hasBackgroundImage;
+        GLint alpha;
+        
+        DEC_CLASS
+    };
     
     class GLLayerElement : public GLCanvasElement {
       
@@ -24,17 +43,9 @@ namespace cc {
         GLLayerElement();
         
         virtual ~GLLayerElement();
-        
-        DEC_CLASS
-        
+
         virtual void begin(GLContext * context);
-        
-        virtual void drawBackground(GLContext * context);
-        
-        virtual void drawBorder(GLContext * context);
-        
-        virtual void onDraw(GLContext * context);
-        
+
         virtual void draw(GLContext * context);
         
         GLVector2 center;
@@ -60,13 +71,30 @@ namespace cc {
         
         virtual void setBorderColor(GLColor3d color);
         
+        virtual GLVector4 backgroundRect();
+        
+        virtual void setBackgroundRect(GLVector4 rect);
+        
+        virtual Value value(const char * key);
+        
+        virtual void setValue(const char * key,Value value);
+        
+        virtual void invoke(const char * key,InvokeArgs * args);
+        
+        DEC_CLASS
+        
+    protected:
+        
+        virtual GLLayerElementProgram * program(GLContext * context);
         
     private:
         
         GLImage * _backgroundImage;
         GLColor3d _backgroundColor;
+        GLVector4 _backgroundRect;
         float _borderWidth;
         GLColor3d _borderColor;
+        GLLayerElementProgram * _program;
         
     };
     

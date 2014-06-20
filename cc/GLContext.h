@@ -10,8 +10,10 @@
 #define __glelement__GLContext__
 
 #include <iostream>
+#include <map>
 
 #include "GL.h"
+#include "GLProgram.h"
 
 namespace cc {
     
@@ -34,9 +36,11 @@ namespace cc {
         }
     };
     
-    class GLContext {
+    class GLContext : public Object{
         
     public:
+        
+        GLContext();
         
         GLContext(int width,int height);
         
@@ -66,15 +70,21 @@ namespace cc {
         
         virtual void restoreState();
         
-        virtual float x(float screenX);
+        virtual GLfloat global(GLfloat screen);
+
+        virtual GLfloat screen(GLfloat global);
         
-        virtual float y(float screenY);
+        virtual GLProgram * program(const char * key);
         
-        virtual float screenX(float x);
+        virtual void setProgram(const char * key,GLProgram * program);
         
-        virtual float screenY(float y);
+        GLMatrix4 projectTransform;
+        
+        DEC_CLASS
         
     private:
+        
+        std::map<std::string,GLProgram *> _programs;
         
         int _width;
         int _height;

@@ -15,6 +15,9 @@ namespace cc {
     
     GLImage::GLImage(int width,int height,void * pixels,GLImagePixelFormat format){
         
+        _width = width;
+        _height = height;
+        
         glGenTextures(1, & _texture);
         glBindTexture(GL_TEXTURE_2D, _texture);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

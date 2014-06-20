@@ -12,7 +12,7 @@ namespace cc {
     
     IMP_CLASS(Element, Object)
     
-    Element::Element(){
+    Element::Element():_parent(NULL){
         
     }
     

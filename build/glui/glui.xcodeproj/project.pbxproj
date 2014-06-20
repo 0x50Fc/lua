@@ -1,0 +1,350 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1107B82F1953F04B00E68726 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B82E1953F04B00E68726 /* Foundation.framework */; };
+		1107B85E1953F08B00E68726 /* libglelement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B85B1953F07A00E68726 /* libglelement.a */; };
+		1107B8601953F09600E68726 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B85F1953F09600E68726 /* UIKit.framework */; };
+		1107B8631953F0C800E68726 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B8621953F0C800E68726 /* OpenGLES.framework */; };
+		1107B8661953F0FC00E68726 /* GLElementLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8651953F0FC00E68726 /* GLElementLayer.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1107B85A1953F07A00E68726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1107B8541953F07A00E68726 /* glelement.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1107B7CF1952E64900E68726;
+			remoteInfo = glelement;
+		};
+		1107B85C1953F08400E68726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1107B8541953F07A00E68726 /* glelement.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1107B7CE1952E64900E68726;
+			remoteInfo = glelement;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1107B8291953F04B00E68726 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1107B82B1953F04B00E68726 /* libglui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libglui.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1107B82E1953F04B00E68726 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1107B8321953F04C00E68726 /* glui-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "glui-Prefix.pch"; sourceTree = "<group>"; };
+		1107B83C1953F04C00E68726 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1107B83F1953F04C00E68726 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		1107B8541953F07A00E68726 /* glelement.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glelement.xcodeproj; path = ../glelement/glelement.xcodeproj; sourceTree = "<group>"; };
+		1107B85F1953F09600E68726 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1107B8621953F0C800E68726 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		1107B8641953F0FC00E68726 /* GLElementLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLElementLayer.h; sourceTree = "<group>"; };
+		1107B8651953F0FC00E68726 /* GLElementLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLElementLayer.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1107B8281953F04B00E68726 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1107B8631953F0C800E68726 /* OpenGLES.framework in Frameworks */,
+				1107B8601953F09600E68726 /* UIKit.framework in Frameworks */,
+				1107B85E1953F08B00E68726 /* libglelement.a in Frameworks */,
+				1107B82F1953F04B00E68726 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1107B8221953F04B00E68726 = {
+			isa = PBXGroup;
+			children = (
+				1107B8541953F07A00E68726 /* glelement.xcodeproj */,
+				1107B8301953F04C00E68726 /* glui */,
+				1107B82D1953F04B00E68726 /* Frameworks */,
+				1107B82C1953F04B00E68726 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1107B82C1953F04B00E68726 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1107B82B1953F04B00E68726 /* libglui.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1107B82D1953F04B00E68726 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1107B8621953F0C800E68726 /* OpenGLES.framework */,
+				1107B85F1953F09600E68726 /* UIKit.framework */,
+				1107B82E1953F04B00E68726 /* Foundation.framework */,
+				1107B83C1953F04C00E68726 /* XCTest.framework */,
+				1107B83F1953F04C00E68726 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1107B8301953F04C00E68726 /* glui */ = {
+			isa = PBXGroup;
+			children = (
+				1107B8611953F09E00E68726 /* oc */,
+				1107B8311953F04C00E68726 /* Supporting Files */,
+			);
+			path = glui;
+			sourceTree = "<group>";
+		};
+		1107B8311953F04C00E68726 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1107B8321953F04C00E68726 /* glui-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1107B8551953F07A00E68726 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1107B85B1953F07A00E68726 /* libglelement.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1107B8611953F09E00E68726 /* oc */ = {
+			isa = PBXGroup;
+			children = (
+				1107B8641953F0FC00E68726 /* GLElementLayer.h */,
+				1107B8651953F0FC00E68726 /* GLElementLayer.mm */,
+			);
+			name = oc;
+			path = ../../../oc;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1107B82A1953F04B00E68726 /* glui */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1107B84E1953F04C00E68726 /* Build configuration list for PBXNativeTarget "glui" */;
+			buildPhases = (
+				1107B8271953F04B00E68726 /* Sources */,
+				1107B8281953F04B00E68726 /* Frameworks */,
+				1107B8291953F04B00E68726 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1107B85D1953F08400E68726 /* PBXTargetDependency */,
+			);
+			name = glui;
+			productName = glui;
+			productReference = 1107B82B1953F04B00E68726 /* libglui.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1107B8231953F04B00E68726 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = hailong.org;
+			};
+			buildConfigurationList = 1107B8261953F04B00E68726 /* Build configuration list for PBXProject "glui" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1107B8221953F04B00E68726;
+			productRefGroup = 1107B82C1953F04B00E68726 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1107B8551953F07A00E68726 /* Products */;
+					ProjectRef = 1107B8541953F07A00E68726 /* glelement.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1107B82A1953F04B00E68726 /* glui */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1107B85B1953F07A00E68726 /* libglelement.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libglelement.a;
+			remoteRef = 1107B85A1953F07A00E68726 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1107B8271953F04B00E68726 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1107B8661953F0FC00E68726 /* GLElementLayer.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1107B85D1953F08400E68726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = glelement;
+			targetProxy = 1107B85C1953F08400E68726 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1107B84C1953F04C00E68726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1107B84D1953F04C00E68726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1107B84F1953F04C00E68726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/glui.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "glui/glui-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../cc,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1107B8501953F04C00E68726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/glui.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "glui/glui-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../cc,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1107B8261953F04B00E68726 /* Build configuration list for PBXProject "glui" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1107B84C1953F04C00E68726 /* Debug */,
+				1107B84D1953F04C00E68726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1107B84E1953F04C00E68726 /* Build configuration list for PBXNativeTarget "glui" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1107B84F1953F04C00E68726 /* Debug */,
+				1107B8501953F04C00E68726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1107B8231953F04B00E68726 /* Project object */;
+}

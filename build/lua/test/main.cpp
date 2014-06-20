@@ -12,7 +12,6 @@
 
 int main(int argc, const char * argv[])
 {
-
     cc::Context ctx;
     
     if(ctx.loadString("function main()  local o = cc.new(\"Object\"); print(o.className); end main();")){

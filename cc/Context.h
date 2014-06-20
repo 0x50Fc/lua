@@ -11,6 +11,8 @@
 
 #include <iostream>
 
+#include "Object.h"
+
 struct lua_State;
 
 namespace cc {
@@ -35,6 +37,12 @@ namespace cc {
         virtual const char * error();
         
         virtual void registerClass(Class * clazz);
+        
+        virtual Object * globalObject(const char * name);
+        
+        virtual void globalObjectInvoke(const char * name,const char * invoke,Value * values,int count);
+        
+        virtual void globalInvoke(const char * invoke,Value * values,int count);
         
     private:
         struct lua_State * _lua;

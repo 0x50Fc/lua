@@ -11,10 +11,11 @@
 
 #include <iostream>
 
-#define DEC_CLASS   public : static cc::Class clazz;
+#define DEC_CLASS   public : static cc::Class clazz; public : virtual cc::Class * getClass();
 
 #define IMP_CLASS(obj,superClass)   static cc::Object * obj##_alloc() { return new obj(); }; \
-        cc::Class obj::clazz = {&superClass::clazz,#obj,obj##_alloc,sizeof(obj)};
+        cc::Class obj::clazz = {&superClass::clazz,#obj,obj##_alloc,sizeof(obj)}; \
+        cc::Class * obj::getClass() { return & obj::clazz; };
 
 namespace cc {
     
@@ -36,7 +37,7 @@ namespace cc {
     typedef void (Object:: * Invoke)(const char * key,InvokeArgs * args);
     
     enum ValueType {
-        ValueTypeVoid,ValueTypeInt,ValueTypeInt64,ValueTypeDouble,ValueTypeString,ValueTypeObject,ValueTypeInvoke
+        ValueTypeVoid,ValueTypeInt,ValueTypeInt64,ValueTypeDouble,ValueTypeBoolean,ValueTypeString,ValueTypeObject,ValueTypeInvoke
     };
     
 
@@ -46,6 +47,7 @@ namespace cc {
             int intValue;
             long long int64Value;
             double doubleValue;
+            bool booleanValue;
             const char * stringValue;
             Object * objectValue;
             Invoke invokeValue;
@@ -66,6 +68,10 @@ namespace cc {
             type = ValueTypeDouble;
             doubleValue =  value;
         };
+        Value(bool value) {
+            type = ValueTypeBoolean;
+            booleanValue =  value;
+        };
         Value(const char * value) {
             type = ValueTypeString;
             stringValue =  value;
@@ -79,6 +85,19 @@ namespace cc {
             invokeValue = value;
         };
     };
+    
+    int ValueToInt(Value value,int defaultValue);
+    
+    long long ValueToInt64(Value value,long long defaultValue);
+    
+    double ValueToDouble(Value value,double defaultValue);
+    
+    const char * ValueToString(Value value,const char * defaultValue);
+    
+    Object * ValueToObject(Value value);
+    
+    bool ValueToBoolean(Value value,bool defaultValue);
+    
     
     Value InvokeArgsValue(InvokeArgs * args,int index);
     

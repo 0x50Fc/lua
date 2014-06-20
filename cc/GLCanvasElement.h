@@ -33,8 +33,12 @@ namespace cc {
         
         virtual void draw(GLContext * context);
       
-        float alpha;
-        float scale;
+        virtual Value value(const char * key);
+        
+        virtual void setValue(const char * key,Value value);
+        
+        GLfloat alpha;
+        GLfloat scale;
         GLVector3 position;
         GLMatrix4 transform;
         bool hidden;

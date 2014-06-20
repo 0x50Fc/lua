@@ -13,6 +13,107 @@
 namespace cc {
     
     
+    int ValueToInt(Value value,int defaultValue){
+       
+        switch (value.type) {
+            case ValueTypeInt:
+                return value.intValue;
+            case ValueTypeInt64:
+                return (int) value.int64Value;
+            case ValueTypeDouble:
+                return (int) value.doubleValue;
+            case ValueTypeBoolean:
+                return (int) value.booleanValue;
+            case ValueTypeString:
+                return atoi(value.stringValue);
+            default:
+                break;
+        }
+        
+        return defaultValue;
+    }
+    
+    long long ValueToInt64(Value value,long long defaultValue){
+        
+        switch (value.type) {
+                case ValueTypeInt:
+                return value.intValue;
+                case ValueTypeInt64:
+                return value.int64Value;
+                case ValueTypeDouble:
+                return value.doubleValue;
+                case ValueTypeBoolean:
+                return value.booleanValue;
+                case ValueTypeString:
+                return atoll(value.stringValue);
+            default:
+                break;
+        }
+        
+        return defaultValue;
+        
+    }
+    
+    double ValueToDouble(Value value,double defaultValue){
+        switch (value.type) {
+                case ValueTypeInt:
+                return value.intValue;
+                case ValueTypeInt64:
+                return value.int64Value;
+                case ValueTypeDouble:
+                return value.doubleValue;
+                case ValueTypeBoolean:
+                return value.booleanValue;
+                case ValueTypeString:
+                return atof(value.stringValue);
+            default:
+                break;
+        }
+        
+        return defaultValue;
+    }
+    
+    const char * ValueToString(Value value,const char * defaultValue){
+        switch (value.type) {
+            case ValueTypeString:
+                return value.stringValue;
+            default:
+                break;
+        }
+        
+        return defaultValue;
+    }
+    
+    Object * ValueToObject(Value value){
+        switch (value.type) {
+                case ValueTypeObject:
+                return value.objectValue;
+            default:
+                break;
+        }
+        
+        return NULL;
+    }
+    
+    bool ValueToBoolean(Value value,bool defaultValue){
+        switch (value.type) {
+                case ValueTypeInt:
+                return value.intValue ? true : false;
+                case ValueTypeInt64:
+                return value.int64Value ? true : false;
+                case ValueTypeDouble:
+                return value.doubleValue ? true : false;
+                case ValueTypeBoolean:
+                return value.booleanValue;
+                case ValueTypeString:
+                return value.stringValue ? false : true;
+            default:
+                break;
+        }
+        
+        return defaultValue;
+    }
+    
     Value InvokeArgsValue(InvokeArgs * args,int index){
         
         lua_State * lua = (lua_State *) args->p;
@@ -21,7 +122,7 @@ namespace cc {
 
         switch (type) {
             case LUA_TBOOLEAN:
-                return Value(lua_toboolean(lua,i));
+                return Value((bool) lua_toboolean(lua,i));
             case LUA_TNUMBER:
                 return Value(lua_tonumber(lua,i));
             case LUA_TNIL:
@@ -75,7 +176,7 @@ namespace cc {
                     
                     if(key && fun){
                         Invoke invoke = * fun;
-                        InvokeArgs args = {2,c - 1,lua};
+                        InvokeArgs args = {0,c - 1,lua};
                         ((* pobject)->*invoke)(key,& args);
                     }
 
@@ -92,7 +193,7 @@ namespace cc {
         
         int c = lua_gettop(lua);
         int type = lua_type(lua, - c);
-        
+      
         if(type == LUA_TUSERDATA){
         
             Object ** pobject = (Object **) lua_touserdata(lua, - c);
@@ -110,7 +211,7 @@ namespace cc {
                         return 1;
                     case ValueTypeInt64:
                         
-                        lua_pushinteger(lua, v.int64Value);
+                        lua_pushinteger(lua, (lua_Integer) v.int64Value);
                         
                         return 1;
                     case ValueTypeDouble:
@@ -133,7 +234,7 @@ namespace cc {
                             * pobject = v.objectValue->retain();
                             
                             luaL_getmetatable(lua, "ccObject");
-                            
+                        
                             lua_setmetatable(lua, -2);
                             
                             return 1;
@@ -154,6 +255,12 @@ namespace cc {
                         lua_pushcclosure(lua, cc_Object_invoke, 2);
                         
                         return 1;
+                    case ValueTypeBoolean:
+                        
+                        lua_pushboolean(lua, v.booleanValue);
+                        
+                        return 1;
+
                     default:
                         
                         lua_pushnil(lua);
@@ -178,7 +285,7 @@ namespace cc {
             
             switch (type) {
                 case LUA_TBOOLEAN:
-                    (* pobject)->setValue(key, Value(lua_toboolean(lua, - c + 2)));
+                    (* pobject)->setValue(key, Value((bool) lua_toboolean(lua, - c + 2)));
                     break;
                 case LUA_TNUMBER:
                     (* pobject)->setValue(key, Value(lua_tonumber(lua, - c + 2)));
@@ -265,6 +372,8 @@ namespace cc {
         
         lua_setfield(_lua, -2,"__newindex");
         
+        lua_setglobal(_lua, "ccObject");
+        
         registerClass( & Object::clazz);
         
     }
@@ -330,5 +439,204 @@ namespace cc {
         lua_close(_lua);
     }
     
+    Object * Context::globalObject(const char * name){
+        
+        lua_getglobal(_lua, name);
+        
+        int type = lua_type(_lua, -1);
+        
+        if(type == LUA_TUSERDATA){
+            
+            Object * object = (Object *) lua_touserdata(_lua, -1);
+            
+            lua_pop(_lua, 1);
+            
+            return object;
+        }
+        else if(type == LUA_TTABLE){
+            
+            lua_pushstring(_lua, "object");
+            
+            lua_gettable(_lua, -2);
+            
+            type = lua_type(_lua, -1);
+            
+            if(type == LUA_TUSERDATA){
+                
+                Object ** pobject = (Object **) lua_touserdata(_lua, -1);
+                
+                if(pobject){
+                
+                    lua_pop(_lua, 1);
+                    
+                    return * pobject;
+                }
+
+            }
+            
+        }
+        
+        return NULL;
+    }
+    
+    void Context::globalObjectInvoke(const char * name,const char * invoke,Value * values,int count){
+        
+        lua_getglobal(_lua, name);
+        
+        int type = lua_type(_lua, -1);
+        
+        if(type == LUA_TTABLE){
+            
+            lua_getfield(_lua, -1, invoke);
+            
+            for(int i=0; i < count; i++){
+                Value * v = values + i;
+                
+                switch (v->type) {
+                    case ValueTypeInt:
+                        
+                        lua_pushinteger(_lua, v->intValue);
+                        
+                        break;
+                        
+                    case ValueTypeInt64:
+                        
+                        lua_pushinteger(_lua, (lua_Integer) v->int64Value);
+                        
+                        break;
+                        
+                    case ValueTypeDouble:
+                        
+                        lua_pushnumber(_lua, v->doubleValue);
+                        
+                        break;
+                        
+                    case ValueTypeString:
+                        
+                        if(v->stringValue){
+                            lua_pushstring(_lua, v->stringValue);
+                        }
+                        else {
+                            lua_pushnil(_lua);
+                        }
+                        
+                        break;
+                        
+                    case ValueTypeObject:
+                        
+                        if(v->objectValue){
+                            
+                            Object ** pobject = (Object **) lua_newuserdata(_lua, sizeof(Object *));
+                            
+                            * pobject = v->objectValue->retain();
+                            
+                            luaL_getmetatable(_lua, "ccObject");
+                            
+                            lua_setmetatable(_lua, -2);
+
+                        }
+                        else{
+                            lua_pushnil(_lua);
+                        }
+                        
+                        break;
+                        
+                    case ValueTypeBoolean:
+                        
+                        lua_pushboolean(_lua, v->booleanValue);
+                        
+                        break;
+                        
+                    default:
+                        
+                        lua_pushnil(_lua);
+                        
+                        break;
+                }
+            }
+            
+            lua_pcall(_lua, count, 0, 0);
+            
+        }
+    }
+    
+    void Context::globalInvoke(const char * invoke,Value * values,int count){
+        
+        lua_getglobal(_lua, invoke);
+        
+        int type = lua_type(_lua, -1);
+        
+        if(type == LUA_TFUNCTION){
+
+            
+            for(int i=0; i < count; i++){
+                Value * v = values + i;
+                
+                switch (v->type) {
+                        case ValueTypeInt:
+                        
+                        lua_pushinteger(_lua, v->intValue);
+                        
+                        break;
+                        
+                        case ValueTypeInt64:
+                        
+                        lua_pushinteger(_lua, (lua_Integer) v->int64Value);
+                        
+                        break;
+                        
+                        case ValueTypeDouble:
+                        
+                        lua_pushnumber(_lua, v->doubleValue);
+                        
+                        break;
+                        
+                        case ValueTypeString:
+                        
+                        if(v->stringValue){
+                            lua_pushstring(_lua, v->stringValue);
+                        }
+                        else {
+                            lua_pushnil(_lua);
+                        }
+                        
+                        break;
+                        
+                        case ValueTypeObject:
+                        
+                        if(v->objectValue){
+                            
+                            Object ** pobject = (Object **) lua_newuserdata(_lua, sizeof(Object *));
+                            
+                            * pobject = v->objectValue->retain();
+                            
+                            luaL_getmetatable(_lua, "ccObject");
+                            
+                            lua_setmetatable(_lua, -2);
+                            
+                        }
+                        else{
+                            lua_pushnil(_lua);
+                        }
+                        
+                        break;
+                        
+                        case ValueTypeBoolean:
+                        
+                        lua_pushboolean(_lua, v->booleanValue);
+                        
+                        break;
+                        
+                    default:
+                        
+                        lua_pushnil(_lua);
+                        
+                        break;
+                }
+            }
+            
+            lua_pcall(_lua, count, 0, 0);
+        }
+    }
 }
 

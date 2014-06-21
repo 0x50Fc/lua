@@ -65,6 +65,15 @@ namespace ui {
         };
     };
     
+    enum UIAlignment {
+        UIAlignmentNone,
+        UIAlignmentLeft,
+        UIAlignmentCenter,
+        UIAlignmentRight,
+        UIAlignmentTop,
+        UIAlignmentBottom
+    };
+    
     extern float UIAutoValue;
 }
 

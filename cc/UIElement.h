@@ -26,6 +26,14 @@ namespace ui {
         
         virtual ~UIElement();
         
+        virtual const char * text();
+        
+        virtual void setText(const char * text);
+        
+        virtual const char * name();
+        
+        virtual void setName(const char * name);
+        
         virtual const char * attr(const char * key);
         
         virtual void setAttr(const char * key,const char * value);
@@ -37,6 +45,8 @@ namespace ui {
         virtual UIStyle * style();
         
         virtual void setStyle(UIStyle * style);
+        
+        virtual bool booleanValue(const char * key,bool defaultValue);
         
         virtual int intValue(const char *key,int defaultValue);
         
@@ -50,10 +60,12 @@ namespace ui {
         
         virtual UIFont fontValue(const char * key,UIFont defaultValue);
         
+        
         DEC_CLASS
         
     private:
-        
+        std::string _name;
+        std::string _text;
         std::map<std::string,std::string> _attrs;
         UIStyle * _style;
     };

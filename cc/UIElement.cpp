@@ -22,6 +22,22 @@ namespace ui {
         }
     }
     
+    const char * UIElement::name(){
+        return _name.c_str();
+    }
+    
+    void UIElement::setName(const char * name){
+        _name = name;
+    }
+    
+    const char * UIElement::text(){
+        return _text.c_str();
+    }
+    
+    void UIElement::setText(const char * text){
+        _text = text;
+    }
+    
     const char * UIElement::attr(const char * key){
         std::map<std::string,std::string>::iterator i = _attrs.find(key);
         return i != _attrs.end() ? i->second.c_str() : NULL;
@@ -47,6 +63,12 @@ namespace ui {
             }
             return cc::Value();
         }
+        else if(strcmp(key, "text") ==0){
+            return cc::Value(_text.c_str());
+        }
+        else if(strcmp(key, "name") ==0){
+            return cc::Value(_name.c_str());
+        }
         else {
             return cc::Element::value(key);
         }
@@ -55,6 +77,12 @@ namespace ui {
     void UIElement::setValue(const char * key,cc::Value value){
         if(key[0] == 'a' && key[1] == 't' && key[2] == 't' && key[3] == 'r' && key[4] == '.'){
             setAttr(key + 5, cc::ValueToString(value, NULL));
+        }
+        else if(strcmp(key, "text") ==0 ){
+            _text = cc::ValueToString(value, "");
+        }
+        else if(strcmp(key, "name") ==0 ){
+            _name = cc::ValueToString(value, "");
         }
         else {
             cc::Element::setValue(key,value);
@@ -79,6 +107,14 @@ namespace ui {
             
             _style = style;
         }
+    }
+    
+    bool UIElement::booleanValue(const char * key,bool defaultValue){
+        const char * v = stringValue(key, NULL);
+        if(v){
+            return ! ( v == NULL || * v == '\0' || strcmp(v, "false") ==0 || strcmp(v, "no") == 0 || * v == '0' );
+        }
+        return defaultValue;
     }
     
     int UIElement::intValue(const char *key,int defaultValue){

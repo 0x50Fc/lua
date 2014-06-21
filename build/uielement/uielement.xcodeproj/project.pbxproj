@@ -15,6 +15,9 @@
 		1107B92A1954415800E68726 /* UIStyleSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B9251954415800E68726 /* UIStyleSheet.cpp */; };
 		1185C654195464CC00F06AED /* UILayoutElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C652195464CC00F06AED /* UILayoutElement.cpp */; };
 		1185C6571954692F00F06AED /* UICanvasElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6551954692F00F06AED /* UICanvasElement.mm */; };
+		1185C65F195513DF00F06AED /* UIControlElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1185C65D195513DF00F06AED /* UIControlElement.mm */; };
+		1185C662195513EF00F06AED /* UILabelElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1185C660195513EF00F06AED /* UILabelElement.mm */; };
+		1185C665195513FE00F06AED /* UIViewElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1185C663195513FE00F06AED /* UIViewElement.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,13 @@
 		1185C653195464CC00F06AED /* UILayoutElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutElement.h; sourceTree = "<group>"; };
 		1185C6551954692F00F06AED /* UICanvasElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UICanvasElement.mm; sourceTree = "<group>"; };
 		1185C6561954692F00F06AED /* UICanvasElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICanvasElement.h; sourceTree = "<group>"; };
+		1185C65C19550B2900F06AED /* IUIViewEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IUIViewEntity.h; sourceTree = "<group>"; };
+		1185C65D195513DF00F06AED /* UIControlElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIControlElement.mm; sourceTree = "<group>"; };
+		1185C65E195513DF00F06AED /* UIControlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControlElement.h; sourceTree = "<group>"; };
+		1185C660195513EF00F06AED /* UILabelElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UILabelElement.mm; sourceTree = "<group>"; };
+		1185C661195513EF00F06AED /* UILabelElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelElement.h; sourceTree = "<group>"; };
+		1185C663195513FE00F06AED /* UIViewElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIViewElement.mm; sourceTree = "<group>"; };
+		1185C664195513FE00F06AED /* UIViewElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewElement.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +125,13 @@
 				1107B8D61954280100E68726 /* Supporting Files */,
 				1185C6551954692F00F06AED /* UICanvasElement.mm */,
 				1185C6561954692F00F06AED /* UICanvasElement.h */,
+				1185C65C19550B2900F06AED /* IUIViewEntity.h */,
+				1185C65D195513DF00F06AED /* UIControlElement.mm */,
+				1185C65E195513DF00F06AED /* UIControlElement.h */,
+				1185C660195513EF00F06AED /* UILabelElement.mm */,
+				1185C661195513EF00F06AED /* UILabelElement.h */,
+				1185C663195513FE00F06AED /* UIViewElement.mm */,
+				1185C664195513FE00F06AED /* UIViewElement.h */,
 			);
 			path = uielement;
 			sourceTree = "<group>";
@@ -221,12 +238,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1185C65F195513DF00F06AED /* UIControlElement.mm in Sources */,
 				1107B9281954415800E68726 /* UIElement.cpp in Sources */,
 				1185C654195464CC00F06AED /* UILayoutElement.cpp in Sources */,
+				1185C662195513EF00F06AED /* UILabelElement.mm in Sources */,
 				1185C6571954692F00F06AED /* UICanvasElement.mm in Sources */,
 				1107B92A1954415800E68726 /* UIStyleSheet.cpp in Sources */,
 				1107B9291954415800E68726 /* UIStyle.cpp in Sources */,
 				1107B9271954415800E68726 /* UI.cpp in Sources */,
+				1185C665195513FE00F06AED /* UIViewElement.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +332,7 @@
 		1107B8F41954280100E68726 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/uielement.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "uielement/uielement-Prefix.pch";
@@ -320,6 +341,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../cc,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -329,6 +351,7 @@
 		1107B8F51954280100E68726 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/uielement.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "uielement/uielement-Prefix.pch";
@@ -337,6 +360,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../../cc,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -13,6 +13,12 @@
 		1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8141952F08900E68726 /* GLLayerElement.cpp */; };
 		1107B8191952F29400E68726 /* GLContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8171952F29400E68726 /* GLContext.cpp */; };
 		1107B8211953DC2100E68726 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B81F1953DC2100E68726 /* GLProgram.cpp */; };
+		117A0DB219582C2200E028B9 /* GLImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 117A0DB119582C2200E028B9 /* GLImage.mm */; };
+		117A0DB419582C5800E028B9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A0DB319582C5800E028B9 /* OpenGLES.framework */; };
+		117A0DB619582C6500E028B9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A0DB519582C6500E028B9 /* ImageIO.framework */; };
+		117A0DB91958317400E028B9 /* GLPVRTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 117A0DB81958317400E028B9 /* GLPVRTexture.m */; };
+		117A0DBE195835B000E028B9 /* GLAnimationElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 117A0DBC195835B000E028B9 /* GLAnimationElement.cpp */; };
+		117A0DC419583C7F00E028B9 /* GLAnimPathElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 117A0DC219583C7F00E028B9 /* GLAnimPathElement.cpp */; };
 		1185C63919530EBC00F06AED /* GLImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C63719530EBC00F06AED /* GLImage.cpp */; };
 		1185C6421953142B00F06AED /* GLCanvasElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6401953142B00F06AED /* GLCanvasElement.cpp */; };
 		1185C6491953202300F06AED /* GLTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C6471953202300F06AED /* GLTask.cpp */; };
@@ -66,6 +72,15 @@
 		1107B8181952F29400E68726 /* GLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLContext.h; sourceTree = "<group>"; };
 		1107B81F1953DC2100E68726 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
 		1107B8201953DC2100E68726 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		117A0DB119582C2200E028B9 /* GLImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLImage.mm; sourceTree = "<group>"; };
+		117A0DB319582C5800E028B9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		117A0DB519582C6500E028B9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		117A0DB71958317400E028B9 /* GLPVRTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLPVRTexture.h; sourceTree = "<group>"; };
+		117A0DB81958317400E028B9 /* GLPVRTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLPVRTexture.m; sourceTree = "<group>"; };
+		117A0DBC195835B000E028B9 /* GLAnimationElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLAnimationElement.cpp; sourceTree = "<group>"; };
+		117A0DBD195835B000E028B9 /* GLAnimationElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAnimationElement.h; sourceTree = "<group>"; };
+		117A0DC219583C7F00E028B9 /* GLAnimPathElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLAnimPathElement.cpp; sourceTree = "<group>"; };
+		117A0DC319583C7F00E028B9 /* GLAnimPathElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAnimPathElement.h; sourceTree = "<group>"; };
 		1185C63719530EBC00F06AED /* GLImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLImage.cpp; sourceTree = "<group>"; };
 		1185C63819530EBC00F06AED /* GLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLImage.h; sourceTree = "<group>"; };
 		1185C6401953142B00F06AED /* GLCanvasElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCanvasElement.cpp; sourceTree = "<group>"; };
@@ -83,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117A0DB619582C6500E028B9 /* ImageIO.framework in Frameworks */,
+				117A0DB419582C5800E028B9 /* OpenGLES.framework in Frameworks */,
 				1107B8011952E68900E68726 /* libelement.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +128,8 @@
 		1107B7D11952E64900E68726 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				117A0DB519582C6500E028B9 /* ImageIO.framework */,
+				117A0DB319582C5800E028B9 /* OpenGLES.framework */,
 				1107B7D21952E64900E68726 /* Foundation.framework */,
 				1107B7E01952E64900E68726 /* XCTest.framework */,
 				1107B7E31952E64900E68726 /* UIKit.framework */,
@@ -121,6 +140,7 @@
 		1107B7D41952E64900E68726 /* glelement */ = {
 			isa = PBXGroup;
 			children = (
+				117A0DB019582BED00E028B9 /* oc */,
 				1107B8021952E6A400E68726 /* cc */,
 				1107B7D51952E64900E68726 /* Supporting Files */,
 			);
@@ -166,9 +186,24 @@
 				1185C64E195323AA00F06AED /* GLRun.h */,
 				1107B81F1953DC2100E68726 /* GLProgram.cpp */,
 				1107B8201953DC2100E68726 /* GLProgram.h */,
+				117A0DBC195835B000E028B9 /* GLAnimationElement.cpp */,
+				117A0DBD195835B000E028B9 /* GLAnimationElement.h */,
+				117A0DC219583C7F00E028B9 /* GLAnimPathElement.cpp */,
+				117A0DC319583C7F00E028B9 /* GLAnimPathElement.h */,
 			);
 			name = cc;
 			path = ../../../cc;
+			sourceTree = "<group>";
+		};
+		117A0DB019582BED00E028B9 /* oc */ = {
+			isa = PBXGroup;
+			children = (
+				117A0DB71958317400E028B9 /* GLPVRTexture.h */,
+				117A0DB81958317400E028B9 /* GLPVRTexture.m */,
+				117A0DB119582C2200E028B9 /* GLImage.mm */,
+			);
+			name = oc;
+			path = ../../../oc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,10 +278,14 @@
 				1107B8081952E86900E68726 /* GL.cpp in Sources */,
 				1107B8191952F29400E68726 /* GLContext.cpp in Sources */,
 				1185C6421953142B00F06AED /* GLCanvasElement.cpp in Sources */,
+				117A0DB219582C2200E028B9 /* GLImage.mm in Sources */,
 				1107B8051952E6C300E68726 /* GLElement.cpp in Sources */,
 				1107B8211953DC2100E68726 /* GLProgram.cpp in Sources */,
 				1185C6491953202300F06AED /* GLTask.cpp in Sources */,
+				117A0DBE195835B000E028B9 /* GLAnimationElement.cpp in Sources */,
+				117A0DC419583C7F00E028B9 /* GLAnimPathElement.cpp in Sources */,
 				1185C64F195323AA00F06AED /* GLRun.cpp in Sources */,
+				117A0DB91958317400E028B9 /* GLPVRTexture.m in Sources */,
 				1185C63919530EBC00F06AED /* GLImage.cpp in Sources */,
 				1185C64C1953213900F06AED /* GLSchedule.cpp in Sources */,
 			);
@@ -334,6 +373,7 @@
 		1107B7F31952E64900E68726 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/glelement.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "glelement/glelement-Prefix.pch";
@@ -342,6 +382,7 @@
 					"$(inherited)",
 					__MACOS__,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -351,10 +392,12 @@
 		1107B7F41952E64900E68726 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/glelement.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "glelement/glelement-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = __MACOS__;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

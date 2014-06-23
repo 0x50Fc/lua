@@ -12,6 +12,15 @@ namespace cc {
     
     IMP_CLASS(GLImage, Object)
 
+    GLImage::GLImage()
+        :_texture(0),_width(0),_height(0){
+            
+    }
+    
+    GLImage::GLImage(int width,int height,unsigned int texture)
+        :_texture(texture),_width(width),_height(height){
+        
+    }
     
     GLImage::GLImage(int width,int height,void * pixels,GLImagePixelFormat format){
         
@@ -32,10 +41,7 @@ namespace cc {
     GLImage::~GLImage(){
         
         if(_texture){
-            
             glDeleteTextures(1, &_texture);
-            
-            _texture = 0;
         }
     }
     

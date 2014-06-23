@@ -18,6 +18,11 @@ namespace cc {
     
     class GLTask;
     
+    enum GLScheduleStatus {
+        GLScheduleStatusNone,
+        GLScheduleStatusPause
+    };
+    
     class GLSchedule : public Object {
     
     public:
@@ -32,12 +37,20 @@ namespace cc {
         
         virtual void unschedule(GLTask * task);
        
-        double timestamp;
+        virtual double timestamp();
+        
+        virtual void setTimestamp(double value);
+        
+        virtual GLScheduleStatus status();
+        
+        virtual void setStatus(GLScheduleStatus value);
         
         DEC_CLASS
         
     private:
         std::vector<GLTask *> _tasks;
+        double _timestamp;
+        GLScheduleStatus _status;
     };
 }
 

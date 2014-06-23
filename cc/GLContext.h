@@ -14,6 +14,7 @@
 
 #include "GL.h"
 #include "GLProgram.h"
+#include "GLImage.h"
 
 namespace cc {
     
@@ -78,6 +79,12 @@ namespace cc {
         
         virtual void setProgram(const char * key,GLProgram * program);
         
+        virtual GLImage * image(const char * key);
+        
+        virtual void setImage(const char * key, GLImage * image);
+        
+        virtual void clearImages();
+        
         GLMatrix4 projectTransform;
         
         DEC_CLASS
@@ -85,6 +92,7 @@ namespace cc {
     private:
         
         std::map<std::string,GLProgram *> _programs;
+        std::map<std::string,GLImage *> _images;
         
         int _width;
         int _height;

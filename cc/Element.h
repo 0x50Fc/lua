@@ -41,6 +41,8 @@ namespace cc {
         
         virtual void removeFromParent();
         
+        virtual Element * parentOfClass(Class * elementClass);
+        
         DEC_CLASS
         
     private:

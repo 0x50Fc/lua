@@ -101,5 +101,18 @@ namespace cc {
         
     }
     
+    Element * Element::parentOfClass(Class * elementClass){
+        
+        Element * el = _parent;
+        
+        while (el) {
+            if(el->isKindOfClass(elementClass)){
+                return el;
+            }
+            el = el->_parent;
+        }
+        
+        return NULL;
+    }
     
 }

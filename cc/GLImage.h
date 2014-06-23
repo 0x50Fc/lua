@@ -17,7 +17,8 @@
 namespace cc {
     
     enum GLImagePixelFormat {
-        GLImagePixelFormatRGBA,GLImagePixelFormatBGRA
+        GLImagePixelFormatRGBA
+        ,GLImagePixelFormatBGRA
     };
     
     class GLImage : public Object {
@@ -25,6 +26,8 @@ namespace cc {
     public:
         
         GLImage();
+        
+        GLImage(int width,int height,unsigned int texture);
         
         GLImage(int width,int height,void * pixels,GLImagePixelFormat format);
         
@@ -45,6 +48,8 @@ namespace cc {
         unsigned int _texture;
         
     };
+    
+    extern GLImage * GLImageCreateFromFilePath(const char * filePath);
     
 }
 

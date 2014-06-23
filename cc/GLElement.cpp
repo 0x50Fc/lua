@@ -43,10 +43,10 @@ namespace cc {
             GLTask * task = * i;
             
             if(task->start == 0.0){
-                task->start = schedule->timestamp;
+                task->start = schedule->timestamp();
             }
             
-            if(schedule->timestamp - task->start >= task->afterDelay){
+            if(schedule->timestamp() - task->start >= task->afterDelay){
                 
                 if(task->callback){
                     (* task->callback)(schedule,this,task);

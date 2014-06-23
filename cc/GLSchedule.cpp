@@ -15,7 +15,7 @@ namespace cc {
     IMP_CLASS(GLSchedule,Object)
     
     
-    GLSchedule::GLSchedule():timestamp(0){
+    GLSchedule::GLSchedule():_timestamp(0),_status(GLScheduleStatusNone){
         
     }
     
@@ -44,10 +44,10 @@ namespace cc {
             GLTask * task = * i;
             
             if(task->start == 0.0){
-                task->start = timestamp;
+                task->start = _timestamp;
             }
             
-            if(timestamp - task->start >= task->afterDelay){
+            if(_timestamp - task->start >= task->afterDelay){
                 
                 if(task->callback){
                     (* task->callback)(this,this,task);
@@ -84,6 +84,22 @@ namespace cc {
             }
             
         }
+    }
+    
+    double GLSchedule::timestamp(){
+        return _timestamp;
+    }
+    
+    void GLSchedule::setTimestamp(double value){
+        _timestamp = value;
+    }
+    
+    GLScheduleStatus GLSchedule::status(){
+        return _status;
+    }
+    
+    void GLSchedule::setStatus(GLScheduleStatus value){
+        _status = value;
     }
 
     

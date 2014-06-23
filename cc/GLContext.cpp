@@ -39,13 +39,28 @@ namespace cc {
             s = t;
         }
         
-        std::map<std::string,GLProgram *>::iterator i = _programs.begin();
-        
-        while (i != _programs.end()) {
+        {
+            std::map<std::string,GLProgram *>::iterator i = _programs.begin();
             
-            i->second->release();
+            while (i != _programs.end()) {
+                
+                i->second->release();
 
-            i ++;
+                i ++;
+            }
+        }
+        
+        {
+        
+            std::map<std::string,GLImage *>::iterator i = _images.begin();
+            
+            while (i != _images.end()) {
+                
+                i->second->release();
+                
+                i ++;
+            }
+            
         }
         
     }
@@ -139,5 +154,41 @@ namespace cc {
         else {
             _programs[key] = program;
         }
+    }
+    
+    GLImage * GLContext::image(const char * key){
+        std::map<std::string,GLImage *>::iterator i = _images.find(key);
+        return i != _images.end() ? i->second : NULL;
+    }
+    
+    void GLContext::setImage(const char * key, GLImage * image){
+        
+        image->retain();
+        
+        std::map<std::string,GLImage *>::iterator i = _images.find(key);
+        
+        if(i != _images.end()){
+            i->second->release();
+            i->second = image;
+        }
+        else {
+            _images[key] = image;
+        }
+        
+    }
+    
+    void GLContext::clearImages(){
+        
+        std::map<std::string,GLImage *>::iterator i = _images.begin();
+        
+        while (i != _images.end()) {
+            
+            i->second->release();
+            
+            i ++;
+        }
+        
+        _images.clear();
+        
     }
 }

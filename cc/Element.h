@@ -13,9 +13,9 @@
 #include <vector>
 
 #include "Object.h"
+#include "Action.h"
 
 namespace cc {
-    
     
     class Element : public Object {
     
@@ -43,13 +43,25 @@ namespace cc {
         
         virtual Element * parentOfClass(Class * elementClass);
         
+        virtual Value value(const char * key);
+        
+        virtual void setValue(const char * key,Value value);
+
+        virtual Value invoke(const char * key,InvokeArgs * args);
+
+        virtual const char * name();
+        
+        virtual void setName(const char * value);
+        
+        virtual void doAction(Action * action);
+        
         DEC_CLASS
         
     private:
         
         Element * _parent;
-        
         std::vector<Element *> _childs;
+        std::string _name;
         
     };
     

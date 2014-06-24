@@ -1,33 +1,41 @@
 
 Element = {};
 
-function Element:value(key)
-  return self.object[key];
-end
-
-function Element:setValue(key,value)
-  self.object[key] = value;
-  return self;
-end
+setmetatable(Element,{__index = Object});
 
 function Element:add(element)
-  self.object.add(element);
+  
+  if not self.childs then
+    self.childs = {};
+  end
+  
+  element.parent = self;
+
+  table.insert(self.childs,element);
+
+  self.object:add(element.object);
+
   return self;
 end
 
-function Element:call(key,...)
-  local fn = self.object[key];
-  if fn and type(fn) == "function" then
-    fn(self.object,...);
+function Element:remove()
+  if self.parent and self.parent.childs then
+    table.remove(self.parent.childs,self);
   end
+  self.parent = nil;
+  self.object:remove();
   return self;
 end
 
 function E(class)
 
+  if not class then
+    return;
+  end
+
   local e = {};
   
-  setmetatable(e,{ __index = Element });
+  setmetatable(e,{ __index = Element , __mode = "parent"});
   
   if type(class) == "string" then
     e.object = cc.new(class);

@@ -52,8 +52,8 @@ namespace cc {
         
     }
     
-    void Object::invoke(const char * key,InvokeArgs * args){
-        
+    Value Object::invoke(const char * key,InvokeArgs * args){
+        return Value();
     }
     
     bool Object::isKindOfClass(Class * ofClass){

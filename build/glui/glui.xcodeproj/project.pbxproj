@@ -12,6 +12,7 @@
 		1107B8601953F09600E68726 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B85F1953F09600E68726 /* UIKit.framework */; };
 		1107B8631953F0C800E68726 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B8621953F0C800E68726 /* OpenGLES.framework */; };
 		1107B8661953F0FC00E68726 /* GLElementLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1107B8651953F0FC00E68726 /* GLElementLayer.mm */; };
+		11F91F611959492400A32AD7 /* GLElementView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11F91F601959492400A32AD7 /* GLElementView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		1107B8621953F0C800E68726 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		1107B8641953F0FC00E68726 /* GLElementLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLElementLayer.h; sourceTree = "<group>"; };
 		1107B8651953F0FC00E68726 /* GLElementLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLElementLayer.mm; sourceTree = "<group>"; };
+		11F91F5F1959492400A32AD7 /* GLElementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLElementView.h; sourceTree = "<group>"; };
+		11F91F601959492400A32AD7 /* GLElementView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLElementView.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 			children = (
 				1107B8641953F0FC00E68726 /* GLElementLayer.h */,
 				1107B8651953F0FC00E68726 /* GLElementLayer.mm */,
+				11F91F5F1959492400A32AD7 /* GLElementView.h */,
+				11F91F601959492400A32AD7 /* GLElementView.mm */,
 			);
 			name = oc;
 			path = ../../../oc;
@@ -204,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F91F611959492400A32AD7 /* GLElementView.mm in Sources */,
 				1107B8661953F0FC00E68726 /* GLElementLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

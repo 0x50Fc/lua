@@ -34,10 +34,13 @@ namespace cc {
         void * p;
     };
     
-    typedef void (Object:: * Invoke)(const char * key,InvokeArgs * args);
+    struct Value;
+    
+    typedef Value (Object:: * Invoke)(const char * key,InvokeArgs * args);
     
     enum ValueType {
-        ValueTypeVoid,ValueTypeInt,ValueTypeInt64,ValueTypeDouble,ValueTypeBoolean,ValueTypeString,ValueTypeObject,ValueTypeInvoke
+        ValueTypeVoid,ValueTypeInt,ValueTypeInt64,ValueTypeDouble
+        ,ValueTypeBoolean,ValueTypeString,ValueTypeObject,ValueTypeInvoke
     };
     
 
@@ -115,7 +118,7 @@ namespace cc {
         
         virtual void setValue(const char * key,Value value);
         
-        virtual void invoke(const char * key,InvokeArgs * args);
+        virtual Value invoke(const char * key,InvokeArgs * args);
         
         bool isKindOfClass(Class * ofClass);
         

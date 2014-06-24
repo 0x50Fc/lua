@@ -1,5 +1,5 @@
 //
-//  GLImage.mm
+//  GLLoader.mm
 //  glelement
 //
 //  Created by zhang hailong on 14-6-19.
@@ -14,7 +14,7 @@
 
 namespace cc {
     
-    static GLImage * GLImageCreateFromPVRFilePath(NSString * filePath){
+    static GLImage * GLLoaderImageCreateFromPVRFilePath(NSString * filePath){
         
         GLPVRTexture * texture = [GLPVRTexture pvrTextureWithContentsOfFile:filePath];
         
@@ -33,12 +33,12 @@ namespace cc {
         return img;
     }
     
-    GLImage * GLImageCreateFromFilePath(const char * filePath){
+    GLImage * GLLoaderImageCreateFromFilePath(const char * filePath){
         
         NSString * path = [NSString stringWithCString:filePath encoding:NSUTF8StringEncoding];
 
         if([path hasSuffix:@".pvr"]){
-            return GLImageCreateFromPVRFilePath(path);
+            return GLLoaderImageCreateFromPVRFilePath(path);
         }
         
         GLImage * img = nil;

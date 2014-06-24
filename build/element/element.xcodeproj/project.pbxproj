@@ -10,6 +10,7 @@
 		1107B7C21952E34700E68726 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B7C01952E34700E68726 /* Element.cpp */; };
 		11789DF1195282230052891F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11789DF0195282230052891F /* Foundation.framework */; };
 		11789E1E195282360052891F /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11789E1B1952822B0052891F /* liblua.a */; };
+		11E48A7519596BA1005FFFD2 /* Action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E48A7319596BA1005FFFD2 /* Action.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		11789DFE195282240052891F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		11789E01195282240052891F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		11789E161952822B0052891F /* lua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = lua.xcodeproj; path = ../lua/lua.xcodeproj; sourceTree = "<group>"; };
+		11E48A7319596BA1005FFFD2 /* Action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Action.cpp; sourceTree = "<group>"; };
+		11E48A7419596BA1005FFFD2 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Action.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 			children = (
 				1107B7C01952E34700E68726 /* Element.cpp */,
 				1107B7C11952E34700E68726 /* Element.h */,
+				11E48A7319596BA1005FFFD2 /* Action.cpp */,
+				11E48A7419596BA1005FFFD2 /* Action.h */,
 			);
 			name = cc;
 			path = ../../../cc;
@@ -212,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1107B7C21952E34700E68726 /* Element.cpp in Sources */,
+				11E48A7519596BA1005FFFD2 /* Action.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,8 @@
 
 #include "Element.h"
 
+#include "Context.h"
+
 namespace cc {
     
     IMP_CLASS(Element, Object)
@@ -115,4 +117,61 @@ namespace cc {
         return NULL;
     }
     
+    Value Element::value(const char * key){
+        
+        if(strcmp(key, "name") == 0){
+            return Value(_name.c_str());
+        }
+        else {
+            return Object::value(key);
+        }
+    }
+    
+    void Element::setValue(const char * key,Value value){
+        if(strcmp(key, "name") == 0){
+            _name = ValueToString(value, "");
+        }
+        else {
+            Object::setValue(key, value);
+        }
+    }
+
+    Value Element::invoke(const char * key,InvokeArgs * args){
+        
+        if(strcmp(key, "add") == 0){
+            
+            if(args->count >0){
+                Object * v = ValueToObject(InvokeArgsValue(args, 0));
+                if(v && v->isKindOfClass(& Element::clazz)){
+                    addChild((Element *) v);
+                }
+            }
+            
+            return Value();
+        }
+        else if(strcmp(key, "remove") == 0){
+            
+            removeFromParent();
+            
+            return Value();
+        }
+        else{
+            return Object::invoke(key, args);
+        }
+    }
+    
+    const char * Element::name(){
+        return _name.c_str();
+    }
+    
+    void Element::setName(const char * value){
+        _name = value;
+    }
+    
+    void Element::doAction(Action * action){
+        if(_parent != NULL ){
+            _parent->doAction(action);
+        }
+    }
+
 }

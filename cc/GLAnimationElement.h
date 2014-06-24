@@ -27,28 +27,21 @@ namespace cc {
         
         virtual double timestamp();
         
-        virtual GLScheduleStatus status();
+        virtual bool isEnabled();
         
-        virtual void setStatus(GLScheduleStatus value);
-        
-        virtual double duration();
-        
-        virtual void setDuration(double duration);
-        
+        virtual void setEnabled(bool value);
+    
         virtual Value value(const char * key);
         
         virtual void setValue(const char * key,Value value);
-        
-        virtual double value();
         
         DEC_CLASS
         
     private:
         
-        double _duration;
         double _timestamp;
         double _tickTimestamp;
-        GLScheduleStatus _status;
+        bool _enabled;
         
     };
     

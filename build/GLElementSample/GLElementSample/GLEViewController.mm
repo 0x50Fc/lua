@@ -7,18 +7,10 @@
 //
 
 #import "GLEViewController.h"
-
-#import "GLElementLayer.h"
-
 #import "Context.h"
+#import "GLLibrary.h"
 
-#import "GLContext.h"
-
-#import "GLLayerElement.h"
-
-#import "GLSchedule.h"
-
-#import "GLRun.h"
+#include "GLElementView.h"
 
 @interface GLEViewController (){
     
@@ -26,9 +18,9 @@
     cc::Context * _luaContext;
     cc::GLContext * _glContext;
     cc::Element * _rootElement;
-    GLElementLayer * _elementLayer;
+    GLElementView * _elementView;
     CADisplayLink * _displayLink;
-    
+    NSTimeInterval _gcTimestamp;
 }
 
 @end
@@ -63,15 +55,20 @@
     }
     
     if(_luaContext == nil){
+        
         _luaContext = new cc::Context();
-        _luaContext->registerClass(& cc::GLLayerElement::clazz);
-        _luaContext->registerClass(& cc::GLCanvasElement::clazz);
-        _luaContext->registerClass(& cc::GLElement::clazz);
-        _luaContext->registerClass(& cc::Element::clazz);
+        
+        GLLibraryLoadClass(_luaContext);
         
         NSBundle * bundle = [NSBundle mainBundle];
         
-        NSString * path = [bundle pathForResource:@"Element" ofType:@"lua"];
+        NSString * path = [bundle pathForResource:@"Object" ofType:@"lua"];
+        
+        if(_luaContext->loadFile([path UTF8String])){
+            NSLog(@"%s",_luaContext->error());
+        }
+        
+        path = [bundle pathForResource:@"Element" ofType:@"lua"];
         
         if(_luaContext->loadFile([path UTF8String])){
             NSLog(@"%s",_luaContext->error());
@@ -82,6 +79,9 @@
         if(_luaContext->loadFile([path UTF8String])){
             NSLog(@"%s",_luaContext->error());
         }
+        
+        _luaContext->gc();
+        
     }
     
     if(_rootElement == nil){
@@ -95,17 +95,23 @@
         _glContext = new cc::GLContext();
     }
     
-    if(_elementLayer == nil){
-        
-        _elementLayer = [[GLElementLayer alloc] init];
-    
-    }
-    
     CGSize size = self.view.bounds.size;
     
-    _elementLayer.frame = CGRectMake(0, 0, size.width, size.height);
     
-    [self.view.layer addSublayer:_elementLayer];
+    if(_elementView == nil){
+        
+        _elementView = [[GLElementView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+        [_elementView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+        
+    }
+    else {
+        _elementView.frame = CGRectMake(0, 0, size.width, size.height);;
+    }
+    
+    [_elementView setElement:_rootElement];
+
+    [self.view addSubview:_elementView];
     
     if(_displayLink == nil){
         _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(doFrameAction)];
@@ -116,20 +122,29 @@
     
 }
 
+
 -(void) doFrameAction{
+    
+    cc::Context::setCurrent(_luaContext);
     
     if(_schedule && _rootElement){
         
-        _schedule->timestamp = CFAbsoluteTimeGetCurrent();
-        
+        _schedule->tick(CFAbsoluteTimeGetCurrent());
+
         cc::GLRunSchedule(_schedule, _rootElement);
         
     }
     
-    if(_glContext && _rootElement){
-        [_elementLayer glDrawContext:_glContext element:_rootElement];
+    if(_glContext){
+        [_elementView glDrawContext:_glContext];
     }
     
+    if(_luaContext){
+        if(CFAbsoluteTimeGetCurrent() - _gcTimestamp > 0.6){
+            _luaContext->gc();
+            _gcTimestamp = CFAbsoluteTimeGetCurrent();
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

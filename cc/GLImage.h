@@ -49,8 +49,6 @@ namespace cc {
         
     };
     
-    extern GLImage * GLImageCreateFromFilePath(const char * filePath);
-    
 }
 
 #endif /* defined(__glelement__GLImage__) */

@@ -44,9 +44,18 @@ namespace cc {
         
         virtual void globalInvoke(const char * invoke,Value * values,int count);
         
+        virtual void gc();
+        
+        static Context * current();
+        
+        static void setCurrent(Context * context);
+        
     private:
         struct lua_State * _lua;
         std::string _error;
+        
+        static Context * _current;
+        
     };
     
 }

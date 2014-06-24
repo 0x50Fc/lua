@@ -76,9 +76,8 @@ namespace cc {
     void GLContext::setViewport(int width,int height){
         _width = width;
         _height = height;
-        projectTransform = cc::GLMatrix4MakeTranslation(-1.0, 1.0, 0.0);
-        projectTransform = cc::GLMatrix4Scale(projectTransform, 2.0f
-                                                   , - 2.0 * width / height, -1.0);
+        projectTransform = cc::GLMatrix4MakeScale(2.0f, - 2.0 * width / height, - 0.000001);
+        projectTransform = cc::GLMatrix4Translate(projectTransform, -0.5, -0.5 * height / width, 0);
     }
     
     void GLContext::translation(float x,float y,float z){
@@ -102,7 +101,7 @@ namespace cc {
     }
     
     void GLContext::zIndex(){
-        _state->zIndex += 0.000001;
+        _state->zIndex += 1;
     }
     
     GLContextState * GLContext::state(){

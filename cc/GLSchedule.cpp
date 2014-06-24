@@ -15,7 +15,7 @@ namespace cc {
     IMP_CLASS(GLSchedule,Object)
     
     
-    GLSchedule::GLSchedule():_timestamp(0),_status(GLScheduleStatusNone){
+    GLSchedule::GLSchedule():_timestamp(0),_enabled(true),_tickTimestamp(0){
         
     }
     
@@ -35,7 +35,19 @@ namespace cc {
         
     }
     
-    void GLSchedule::tick(){
+    void GLSchedule::tick(double tickTimestamp){
+        
+        if(_tickTimestamp == 0 ){
+            _tickTimestamp = tickTimestamp;
+            _timestamp = 0;
+        }
+        else if(_enabled){
+            _timestamp += tickTimestamp - _tickTimestamp;
+            _tickTimestamp = tickTimestamp;
+        }
+        else {
+            _tickTimestamp = tickTimestamp;
+        }
         
         std::vector<GLTask *>::iterator i = _tasks.begin();
         
@@ -90,17 +102,13 @@ namespace cc {
         return _timestamp;
     }
     
-    void GLSchedule::setTimestamp(double value){
-        _timestamp = value;
+    bool GLSchedule::isEnabled(){
+        return _enabled;
     }
     
-    GLScheduleStatus GLSchedule::status(){
-        return _status;
+    void GLSchedule::setEnabled(bool value){
+        _enabled = value;
     }
     
-    void GLSchedule::setStatus(GLScheduleStatus value){
-        _status = value;
-    }
-
     
 }

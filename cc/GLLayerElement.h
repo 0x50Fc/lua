@@ -48,13 +48,6 @@ namespace cc {
 
         virtual void draw(GLContext * context);
         
-        GLVector2 center;
-        GLVector2 size;
-        
-        virtual GLVector4 frame();
-        
-        virtual void setFrame(GLVector4 frame);
-        
         virtual GLImage * backgroundImage();
         
         virtual void setBackgroundImage(GLImage * image);
@@ -79,7 +72,9 @@ namespace cc {
         
         virtual void setValue(const char * key,Value value);
         
-        virtual void invoke(const char * key,InvokeArgs * args);
+        virtual Value invoke(const char * key,InvokeArgs * args);
+        
+        GLVector4 frame;
         
         DEC_CLASS
         
@@ -95,7 +90,6 @@ namespace cc {
         float _borderWidth;
         GLColor3d _borderColor;
         GLLayerElementProgram * _program;
-        
     };
     
 }

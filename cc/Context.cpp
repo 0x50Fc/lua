@@ -9,9 +9,11 @@
 #include "lua.hpp"
 #include "Context.h"
 #include "Object.h"
+#include "Log.h"
 
 namespace cc {
     
+    static int cc_Object_invoke(lua_State * lua);
     
     int ValueToInt(Value value,int defaultValue){
        
@@ -128,7 +130,7 @@ namespace cc {
             case LUA_TNIL:
                 return Value();
             case LUA_TUSERDATA:
-                return Value((Object *) lua_touserdata(lua,i));
+                return Value(* (Object **) lua_touserdata(lua,i));
             default:
                 const char * v = lua_tostring(lua,i);
                 if(v){
@@ -156,6 +158,64 @@ namespace cc {
         return 0;
     }
     
+    static void cc_Object_pushValue(lua_State * lua,Value v){
+        
+        switch (v.type) {
+            case ValueTypeInt:
+                
+                lua_pushinteger(lua, v.intValue);
+                
+                break;
+            case ValueTypeInt64:
+                
+                lua_pushinteger(lua, (lua_Integer) v.int64Value);
+                
+                break;
+            case ValueTypeDouble:
+                
+                lua_pushnumber(lua, v.doubleValue);
+                
+                break;
+            case ValueTypeString:
+                
+                lua_pushstring(lua, v.stringValue);
+                
+                break;
+                
+            case ValueTypeObject:
+                
+                if(v.objectValue){
+                    
+                    Object ** pobject = (Object **) lua_newuserdata(lua, sizeof(Object *));
+                    
+                    * pobject = v.objectValue->retain();
+                    
+                    luaL_getmetatable(lua, "ccObject");
+                    
+                    lua_setmetatable(lua, -2);
+                    
+                    
+                }
+                else {
+                    lua_pushnil(lua);
+                }
+                
+                break;
+                
+            case ValueTypeBoolean:
+                
+                lua_pushboolean(lua, v.booleanValue);
+                
+                break;
+                
+            default:
+                
+                lua_pushnil(lua);
+                
+                break;
+        }
+    }
+    
     static int cc_Object_invoke(lua_State * lua){
         
         int c = lua_gettop(lua);
@@ -177,7 +237,11 @@ namespace cc {
                     if(key && fun){
                         Invoke invoke = * fun;
                         InvokeArgs args = {0,c - 1,lua};
-                        ((* pobject)->*invoke)(key,& args);
+                        Value v = ((* pobject)->*invoke)(key,& args);
+                        
+                        cc_Object_pushValue(lua,v);
+                        
+                        return 1;
                     }
 
                 }
@@ -203,70 +267,24 @@ namespace cc {
                 
                 Value v = (* pobject)->value(key);
                 
-                switch (v.type) {
-                    case ValueTypeInt:
-                        
-                        lua_pushinteger(lua, v.intValue);
-                        
-                        return 1;
-                    case ValueTypeInt64:
-                        
-                        lua_pushinteger(lua, (lua_Integer) v.int64Value);
-                        
-                        return 1;
-                    case ValueTypeDouble:
-                        
-                        lua_pushnumber(lua, v.doubleValue);
-                        
-                        return 1;
-                    case ValueTypeString:
-                        
-                        lua_pushstring(lua, v.stringValue);
-                        
-                        return 1;
-                        
-                    case ValueTypeObject:
-                        
-                        if(v.objectValue){
-                            
-                            Object ** pobject = (Object **) lua_newuserdata(lua, sizeof(Object *));
-                            
-                            * pobject = v.objectValue->retain();
-                            
-                            luaL_getmetatable(lua, "ccObject");
-                        
-                            lua_setmetatable(lua, -2);
-                            
-                            return 1;
-                        }
-                        
-                        return 0;
-                        
-                    case ValueTypeInvoke:
-                        
-                        lua_pushstring(lua, key);
-                        
+                if(v.type == ValueTypeInvoke){
+                    lua_pushstring(lua, key);
+                    
                     {
                         Invoke * p = (Invoke *) lua_newuserdata(lua, sizeof(Invoke));
                         
                         * p = v.invokeValue;
                         
                     }
-                        lua_pushcclosure(lua, cc_Object_invoke, 2);
-                        
-                        return 1;
-                    case ValueTypeBoolean:
-                        
-                        lua_pushboolean(lua, v.booleanValue);
-                        
-                        return 1;
+                    lua_pushcclosure(lua, cc_Object_invoke, 2);
 
-                    default:
-                        
-                        lua_pushnil(lua);
-                        
-                        return 1;
                 }
+                else {
+                    cc_Object_pushValue(lua,v);
+                }
+                
+                return 1;
+                
             }
             
         }
@@ -339,6 +357,9 @@ namespace cc {
                 }
                 
             }
+            else {
+                Log("Not Found Class %s",className);
+            }
             
         }
         
@@ -348,7 +369,7 @@ namespace cc {
     Context::Context(void){
         
         _lua = luaL_newstate();
-        
+
         static const struct luaL_Reg cc[] = {
             {"new", cc_new},
             {NULL, NULL}
@@ -376,6 +397,9 @@ namespace cc {
         
         registerClass( & Object::clazz);
         
+        if(_current == NULL){
+            _current = this;
+        }
     }
     
     int Context::loadString(const char * string){
@@ -436,6 +460,11 @@ namespace cc {
     }
     
     Context::~Context(){
+        
+        if(_current == this){
+            _current = NULL;
+        }
+        
         lua_close(_lua);
     }
     
@@ -488,6 +517,10 @@ namespace cc {
         if(type == LUA_TTABLE){
             
             lua_getfield(_lua, -1, invoke);
+            
+            type = lua_type(_lua, -1);
+            
+            lua_pushvalue(_lua, -2);
             
             for(int i=0; i < count; i++){
                 Value * v = values + i;
@@ -555,7 +588,7 @@ namespace cc {
                 }
             }
             
-            lua_pcall(_lua, count, 0, 0);
+            lua_pcall(_lua, count + 1, 0, 0);
             
         }
     }
@@ -563,7 +596,7 @@ namespace cc {
     void Context::globalInvoke(const char * invoke,Value * values,int count){
         
         lua_getglobal(_lua, invoke);
-        
+    
         int type = lua_type(_lua, -1);
         
         if(type == LUA_TFUNCTION){
@@ -637,6 +670,20 @@ namespace cc {
             
             lua_pcall(_lua, count, 0, 0);
         }
+    }
+    
+    void Context::gc(){
+        lua_gc(_lua, LUA_GCCOLLECT, 0);
+    }
+    
+    Context * Context::_current = NULL;
+    
+    Context * Context::current(){
+        return _current;
+    }
+    
+    void Context::setCurrent(Context * context){
+        _current = context;
     }
 }
 

@@ -16,9 +16,12 @@ namespace cc {
     attribute vec2 txtCoord; \n\
     uniform	mat4 transform; \n\
     uniform mat4 projectTransform; \n\
+    uniform float alpha;\n\
     varying vec2 vTxtCoord; \n\
+    varying float vAlpha; \n\
     void main() { \n\
         vTxtCoord = txtCoord; \n\
+        vAlpha = alpha; \n\
         gl_Position = projectTransform * transform * position; \n\
     } \n\
     ";
@@ -30,15 +33,15 @@ namespace cc {
     uniform vec4 backgroundColor;\n\
     uniform sampler2D backgroundImage;\n\
     uniform int hasBackgroundImage;\n\
-    uniform float alpha;\n\
     varying vec2 vTxtCoord;\n\
+    varying float vAlpha; \n\
     void main(){\n\
         vec4 c ;\n\
         if(hasBackgroundImage ==1){\n\
-            c = texture2D(backgroundImage,vTxtCoord) * alpha;\n\
+            c = texture2D(backgroundImage,vTxtCoord) * vAlpha;\n\
         }\n\
         else{\n\
-            c = backgroundColor * alpha;\n\
+            c = backgroundColor * vAlpha;\n\
         }\n\
         gl_FragColor = c;\n\
     }\n";
@@ -67,8 +70,7 @@ namespace cc {
     ,_borderWidth(0)
     ,_borderColor({0.0,0.0,0.0,0.0})
     ,_program(NULL)
-    ,size({0.0,0.0})
-    ,center({0.0,0.0}){
+    ,frame({0.0,0.0,0.0,0.0}){
 
     }
     
@@ -106,18 +108,14 @@ namespace cc {
         float screenWidth = context->width();
         float screenHeight = context->height();
         
-        if(p && screenWidth >0 && screenHeight >0 && size.width >0 && size.height > 0){
+        if(p && screenWidth >0 && screenHeight >0 && frame.size.width >0 && frame.size.height > 0){
             
-            float w = context->global(size.width);
-            float h = context->global(size.height);
-            float left = - w / 2.0f;
-            float right = w / 2.0f;
-            float top = - h / 2.0f;
-            float bottom = h / 2.0f;
+            float w = context->global(frame.size.width);
+            float h = context->global(frame.size.height);
             
             GLVector3 position[6] = {
-                {left,top,0},{right,top,0},{left,bottom,0},
-                {left,bottom,0},{right,top,0},{right,bottom,0}
+                {0,0,0},{w,0,0},{0,h,0},
+                {0,h,0},{w,0,0},{w,h,0}
             };
             
             GLVector2 txtCoord[6] = {
@@ -157,24 +155,16 @@ namespace cc {
       
     void GLLayerElement::begin(GLContext * context){
         
-        GLfloat x = context->global(center.x);
-        GLfloat y = context->global(center.y);
+        context->saveState();
         
-        position = GLVector3Make(x, y , context->state()->zIndex);
+        GLfloat x = context->global(frame.origin.x);
+        GLfloat y = context->global(frame.origin.y);
         
-        GLCanvasElement::begin(context);
-    }
-    
-    GLVector4 GLLayerElement::frame(){
-        GLVector4 v4 = {center.x - size.width / 2.0f,center.y - size.height / 2.0f,size.width,size.height};
-        return v4;
-    }
-    
-    void GLLayerElement::setFrame(GLVector4 frame){
-        size.width = frame.size.width;
-        size.height = frame.size.height;
-        center.x = frame.origin.x + size.width / 2.0f;
-        center.y = frame.origin.y + size.height / 2.0f;
+        context->translation(x, y, context->state()->zIndex);
+        context->scale(scale, scale, scale);
+        context->alpha(alpha);
+        context->transform(transform);
+        
     }
     
     GLImage * GLLayerElement::backgroundImage(){
@@ -227,17 +217,17 @@ namespace cc {
     
     Value GLLayerElement::value(const char * key){
         
-        if(strcmp(key, "size.width") == 0){
-            return Value((double) size.width);
+        if(strcmp(key, "width") == 0){
+            return Value((double) frame.size.width);
         }
-        else if(strcmp(key, "size.height") == 0){
-            return Value((double) size.height);
+        else if(strcmp(key, "height") == 0){
+            return Value((double) frame.size.height);
         }
-        else if(strcmp(key, "center.x") == 0){
-            return Value((double) center.x);
+        else if(strcmp(key, "x") == 0){
+            return Value((double) frame.origin.x);
         }
-        else if(strcmp(key, "center.y") == 0){
-            return Value((double) center.y);
+        else if(strcmp(key, "y") == 0){
+            return Value((double) frame.origin.y);
         }
         else if(strcmp(key, "background-color") == 0){
             return Value((long long) GLColor3dToIntValue(_backgroundColor));
@@ -249,17 +239,17 @@ namespace cc {
     
     void GLLayerElement::setValue(const char * key,Value value){
         
-        if(strcmp(key, "size.width") == 0){
-            size.width = ValueToDouble(value, 0.0);
+        if(strcmp(key, "width") == 0){
+            frame.size.width = ValueToDouble(value, 0.0);
         }
-        else if(strcmp(key, "size.height") == 0){
-            size.height = ValueToDouble(value, 0.0);
+        else if(strcmp(key, "height") == 0){
+            frame.size.height = ValueToDouble(value, 0.0);
         }
-        else if(strcmp(key, "center.x") == 0){
-            center.x = ValueToDouble(value, 0.0);
+        else if(strcmp(key, "x") == 0){
+            frame.origin.x = ValueToDouble(value, 0.0);
         }
-        else if(strcmp(key, "center.y") == 0){
-            center.y = ValueToDouble(value, 0.0);
+        else if(strcmp(key, "y") == 0){
+            frame.origin.y = ValueToDouble(value, 0.0);
         }
         else if(strcmp(key, "background-color") == 0){
             if(value.type == ValueTypeString){
@@ -275,18 +265,22 @@ namespace cc {
         
     }
     
-    void GLLayerElement::invoke(const char * key,InvokeArgs * args){
+    Value GLLayerElement::invoke(const char * key,InvokeArgs * args){
         
         if(strcmp(key, "setFrame") == 0){
-            GLVector4 v4 ;
-            v4.origin.x = ValueToDouble(InvokeArgsValue(args, 0),0.0);
-            v4.origin.y = ValueToDouble(InvokeArgsValue(args, 1),0.0);
-            v4.size.width = ValueToDouble(InvokeArgsValue(args, 2),0.0);
-            v4.size.height = ValueToDouble(InvokeArgsValue(args, 3),0.0);
-            setFrame(v4);
+            frame.origin.x = ValueToDouble(InvokeArgsValue(args, 0),0.0);
+            frame.origin.y = ValueToDouble(InvokeArgsValue(args, 1),0.0);
+            frame.size.width = ValueToDouble(InvokeArgsValue(args, 2),0.0);
+            frame.size.height = ValueToDouble(InvokeArgsValue(args, 3),0.0);
+            return Value();
+        }
+        else if(strcmp(key, "setSize") == 0){
+            frame.size.width = ValueToDouble(InvokeArgsValue(args, 0),0.0);
+            frame.size.height = ValueToDouble(InvokeArgsValue(args, 1),0.0);
+            return Value();
         }
         else{
-            GLCanvasElement::invoke(key, args);
+            return GLCanvasElement::invoke(key, args);
         }
         
     }

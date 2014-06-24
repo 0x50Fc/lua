@@ -14,12 +14,15 @@
 #include "GLSchedule.h"
 #include "Element.h"
 #include "GLContext.h"
+#include "GLTouch.h"
 
 namespace cc {
     
     void GLRunSchedule(GLSchedule * schedule,Element * element);
     
     void GLRunContext(GLContext * context,Element * element);
+    
+    bool GLRunTouch(GLTouch * touch,GLTouchState touchState, Element * element);
     
 }
 

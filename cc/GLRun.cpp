@@ -12,6 +12,8 @@
 
 #include "GLCanvasElement.h"
 
+#include "GLControlElement.h"
+
 namespace cc {
     
     void GLRunSchedule(GLSchedule * schedule,Element * element){
@@ -43,7 +45,7 @@ namespace cc {
         int c = element->childCount();
         
         for(int i=0;i<c;i++){
-            
+ 
             Element * child = element->childAt(i);
             
             if(child){
@@ -78,6 +80,79 @@ namespace cc {
         else {
             GLRunContextChilds(context,element);
         }
+        
+    }
+    
+    static bool GLRunTouchLocation(GLTouch * touch,GLTouchState touchState,Element * element, GLVector2 location){
+        
+        if(element->isKindOfClass(& GLLayerElement::clazz)){
+            
+            GLVector4 frame = ((GLLayerElement *) element)->frame;
+            
+            location.x -= frame.origin.x;
+            location.y -= frame.origin.y;
+            
+        }
+        
+        if(element->isKindOfClass(& GLControlElement::clazz)){
+            
+            GLControlElement * control = (GLControlElement *) element;
+            
+            if(! control->touchEnabled){
+                return false;
+            }
+            
+            if(control->touch(touch,touchState, location)){
+                
+                int c = element->childCount();
+                
+                while (-- c >= 0) {
+                    
+                    Element * child = element->childAt(c);
+                    
+                    if(GLRunTouchLocation(touch,touchState, child, location) && touchState == GLTouchStateBegin){
+                        return true;
+                    }
+                    
+                }
+                
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            
+            int c = element->childCount();
+            bool rs = false;
+            
+            while (-- c >= 0) {
+                
+                Element * child = element->childAt(c);
+                
+                if(GLRunTouchLocation(touch,touchState, child, location) ){
+                    
+                    if(touchState == GLTouchStateBegin){
+                        return true;
+                    }
+                    
+                    rs = true;
+                }
+                
+            }
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
+    bool GLRunTouch(GLTouch * touch,GLTouchState touchState, Element * element){
+        
+        GLVector2 location({touch->screenX,touch->screenY});
+        
+        return GLRunTouchLocation(touch,touchState,element, location);
         
     }
     

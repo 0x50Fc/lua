@@ -12,7 +12,7 @@ namespace cc {
     
     IMP_CLASS(GLAnimationElement, GLElement)
     
-    GLAnimationElement::GLAnimationElement():_status(GLScheduleStatusNone),_timestamp(0){
+    GLAnimationElement::GLAnimationElement():_enabled(true),_timestamp(0){
         
     }
     
@@ -22,12 +22,16 @@ namespace cc {
     
     void GLAnimationElement::tick(GLSchedule * schedule){
         
-        if(_tickTimestamp == 0 || _status != GLScheduleStatusNone){
+        if(_tickTimestamp == 0 ){
+            _tickTimestamp = schedule->timestamp();
+            _timestamp = 0;
+        }
+        else if(_enabled){
+            _timestamp += schedule->timestamp() - _tickTimestamp;
             _tickTimestamp = schedule->timestamp();
         }
-        
-        if(_status == GLScheduleStatusNone){
-            _timestamp += schedule->timestamp() - _tickTimestamp;
+        else {
+            _tickTimestamp = schedule->timestamp();
         }
 
         GLElement::tick(schedule);
@@ -37,29 +41,10 @@ namespace cc {
         return _timestamp;
     }
     
-    GLScheduleStatus GLAnimationElement::status(){
-        return _status;
-    }
-    
-    void GLAnimationElement::setStatus(GLScheduleStatus value){
-        _status = value;
-    }
-    
-    double GLAnimationElement::duration(){
-        return _duration;
-    }
-    
-    void GLAnimationElement::setDuration(double duration){
-        _duration = duration;
-    }
-    
     Value GLAnimationElement::value(const char * key){
         
-        if(strcmp(key, "duration") == 0){
-            return Value(_duration);
-        }
-        else if(strcmp(key, "status") == 0){
-            return Value((int) _status);
+        if(strcmp(key, "enabled") == 0){
+            return Value(_enabled);
         }
         else {
             return GLElement::value(key);
@@ -68,11 +53,8 @@ namespace cc {
     
     void GLAnimationElement::setValue(const char * key,Value value){
         
-        if(strcmp(key, "duration") == 0){
-            _duration = ValueToDouble(value, _duration);
-        }
-        else if(strcmp(key, "status") == 0){
-            _status = (GLScheduleStatus) ValueToInt(value, _status);
+        if(strcmp(key, "enalbed") == 0){
+            _enabled = ValueToBoolean(value, _enabled);
         }
         else {
             GLElement::setValue(key,value);
@@ -80,8 +62,13 @@ namespace cc {
         
     }
     
-    double GLAnimationElement::value(){
-        return _duration == 0.0 ? 0.0 : _timestamp / _duration;
+    bool GLAnimationElement::isEnabled(){
+        return _enabled;
     }
+    
+    void GLAnimationElement::setEnabled(bool value){
+        _enabled = value;
+    }
+    
     
 }

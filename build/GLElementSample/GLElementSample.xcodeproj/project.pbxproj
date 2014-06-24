@@ -23,6 +23,7 @@
 		1107B8C01953FFE200E68726 /* libglelement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B8BF1953FFE200E68726 /* libglelement.a */; };
 		1107B8C11953FFEF00E68726 /* libglui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B8B41953F81C00E68726 /* libglui.a */; };
 		1107B8C31953FFF300E68726 /* libelement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1107B8C21953FFF300E68726 /* libelement.a */; };
+		116D79CC1959869300EB070B /* Object.lua in Resources */ = {isa = PBXBuildFile; fileRef = 116D79CB1959869200EB070B /* Object.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		1107B8BD1953F8BC00E68726 /* root.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = root.lua; sourceTree = "<group>"; };
 		1107B8BF1953FFE200E68726 /* libglelement.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglelement.a; path = "../glelement/build/Debug-iphoneos/libglelement.a"; sourceTree = "<group>"; };
 		1107B8C21953FFF300E68726 /* libelement.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libelement.a; path = "../element/build/Debug-iphoneos/libelement.a"; sourceTree = "<group>"; };
+		116D79CB1959869200EB070B /* Object.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Object.lua; path = ../../../core/src/Object.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 		1107B87D1953F7E400E68726 /* GLElementSample */ = {
 			isa = PBXGroup;
 			children = (
+				116D79CB1959869200EB070B /* Object.lua */,
 				1107B8BB1953F89F00E68726 /* Element.lua */,
 				1107B8BD1953F8BC00E68726 /* root.lua */,
 				1107B8861953F7E400E68726 /* GLEAppDelegate.h */,
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1107B8BE1953F8BC00E68726 /* root.lua in Resources */,
+				116D79CC1959869300EB070B /* Object.lua in Resources */,
 				1107B8901953F7E400E68726 /* Images.xcassets in Resources */,
 				1107B8BC1953F89F00E68726 /* Element.lua in Resources */,
 				1107B8821953F7E400E68726 /* InfoPlist.strings in Resources */,
@@ -414,6 +418,7 @@
 				1107B8A81953F7E400E68726 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

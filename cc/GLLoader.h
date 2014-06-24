@@ -23,7 +23,7 @@ namespace cc {
         
         GLLoader();
         
-        GLLoader(const char * resBasePath,const char * docBasePath,const char * tmpBasePath);
+        GLLoader(const char * res,const char * doc,const char * tmp);
         
         virtual ~GLLoader();
         
@@ -34,9 +34,9 @@ namespace cc {
         DEC_CLASS
         
     private:
-        std::string _resBasePath;
-        std::string _docBasePath;
-        std::string _tmpBasePath;
+        std::string _res;
+        std::string _doc;
+        std::string _tmp;
     };
 }
 

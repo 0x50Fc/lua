@@ -15,8 +15,12 @@ namespace cc {
     IMP_CLASS(GLSchedule,Object)
     
     
-    GLSchedule::GLSchedule():_timestamp(0),_enabled(true),_tickTimestamp(0){
+    GLSchedule::GLSchedule():_timestamp(0),_enabled(true),_tickTimestamp(0),_loader(NULL){
         
+    }
+    
+    GLSchedule::GLSchedule(GLLoader * loader):_timestamp(0),_enabled(true),_tickTimestamp(0),_loader(loader){
+        loader->retain();
     }
     
     GLSchedule::~GLSchedule(){
@@ -31,6 +35,10 @@ namespace cc {
             
             i ++;
             
+        }
+        
+        if(_loader){
+            _loader->retain();
         }
         
     }
@@ -110,5 +118,8 @@ namespace cc {
         _enabled = value;
     }
     
+    GLLoader * GLSchedule::loader(){
+        return _loader;
+    }
     
 }

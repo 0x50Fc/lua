@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "Object.h"
+#include "GLLoader.h"
 
 namespace cc {
     
@@ -23,6 +24,8 @@ namespace cc {
     public:
         
         GLSchedule();
+        
+        GLSchedule(GLLoader * loader);
         
         virtual ~GLSchedule();
     
@@ -38,9 +41,12 @@ namespace cc {
         
         virtual void setEnabled(bool value);
         
+        virtual GLLoader * loader();
+        
         DEC_CLASS
         
     private:
+        GLLoader * _loader;
         std::vector<GLTask *> _tasks;
         double _timestamp;
         double _tickTimestamp;

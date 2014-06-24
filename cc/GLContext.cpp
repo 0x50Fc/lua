@@ -14,14 +14,16 @@ namespace cc {
     
     IMP_CLASS(GLContext, Object)
     
-    GLContext::GLContext():_width(0),_height(0){
+    GLContext::GLContext()
+        :_width(0),_height(0),_loader(NULL){
         projectTransform = GLMatrix4MakeScale(1.0f, - 1.0f , -1.0f);
         _state = new GLContextState();
     }
     
-    GLContext::GLContext(int width,int height){
-        _width = width;
-        _height = height;
+    GLContext::GLContext(GLLoader * loader)
+        :_width(0),_height(0),_loader(loader){
+            
+        loader->retain();
         projectTransform = GLMatrix4MakeScale(1.0f, - 1.0f , -1.0f);
         _state = new GLContextState();
     }
@@ -63,6 +65,9 @@ namespace cc {
             
         }
         
+        if(_loader){
+            _loader->release();
+        }
     }
     
     int GLContext::width(){
@@ -189,5 +194,9 @@ namespace cc {
         
         _images.clear();
         
+    }
+    
+    GLLoader * GLContext::loader(){
+        return _loader;
     }
 }

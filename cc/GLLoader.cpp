@@ -16,7 +16,8 @@ namespace cc {
         
     }
     
-    GLLoader::GLLoader(const char * resBasePath,const char * docBasePath,const char * tmpBasePath){
+    GLLoader::GLLoader(const char * res,const char * doc,const char * tmp)
+        : _res(res),_doc(doc),_tmp(tmp){
         
     }
     
@@ -26,37 +27,34 @@ namespace cc {
     
     GLImage * GLLoader::createImageForURI(const char * uri){
         
+        std::string path = getFilePath(uri);
+        
+        return GLLoaderImageCreateFromFilePath(path.c_str());
         
     }
     
-    
     std::string GLLoader::getFilePath(const char * uri){
         
-        std::string s(uri);
-        
-        std::string::size_type pos = s.find("res://");
-        
-        if(pos ==0){
-            s.replace(pos, 6, _resBasePath);
-            return s;
-        }
-
-        pos = s.find("doc://");
-        
-        if(pos ==0){
-            s.replace(pos, 6, _docBasePath);
-            return s;
+        if(uri[0] == 'r' && uri[1] == 'e' && uri[2] == 's'
+           && uri[3] == ':' && uri[4] == '/' && uri[5] == '/'){
+            return _res + (uri + 6);
         }
         
-        pos = s.find("tmp://");
-        
-        if(pos ==0){
-            s.replace(pos, 6, _tmpBasePath);
-            return s;
+        if(uri[0] == 'd' && uri[1] == 'o' && uri[2] == 'c'
+           && uri[3] == ':' && uri[4] == '/' && uri[5] == '/'){
+            return _doc + (uri + 6);
         }
-    
-       
-        return s;
+        
+        if(uri[0] == 't' && uri[1] == 'm' && uri[2] == 'p'
+           && uri[3] == ':' && uri[4] == '/' && uri[5] == '/'){
+            return _doc + (uri + 6);
+        }
+        
+        if(uri[0] == '/'){
+            return std::string(uri);
+        }
+        
+        return _res + '/' + uri;
     }
     
 }

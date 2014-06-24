@@ -14,6 +14,7 @@
 
 @interface GLEViewController (){
     
+    cc::GLLoader * _loader;
     cc::GLSchedule * _schedule;
     cc::Context * _luaContext;
     cc::GLContext * _glContext;
@@ -42,15 +43,29 @@
     if(_schedule){
         _schedule->release();
     }
+    
+    if(_loader){
+        _loader->release();
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    if(_loader == nil){
+        
+        NSString * res = [[NSBundle mainBundle] bundlePath];
+        NSString * doc = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString * tmp = NSTemporaryDirectory();
+        
+        _loader = new cc::GLLoader([res UTF8String],[doc UTF8String],[tmp UTF8String]);
+        
+    }
+    
     if(_schedule == nil){
         
-        _schedule = new cc::GLSchedule();
+        _schedule = new cc::GLSchedule(_loader);
         
     }
     
@@ -92,7 +107,7 @@
     }
     
     if(_glContext == nil){
-        _glContext = new cc::GLContext();
+        _glContext = new cc::GLContext(_loader);
     }
     
     CGSize size = self.view.bounds.size;

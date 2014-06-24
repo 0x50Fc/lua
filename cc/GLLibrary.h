@@ -21,6 +21,7 @@
 #include "GLRoleElement.h"
 #include "GLMapElement.h"
 #include "Context.h"
+#include "GLLoader.h"
 
 namespace cc {
     

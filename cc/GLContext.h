@@ -15,6 +15,7 @@
 #include "GL.h"
 #include "GLProgram.h"
 #include "GLImage.h"
+#include "GLLoader.h"
 
 namespace cc {
     
@@ -43,7 +44,7 @@ namespace cc {
         
         GLContext();
         
-        GLContext(int width,int height);
+        GLContext(GLLoader * loader);
         
         virtual ~GLContext();
         
@@ -87,9 +88,13 @@ namespace cc {
         
         GLMatrix4 projectTransform;
         
+        virtual GLLoader * loader();
+        
         DEC_CLASS
         
     private:
+        
+        GLLoader * _loader;
         
         std::map<std::string,GLProgram *> _programs;
         std::map<std::string,GLImage *> _images;

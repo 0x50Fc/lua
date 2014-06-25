@@ -139,7 +139,18 @@ namespace cc {
                 
                 lua_newtable(lua);
                 
+                std::vector<Element *>::iterator i = elements.begin();
                 
+                while (i != elements.end()) {
+                    
+                    Context::newObject(lua, * i);
+                    
+                    lua_insert(lua, -2);
+                    
+                    i ++;
+                }
+                
+                return 1;
                 
             }
             else {

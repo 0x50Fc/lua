@@ -18,6 +18,13 @@ function Object:call(key,...)
   return self;
 end
 
+function Object:pcall(key,...)
+  local fn = self.object[key];
+  if fn and type(fn) == "function" then
+    return fn(self.object,...);
+  end
+end
+
 function O(class)
 
   if not class then

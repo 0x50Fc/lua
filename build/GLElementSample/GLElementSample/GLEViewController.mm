@@ -155,6 +155,10 @@
         _frameCount  ++;
         _startTimestmap = CFAbsoluteTimeGetCurrent();
     }
+    else if(_frameCount > 120) {
+        _frameCount = 0;
+        _startTimestmap = CFAbsoluteTimeGetCurrent();
+    }
     else {
         _frameCount ++;
     }

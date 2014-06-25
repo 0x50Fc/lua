@@ -375,11 +375,7 @@ namespace cc {
         
         if(className){
             
-            lua_getglobal(lua, "cc");
-            
-            lua_getfield(lua, -1, className);
-            
-            Class * clazz = (Class *) lua_touserdata(lua, -1);
+            Class * clazz = Context::getClass(lua, className);
             
             if(clazz){
                 
@@ -745,7 +741,7 @@ namespace cc {
         
         int type = lua_type(lua, -1);
         
-        if(type == LUA_TUSERDATA){
+        if(type == LUA_TLIGHTUSERDATA){
             clazz = (Class *) lua_touserdata(lua, -1);
         }
         

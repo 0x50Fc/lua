@@ -27,6 +27,33 @@ function Element:remove()
   return self;
 end
 
+function Element:elementsOfClass(class)
+  local fn = self.object["elementsOfClass"];
+  if fn and type(fn) == "function" then
+    return fn(self.object,class);
+  end
+end
+
+ElementList = {};
+
+function ElementList:setValue(key,value)
+  for i,v in ipairs(self.objects) do
+    v[key] = value;
+  end
+  return self;
+end
+
+function ElementList:call(key,...)
+  for i,v in ipairs(self.objects) do
+    local fn = v[key];
+    if fn and type(fn) == "function" then
+      fn(v,...);
+    end
+  end
+  return self;
+end
+
+
 _ElementById = {};
 
 function E(class,id)
@@ -38,14 +65,18 @@ function E(class,id)
   if type(class) == "string" and string.sub(class,1,1) == "#" then
     return _ElementById[string.sub(class,2)];
   end
-
+  
   local e = {};
+  local t = type(class);
   
-  setmetatable(e,{ __index = Element , __mode = "parent"});
-  
-  if type(class) == "string" then
+  if t == "string" then
+    setmetatable(e,{ __index = Element , __mode = "parent"});
     e.object = cc.new(class);
+  elseif t == "table" then
+    setmetatable(e,{ __index = ElementList });
+    e.objects = class;
   else
+    setmetatable(e,{ __index = Element , __mode = "parent"});
     e.object = class;
   end
   

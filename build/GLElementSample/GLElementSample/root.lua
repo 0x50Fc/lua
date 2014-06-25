@@ -10,7 +10,7 @@ root = E("GLSceneElement")
         E("GLCanvasElement")
         :call("setPosition",0.5,0.2,0)
         :add(
-            E("GLRoleElement","role")
+            E("GLRoleElement")
             :call("setStatus",PLAY_RIGHT)
             :add(
                 E("GLTacticFramesElement")
@@ -198,27 +198,29 @@ function root:doAction(object)
         local dx = math.abs(x);
         local dy = math.abs(y);
         
+        local roles = E(root:elementsOfClass("GLRoleElement"));
+
         if x == 0 and y == 0 then
             
-            E("#role"):call("removeStatus",PLAY_RUN);
+            roles:call("removeStatus",PLAY_RUN);
 
         else
         
             if dx > dy then
                 if x > 0 then
-                    E("#role"):call("setStatus",PLAY_RIGHT,PLAY_RUN);
+                    roles:call("setStatus",PLAY_RIGHT,PLAY_RUN);
                 end
                 if x < 0 then
-                    E("#role"):call("setStatus",PLAY_LEFT,PLAY_RUN);
+                    roles:call("setStatus",PLAY_LEFT,PLAY_RUN);
                 end
             end
             
             if dy > dx then
                 if y > 0 then
-                    E("#role"):call("setStatus",PLAY_DOWN,PLAY_RUN);
+                    roles:call("setStatus",PLAY_DOWN,PLAY_RUN);
                 end
                 if y < 0 then
-                    E("#role"):call("setStatus",PLAY_UP,PLAY_RUN);
+                    roles:call("setStatus",PLAY_UP,PLAY_RUN);
                 end
             end
 

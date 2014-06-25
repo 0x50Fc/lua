@@ -15,11 +15,13 @@ namespace cc {
     IMP_CLASS(GLSchedule,Object)
     
     
-    GLSchedule::GLSchedule():_timestamp(0),_enabled(true),_tickTimestamp(0),_loader(NULL){
+    GLSchedule::GLSchedule()
+    :_timestamp(0),_enabled(true),_tickTimestamp(0),_loader(NULL),_speed(1.0){
         
     }
     
-    GLSchedule::GLSchedule(GLLoader * loader):_timestamp(0),_enabled(true),_tickTimestamp(0),_loader(loader){
+    GLSchedule::GLSchedule(GLLoader * loader)
+    :_timestamp(0),_enabled(true),_tickTimestamp(0),_loader(loader),_speed(1.0){
         loader->retain();
     }
     
@@ -50,7 +52,7 @@ namespace cc {
             _timestamp = 0;
         }
         else if(_enabled){
-            _timestamp += tickTimestamp - _tickTimestamp;
+            _timestamp += (tickTimestamp - _tickTimestamp) * _speed;
             _tickTimestamp = tickTimestamp;
         }
         else {
@@ -120,6 +122,14 @@ namespace cc {
     
     GLLoader * GLSchedule::loader(){
         return _loader;
+    }
+    
+    double GLSchedule::speed(){
+        return _speed;
+    }
+    
+    void GLSchedule::setSpeed(double value){
+        _speed = value;
     }
     
 }

@@ -43,6 +43,10 @@ namespace cc {
         
         virtual Element * parentOfClass(Class * elementClass);
         
+        virtual void elementsOfClass(std::vector<Element *> & elements,Class * elementClass,int level);
+        
+        virtual void elementsOfClass(std::vector<Element *> & elements,Class * elementClass);
+        
         virtual Value value(const char * key);
         
         virtual void setValue(const char * key,Value value);

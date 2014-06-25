@@ -22,7 +22,11 @@
     GLElementView * _elementView;
     CADisplayLink * _displayLink;
     NSTimeInterval _gcTimestamp;
+    NSTimeInterval _startTimestmap;
+    long long _frameCount;
 }
+
+@property(nonatomic,retain) UILabel * textLabel;
 
 @end
 
@@ -117,6 +121,7 @@
         
         _elementView = [[GLElementView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
+        [_elementView setMultipleTouchEnabled:YES];
         [_elementView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
         
     }
@@ -135,10 +140,30 @@
     
     [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
+    if(_textLabel == nil){
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 120, 20)];
+        [_textLabel setFont:[UIFont systemFontOfSize:9]];
+        [_textLabel setTextColor:[UIColor whiteColor]];
+    }
+
+    [self.view addSubview:_textLabel];
 }
 
-
 -(void) doFrameAction{
+    
+    if(_frameCount ==0){
+        _frameCount  ++;
+        _startTimestmap = CFAbsoluteTimeGetCurrent();
+    }
+    else {
+        _frameCount ++;
+    }
+    
+    NSTimeInterval d = CFAbsoluteTimeGetCurrent() - _startTimestmap;
+    
+    if(d > 1){
+        [_textLabel setText:[NSString stringWithFormat:@"Frames: %.0f/s",_frameCount / d]];
+    }
     
     cc::Context::setCurrent(_luaContext);
     

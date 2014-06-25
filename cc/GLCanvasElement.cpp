@@ -82,4 +82,16 @@ namespace cc {
         
     }
     
+    Value GLCanvasElement::invoke(const char * key,InvokeArgs * args){
+        if(strcmp(key, "setPosition") == 0){
+            position.x = ValueToDouble(InvokeArgsValue(args, 0), 0);
+            position.y = ValueToDouble(InvokeArgsValue(args, 1), 0);
+            position.z = ValueToDouble(InvokeArgsValue(args, 2), 0);
+            return Value();
+        }
+        else {
+            return GLElement::invoke(key, args);
+        }
+    }
+    
 }

@@ -10,6 +10,7 @@
 #define __glelement__GLLoader__
 
 #include <iostream>
+#include <map>
 
 #include "GLImage.h"
 
@@ -27,16 +28,23 @@ namespace cc {
         
         virtual ~GLLoader();
         
-        GLImage * createImageForURI(const char * uri);
+        virtual GLImage * getImageForURI(const char * uri);
+        
+        virtual void clearImages();
+        
+        virtual void clearImageForURI(const char * uri);
         
         std::string getFilePath(const char * uri);
         
         DEC_CLASS
         
     private:
+        
         std::string _res;
         std::string _doc;
         std::string _tmp;
+        std::map<std::string,GLImage *> _images;
+        
     };
 }
 

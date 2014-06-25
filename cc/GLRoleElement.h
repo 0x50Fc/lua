@@ -34,6 +34,10 @@ namespace cc {
         
         virtual void addStatus(int status);
         
+        virtual void removeStatus(int status);
+        
+        virtual void removeStatus(int status,...);
+        
         virtual void clearStatus();
         
         virtual Value invoke(const char * key,InvokeArgs * args);

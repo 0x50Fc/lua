@@ -22,6 +22,9 @@
 #include "GLMapElement.h"
 #include "Context.h"
 #include "GLLoader.h"
+#include "GLSpriteElement.h"
+#include "GLTacticFramesElement.h"
+#include "GLTacticElement.h"
 
 namespace cc {
     

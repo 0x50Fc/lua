@@ -22,7 +22,9 @@ namespace cc {
         context->registerClass(& GLSceneElement::clazz);
         context->registerClass(& GLRoleElement::clazz);
         context->registerClass(& cc::Element::clazz);
-        
+        context->registerClass(& GLSpriteElement::clazz);
+        context->registerClass(& GLTacticElement::clazz);
+        context->registerClass(& GLTacticFramesElement::clazz);
     }
     
 }

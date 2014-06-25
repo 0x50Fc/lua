@@ -27,10 +27,16 @@ function Element:remove()
   return self;
 end
 
-function E(class)
+_ElementById = {};
+
+function E(class,id)
 
   if not class then
     return;
+  end
+  
+  if type(class) == "string" and string.sub(class,1,1) == "#" then
+    return _ElementById[string.sub(class,2)];
   end
 
   local e = {};
@@ -41,6 +47,10 @@ function E(class)
     e.object = cc.new(class);
   else
     e.object = class;
+  end
+  
+  if id then
+    _ElementById[id] = e;
   end
 
   return e;

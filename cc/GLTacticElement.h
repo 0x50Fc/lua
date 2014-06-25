@@ -23,16 +23,10 @@ namespace cc {
         
         virtual ~GLTacticElement();
         
-        virtual Value value(const char * key);
-        
-        virtual void setValue(const char * key,Value value);
+        virtual void onElementChanged(Element * element);
         
         DEC_CLASS
         
-        int status;
-        
-    private:
-
     };
     
 }

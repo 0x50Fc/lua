@@ -253,6 +253,38 @@ namespace cc {
         return 0;
     }
     
+    static int cc_Object_function(lua_State * lua){
+        
+        int c = lua_gettop(lua);
+        
+        if(c > 0 ){
+            
+            int type = lua_type(lua, - c);
+            
+            if(type == LUA_TUSERDATA){
+                
+                Object ** pobject = (Object **) lua_touserdata(lua, - c);
+                
+                if(pobject){
+                    
+                    const char * key = lua_tostring(lua, lua_upvalueindex(1));
+                    Object * object = (Object *) lua_touserdata(lua, lua_upvalueindex(2));
+                    LUAFunction function = (LUAFunction) lua_touserdata(lua, lua_upvalueindex(3));
+                    
+                    if(key && object && function){
+                        InvokeArgs args = {0,c - 1,lua};
+                        return (*function)(lua,object,key,&args);
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        return 0;
+    }
+    
     static int cc_Object_value(lua_State * lua){
         
         int c = lua_gettop(lua);
@@ -268,6 +300,7 @@ namespace cc {
                 Value v = (* pobject)->value(key);
                 
                 if(v.type == ValueTypeInvoke){
+                    
                     lua_pushstring(lua, key);
                     
                     {
@@ -276,8 +309,20 @@ namespace cc {
                         * p = v.invokeValue;
                         
                     }
+                    
                     lua_pushcclosure(lua, cc_Object_invoke, 2);
 
+                }
+                else if(v.type == ValueTypeFunction){
+                    
+                    lua_pushstring(lua, key);
+                    
+                    lua_pushlightuserdata(lua, * pobject);
+                    
+                    lua_pushlightuserdata(lua, (void *) v.functionValue);
+                
+                    lua_pushcclosure(lua, cc_Object_function, 3);
+                    
                 }
                 else {
                     cc_Object_pushValue(lua,v);
@@ -453,6 +498,10 @@ namespace cc {
         
         lua_settable(_lua, -3);
     
+    }
+    
+    Class * Context::getClass(const char * className){
+        return getClass(_lua,className);
     }
     
     const char * Context::error(){
@@ -684,6 +733,37 @@ namespace cc {
     
     void Context::setCurrent(Context * context){
         _current = context;
+    }
+    
+    Class * Context::getClass(lua_State * lua,const char * className){
+        
+        Class * clazz = NULL;
+        
+        lua_getglobal(lua, "cc");
+        
+        lua_getfield(lua, -1, className);
+        
+        int type = lua_type(lua, -1);
+        
+        if(type == LUA_TUSERDATA){
+            clazz = (Class *) lua_touserdata(lua, -1);
+        }
+        
+        lua_pop(lua, 1);
+        
+        return clazz;
+    }
+    
+    void Context::newObject(lua_State * lua,Object * object){
+        
+        Object ** pobject = (Object **) lua_newuserdata(lua, sizeof(Object *));
+        
+        * pobject = object->retain();
+        
+        luaL_getmetatable(lua, "ccObject");
+        
+        lua_setmetatable(lua, -2);
+        
     }
 }
 

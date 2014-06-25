@@ -10,6 +10,10 @@
 
 #include "Context.h"
 
+#include "Log.h"
+
+#include "lua.hpp"
+
 namespace cc {
     
     IMP_CLASS(Element, Object)
@@ -117,10 +121,44 @@ namespace cc {
         return NULL;
     }
     
+    static int ElementElementsOfClassFunction(lua_State * lua,Object * object,const char * key,InvokeArgs * args){
+        
+        Element * element = (Element *) object;
+        
+        const char * className = ValueToString(InvokeArgsValue(args, 0), NULL);
+        
+        if(className){
+            
+            Class * clazz = Context::getClass(lua,className);
+            
+            if(clazz){
+                
+                std::vector<Element *> elements;
+                
+                element->elementsOfClass(elements, clazz, ValueToInt(InvokeArgsValue(args, 1), -1));
+                
+                lua_newtable(lua);
+                
+                
+                
+            }
+            else {
+                Log("Not Found Class %s",className);
+            }
+            
+        }
+        
+        return 0;
+    }
+    
+    
     Value Element::value(const char * key){
         
         if(strcmp(key, "name") == 0){
             return Value(_name.c_str());
+        }
+        else if(strcmp(key, "elementsOfClass") == 0){
+            return Value(ElementElementsOfClassFunction);
         }
         else {
             return Object::value(key);
@@ -155,6 +193,24 @@ namespace cc {
             
             return Value();
         }
+        else if(strcmp(key, "parentOfClass") == 0){
+            
+            const char * className = ValueToString(InvokeArgsValue(args, 0), NULL);
+            
+            if(className){
+                Context * ctx = Context::current();
+                if(ctx){
+                    Class * clazz = ctx->getClass(className);
+                    if(clazz){
+                        return Value(parentOfClass(clazz));
+                    }
+                    else {
+                        Log("Not Found Class %s",className);
+                    }
+                }
+            }
+            return Value();
+        }
         else{
             return Object::invoke(key, args);
         }
@@ -172,6 +228,40 @@ namespace cc {
         if(_parent != NULL ){
             _parent->doAction(action);
         }
+    }
+    
+    void Element::elementsOfClass(std::vector<Element *> & elements,Class * elementClass,int level){
+        
+        if(level ==0){
+            return;
+        }
+        
+        int c = childCount();
+        
+        for(int i=0;i<c;i++){
+            
+            Element * child = childAt(i);
+            
+            if(child->isKindOfClass(elementClass)){
+                elements.push_back(child);
+            }
+            
+        }
+        
+        if(level - 1 != 0){
+            
+            for(int i=0;i<c;i++){
+                
+                Element * child = childAt(i);
+                
+                child->elementsOfClass(elements, elementClass, level - 1);
+                
+            }
+        }
+    }
+    
+    void Element::elementsOfClass(std::vector<Element *> & elements,Class * elementClass){
+        elementsOfClass(elements,elementClass,-1);
     }
 
 }

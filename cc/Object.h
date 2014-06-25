@@ -17,6 +17,8 @@
         cc::Class obj::clazz = {&superClass::clazz,#obj,obj##_alloc,sizeof(obj)}; \
         cc::Class * obj::getClass() { return & obj::clazz; };
 
+struct lua_State;
+
 namespace cc {
     
     class Object;
@@ -38,9 +40,12 @@ namespace cc {
     
     typedef Value (Object:: * Invoke)(const char * key,InvokeArgs * args);
     
+    typedef int ( * LUAFunction )(lua_State * lua,Object * object,const char * key,InvokeArgs * args);
+    
     enum ValueType {
         ValueTypeVoid,ValueTypeInt,ValueTypeInt64,ValueTypeDouble
-        ,ValueTypeBoolean,ValueTypeString,ValueTypeObject,ValueTypeInvoke
+        ,ValueTypeBoolean,ValueTypeString,ValueTypeObject
+        ,ValueTypeInvoke,ValueTypeFunction
     };
     
 
@@ -54,6 +59,7 @@ namespace cc {
             const char * stringValue;
             Object * objectValue;
             Invoke invokeValue;
+            LUAFunction functionValue;
         };
         Value() {
             type = ValueTypeVoid;
@@ -86,6 +92,10 @@ namespace cc {
         Value(Invoke value) {
             type = ValueTypeInvoke;
             invokeValue = value;
+        };
+        Value(LUAFunction function) {
+            type = ValueTypeFunction;
+            functionValue = function;
         };
     };
     

@@ -8,6 +8,8 @@
 
 #include "GLLoader.h"
 
+#include "Log.h"
+
 namespace cc {
     
     IMP_CLASS(GLLoader, Object)
@@ -23,14 +25,40 @@ namespace cc {
     
     GLLoader::~GLLoader(){
         
+        std::map<std::string,GLImage *>::iterator i = _images.begin();
+        
+        while (i != _images.end()) {
+            
+            i->second->release();
+            
+            i ++;
+        }
+        
     }
     
-    GLImage * GLLoader::createImageForURI(const char * uri){
+    GLImage * GLLoader::getImageForURI(const char * uri){
         
-        std::string path = getFilePath(uri);
+        std::string key(uri);
+        std::map<std::string,GLImage *>::iterator i = _images.find(key);
         
-        return GLLoaderImageCreateFromFilePath(path.c_str());
-        
+        if(i == _images.end()){
+            
+            std::string path = getFilePath(uri);
+            
+            GLImage * image = GLLoaderImageCreateFromFilePath(path.c_str());
+            
+            if(image){
+                _images[key] = image;
+            }
+            else {
+                Log("Not Found Image %s",uri);
+            }
+            
+            return image;
+        }
+        else {
+            return i->second;
+        }
     }
     
     std::string GLLoader::getFilePath(const char * uri){
@@ -55,6 +83,29 @@ namespace cc {
         }
         
         return _res + '/' + uri;
+    }
+
+    void GLLoader::clearImages(){
+        
+        std::map<std::string,GLImage *>::iterator i = _images.begin();
+        
+        while (i != _images.end()) {
+            
+            i->second->release();
+            
+            i ++;
+        }
+        
+        _images.clear();
+        
+    }
+    
+    void GLLoader::clearImageForURI(const char * uri){
+        std::map<std::string,GLImage *>::iterator i = _images.find(uri);
+        if(i != _images.end()){
+            i->second->release();
+            _images.erase(i);
+        }
     }
     
 }

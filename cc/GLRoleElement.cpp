@@ -65,6 +65,44 @@ namespace cc {
         onStatusChanged();
     }
     
+    void GLRoleElement::removeStatus(int status){
+        
+        std::set<int>::iterator i = _status.find(status);
+        
+        if(i != _status.end()){
+            _status.erase(i);
+        }
+        
+        onStatusChanged();
+        
+    }
+    
+    void GLRoleElement::removeStatus(int status,...){
+        
+        std::set<int>::iterator i = _status.find(status);
+        if(i != _status.end()){
+            _status.erase(i);
+        }
+        
+        va_list ap;
+        va_start(ap, status);
+        
+        int s;
+        
+        while((s = va_arg(ap, int))) {
+            
+            i = _status.find(s);
+            if(i != _status.end()){
+                _status.erase(i);
+            }
+
+        }
+        
+        va_end(ap);
+        
+        onStatusChanged();
+    }
+    
     void GLRoleElement::clearStatus(){
         _status.clear();
         onStatusChanged();
@@ -82,25 +120,39 @@ namespace cc {
                 
                 GLTacticElement * tactic = (GLTacticElement *) child;
                 
-                tactic->setEnabled(hasStatus(tactic->status));
+                tactic->onElementChanged(this);
+                
 
             }
         }
     }
     
     Value GLRoleElement::invoke(const char * key,InvokeArgs * args){
-        if(strcmp(key, "setStatus") == 0){
-            if(args->count >0){
-                int * status = new int[args->count];
-                for (int i=0;i<args->count;i++) {
-                    status[i] = ValueToInt(InvokeArgsValue(args, i), 0);
+        if(strcmp(key, "removeStatus") == 0){
+            
+            std::set<int>::iterator ii;
+            
+            for (int i=0;i<args->count;i++) {
+                ii = _status.find(ValueToInt(InvokeArgsValue(args, i), 0));
+                if(ii != _status.end()){
+                    _status.erase(ii);
                 }
-                setStatus(status, args->count);
-                delete [] status;
             }
-            else {
-                clearStatus();
+            
+            onStatusChanged();
+            
+            return Value();
+        }
+        else if(strcmp(key, "setStatus") == 0){
+            
+            _status.clear();
+            
+            for (int i=0;i<args->count;i++) {
+                _status.insert(ValueToInt(InvokeArgsValue(args, i), 0));
             }
+            
+            onStatusChanged();
+            
             return Value();
         }
         else if(strcmp(key, "hasStatus") == 0){
@@ -120,8 +172,8 @@ namespace cc {
             
             GLTacticElement * tactic = (GLTacticElement *) element;
             
-            tactic->setEnabled(hasStatus(tactic->status));
-            
+            tactic->onElementChanged(this);
+    
         }
 
         GLElement::addChild(element);

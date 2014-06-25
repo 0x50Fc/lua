@@ -43,6 +43,10 @@ namespace cc {
         
         virtual GLLoader * loader();
         
+        virtual double speed();
+        
+        virtual void setSpeed(double value);
+        
         DEC_CLASS
         
     private:
@@ -51,6 +55,7 @@ namespace cc {
         double _timestamp;
         double _tickTimestamp;
         bool _enabled;
+        double _speed;
     };
 }
 

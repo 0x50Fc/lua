@@ -38,6 +38,8 @@ namespace cc {
         
         virtual void registerClass(Class * clazz);
         
+        virtual Class * getClass(const char * className);
+        
         virtual Object * globalObject(const char * name);
         
         virtual void globalObjectInvoke(const char * name,const char * invoke,Value * values,int count);
@@ -50,8 +52,14 @@ namespace cc {
         
         static void setCurrent(Context * context);
         
+        static Class * getClass(lua_State * lua,const char * className);
+        
+        static void newObject(lua_State * lua,Object * object);
+        
     private:
+        
         struct lua_State * _lua;
+        
         std::string _error;
         
         static Context * _current;

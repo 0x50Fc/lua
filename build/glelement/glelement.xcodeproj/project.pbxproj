@@ -15,6 +15,8 @@
 		1107B8211953DC2100E68726 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B81F1953DC2100E68726 /* GLProgram.cpp */; };
 		116D79CF19598D8A00EB070B /* GLTacticElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79CD19598D8A00EB070B /* GLTacticElement.cpp */; };
 		116D79D21959914800EB070B /* GLLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79D01959914800EB070B /* GLLoader.cpp */; };
+		116D79DC195AAAD100EB070B /* GLSpriteElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79DA195AAAD100EB070B /* GLSpriteElement.cpp */; };
+		116D79E4195AB51500EB070B /* GLTacticFramesElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79E2195AB51500EB070B /* GLTacticFramesElement.cpp */; };
 		117A0DB219582C2200E028B9 /* GLLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 117A0DB119582C2200E028B9 /* GLLoader.mm */; };
 		117A0DB419582C5800E028B9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A0DB319582C5800E028B9 /* OpenGLES.framework */; };
 		117A0DB619582C6500E028B9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A0DB519582C6500E028B9 /* ImageIO.framework */; };
@@ -87,6 +89,10 @@
 		116D79CE19598D8A00EB070B /* GLTacticElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTacticElement.h; sourceTree = "<group>"; };
 		116D79D01959914800EB070B /* GLLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLLoader.cpp; sourceTree = "<group>"; };
 		116D79D11959914800EB070B /* GLLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLLoader.h; sourceTree = "<group>"; };
+		116D79DA195AAAD100EB070B /* GLSpriteElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSpriteElement.cpp; sourceTree = "<group>"; };
+		116D79DB195AAAD100EB070B /* GLSpriteElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSpriteElement.h; sourceTree = "<group>"; };
+		116D79E2195AB51500EB070B /* GLTacticFramesElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTacticFramesElement.cpp; sourceTree = "<group>"; };
+		116D79E3195AB51500EB070B /* GLTacticFramesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTacticFramesElement.h; sourceTree = "<group>"; };
 		117A0DB119582C2200E028B9 /* GLLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLLoader.mm; sourceTree = "<group>"; };
 		117A0DB319582C5800E028B9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		117A0DB519582C6500E028B9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -203,6 +209,8 @@
 				1107B8041952E6C300E68726 /* GLElement.h */,
 				1185C6401953142B00F06AED /* GLCanvasElement.cpp */,
 				1185C6411953142B00F06AED /* GLCanvasElement.h */,
+				116D79DA195AAAD100EB070B /* GLSpriteElement.cpp */,
+				116D79DB195AAAD100EB070B /* GLSpriteElement.h */,
 				11F91F561959326600A32AD7 /* GLScreenElement.cpp */,
 				11F91F571959326600A32AD7 /* GLScreenElement.h */,
 				1107B8141952F08900E68726 /* GLLayerElement.cpp */,
@@ -243,6 +251,8 @@
 				11E48A7E19597866005FFFD2 /* GLLibrary.cpp */,
 				116D79CD19598D8A00EB070B /* GLTacticElement.cpp */,
 				116D79CE19598D8A00EB070B /* GLTacticElement.h */,
+				116D79E2195AB51500EB070B /* GLTacticFramesElement.cpp */,
+				116D79E3195AB51500EB070B /* GLTacticFramesElement.h */,
 				116D79D01959914800EB070B /* GLLoader.cpp */,
 				116D79D11959914800EB070B /* GLLoader.h */,
 			);
@@ -330,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1107B8161952F08900E68726 /* GLLayerElement.cpp in Sources */,
+				116D79E4195AB51500EB070B /* GLTacticFramesElement.cpp in Sources */,
 				116D79CF19598D8A00EB070B /* GLTacticElement.cpp in Sources */,
 				11E1B2C81959201F00D55659 /* GLRoleElement.cpp in Sources */,
 				11F91F5E1959442000A32AD7 /* GLTouch.cpp in Sources */,
@@ -347,6 +358,7 @@
 				116D79D21959914800EB070B /* GLLoader.cpp in Sources */,
 				11F91F641959547300A32AD7 /* GLGamepadElement.cpp in Sources */,
 				11E1B2C519591F7900D55659 /* GLSceneElement.cpp in Sources */,
+				116D79DC195AAAD100EB070B /* GLSpriteElement.cpp in Sources */,
 				11F91F581959326600A32AD7 /* GLScreenElement.cpp in Sources */,
 				11E48A7F19597866005FFFD2 /* GLLibrary.cpp in Sources */,
 				11E1B2CE195920A200D55659 /* GLMapElement.cpp in Sources */,

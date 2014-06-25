@@ -80,12 +80,6 @@ namespace cc {
         
         virtual void setProgram(const char * key,GLProgram * program);
         
-        virtual GLImage * image(const char * key);
-        
-        virtual void setImage(const char * key, GLImage * image);
-        
-        virtual void clearImages();
-        
         GLMatrix4 projectTransform;
         
         virtual GLLoader * loader();
@@ -95,13 +89,9 @@ namespace cc {
     private:
         
         GLLoader * _loader;
-        
         std::map<std::string,GLProgram *> _programs;
-        std::map<std::string,GLImage *> _images;
-        
         int _width;
         int _height;
-        
         GLContextState * _state;
         
     };

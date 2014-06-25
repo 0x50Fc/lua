@@ -8,6 +8,10 @@
 
 #include "Object.h"
 
+#include "Log.h"
+
+#include "Context.h"
+
 namespace cc {
     
     static cc::Object * Object_alloc() { return new Object(); };
@@ -53,6 +57,22 @@ namespace cc {
     }
     
     Value Object::invoke(const char * key,InvokeArgs * args){
+        if(strcmp(key, "isKindOfClass") == 0){
+            const char * className = ValueToString(InvokeArgsValue(args, 0), NULL);
+            if(className){
+                Context * ctx = Context::current();
+                if(ctx){
+                    Class * clazz = ctx->getClass(className);
+                    if(clazz){
+                        return Value(isKindOfClass(clazz));
+                    }
+                    else {
+                        Log("Not Found Class %s",className);
+                    }
+                }
+            }
+            return Value(false);
+        }
         return Value();
     }
     

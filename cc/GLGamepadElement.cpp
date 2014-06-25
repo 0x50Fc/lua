@@ -121,7 +121,7 @@ namespace cc {
                     
                 }
             }
-            else if(_touch && touchState == GLTouchStateMoved){
+            else if(_touch == touch && touchState == GLTouchStateMoved){
                 _toLocation = location;
                 
                 GLVector2 v2 = {_toLocation.x - _beginLocation.x,_toLocation.y - _beginLocation.y};

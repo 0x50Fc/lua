@@ -153,6 +153,7 @@
 		116D7A88195BDF6800EB070B /* npc_13-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "npc_13-7.png"; sourceTree = "<group>"; };
 		116D7A89195BDF6800EB070B /* npc_13-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "npc_13-8.png"; sourceTree = "<group>"; };
 		1185C6831959AC1700F06AED /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1198E911195C499A00EBB869 /* pvr.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pvr.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +259,7 @@
 				1107B88D1953F7E400E68726 /* GLEViewController.mm */,
 				1107B88F1953F7E400E68726 /* Images.xcassets */,
 				1107B87E1953F7E400E68726 /* Supporting Files */,
+				1198E911195C499A00EBB869 /* pvr.sh */,
 			);
 			path = GLElementSample;
 			sourceTree = "<group>";

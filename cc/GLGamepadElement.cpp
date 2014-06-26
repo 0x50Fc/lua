@@ -126,7 +126,9 @@ namespace cc {
             else if(_touch == touch && touchState == GLTouchStateMoved){
                 _toLocation = location;
                 
-                GLVector2 v2 = {_toLocation.x - _beginLocation.x,_toLocation.y - _beginLocation.y};
+                GLVector2 v2 = {
+                    (_toLocation.x - _beginLocation.x) / distance
+                    ,(_toLocation.y - _beginLocation.y) / distance};
                 
                 GLGamepadAction * action = new GLGamepadAction(this,v2);
                 

@@ -14,12 +14,16 @@
 
 #include "SKMapLayerElement.h"
 
+#include "Log.h"
+
 namespace sk {
     
     IMP_CLASS(SKSceneElement, cc::GLSceneElement)
     
     
-    SKSceneElement::SKSceneElement():mapOffset({0.0,0.0}),mapSize({0.0,0.0}),playMapPosition({0,0,0}){
+    SKSceneElement::SKSceneElement()
+        :mapOffset({0.0,0.0}),mapSize({0.0,0.0}),playMapPosition({0,0,0})
+        ,moveOffset({0.0,0.0}),_tickTimestamp(0){
         
     }
     
@@ -46,20 +50,30 @@ namespace sk {
                 
                 GLfloat speed = player->moveSpeed * (schedule->timestamp() - _tickTimestamp);
                 
-                if(moveOffset.x > 0){
-                    playMapPosition.x += speed;
-                }
-                else if(moveOffset.x < 0){
-                    playMapPosition.x -= speed;
+                GLfloat v = moveOffset.x;
+                
+                if(v < -1){
+                    v = -1;
                 }
                 
-                if(moveOffset.y > 0){
-                    playMapPosition.y += speed;
-                }
-                else if(moveOffset.y < 0){
-                    playMapPosition.y -= speed;
+                if(v > 1){
+                    v = 1;
                 }
                 
+                playMapPosition.x += v * speed;
+                
+                v = moveOffset.y;
+                
+                if(v < -1){
+                    v = -1;
+                }
+                
+                if(v > 1){
+                    v = 1;
+                }
+                
+                playMapPosition.y += v * speed;
+
                 GLfloat width = schedule->width();
                 GLfloat minWidth = width * 0.25;
                 

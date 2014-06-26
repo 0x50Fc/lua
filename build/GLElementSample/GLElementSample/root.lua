@@ -16,7 +16,7 @@ root = E("SKSceneElement")
         :add(
             E("SKPlayerElement")
             :call("setStatus",PLAY_RIGHT)
-            :setValue("moveSpeed",60)
+            :setValue("moveSpeed",200)
             :add(
                 E("GLTacticFramesElement")
                 :setValue("visableStatus",PLAY_LEFT)

@@ -55,14 +55,14 @@ namespace cc {
     void Element::addChild(Element * element){
         element->retain();
         element->removeFromParent();
-        element->_parent = this;
+        element->setParent(this);
         _childs.push_back(element);
     }
     
     void Element::insertChild(Element * element,int index){
         element->retain();
         element->removeFromParent();
-        element->_parent = this;
+        element->setParent(this);
         _childs.insert(_childs.begin() + index, element);
     }
     
@@ -70,7 +70,7 @@ namespace cc {
         
         if(index >=0 && index < _childs.size()){
             Element * element = _childs[index];
-            element->_parent = NULL;
+            element->setParent( NULL);
             element->release();
             _childs.erase(_childs.begin() + index);
         }
@@ -86,7 +86,7 @@ namespace cc {
             
             if(child == element){
                 
-                child->_parent = NULL;
+                child->setParent(NULL);
                 child->release();
                 
                 _childs.erase(i);
@@ -140,16 +140,20 @@ namespace cc {
                 lua_newtable(lua);
                 
                 std::vector<Element *>::iterator i = elements.begin();
+                int index =1;
                 
                 while (i != elements.end()) {
                     
-                    Context::newObject(lua, * i);
+                    lua_pushinteger(lua, index);
                     
-                    lua_insert(lua, -2);
+                    Context::newObject(lua, * i);
+
+                    lua_settable(lua, -3);
                     
                     i ++;
+                    index ++;
                 }
-                
+
                 return 1;
                 
             }
@@ -222,6 +226,24 @@ namespace cc {
             }
             return Value();
         }
+        else if(strcmp(key, "elementOfClass") == 0){
+            
+            const char * className = ValueToString(InvokeArgsValue(args, 0), NULL);
+            
+            if(className){
+                Context * ctx = Context::current();
+                if(ctx){
+                    Class * clazz = ctx->getClass(className);
+                    if(clazz){
+                        return Value(elementOfClass(clazz,ValueToInt(InvokeArgsValue(args, 1), -1)));
+                    }
+                    else {
+                        Log("Not Found Class %s",className);
+                    }
+                }
+            }
+            return Value();
+        }
         else{
             return Object::invoke(key, args);
         }
@@ -256,23 +278,61 @@ namespace cc {
             if(child->isKindOfClass(elementClass)){
                 elements.push_back(child);
             }
-            
-        }
-        
-        if(level - 1 != 0){
-            
-            for(int i=0;i<c;i++){
-                
-                Element * child = childAt(i);
-                
+            else {
                 child->elementsOfClass(elements, elementClass, level - 1);
-                
             }
         }
+        
     }
     
     void Element::elementsOfClass(std::vector<Element *> & elements,Class * elementClass){
         elementsOfClass(elements,elementClass,-1);
+    }
+    
+    Element * Element::elementOfClass(Class * elementClass,int level){
+       
+        if(level ==0){
+            return NULL;
+        }
+        
+        int c = childCount();
+        
+        for(int i=0;i<c;i++){
+            
+            Element * child = childAt(i);
+            
+            if(child->isKindOfClass(elementClass)){
+                return child;
+            }
+      
+        }
+        
+        for(int i=0;i<c;i++){
+            
+            Element * child = childAt(i);
+            
+            Element * r = child->elementOfClass(elementClass, level - 1);
+            
+            if(r){
+                return r;
+            }
+            
+        }
+        
+        return NULL;
+
+    }
+    
+    Element * Element::elementOfClass(Class * elementClass){
+        return elementOfClass(elementClass,-1);
+    }
+    
+    void Element::onElementChanged(Element * element){
+        
+    }
+    
+    void Element::setParent(Element * parent){
+        _parent = parent;
     }
 
 }

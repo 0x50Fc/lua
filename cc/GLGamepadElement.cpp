@@ -16,7 +16,7 @@ namespace cc {
     
     GLGamepadElement::GLGamepadElement()
         :_beginElement(NULL),_toElement(NULL),_buttonsElement(NULL),_touch(NULL)
-        ,_beginLocation({0.0,0.0}),_toLocation({0.0,0.0}){
+        ,_beginLocation({0.0,0.0}),_toLocation({0.0,0.0}),distance(50){
         
     }
     
@@ -54,7 +54,7 @@ namespace cc {
                 GLfloat dx = _toLocation.x - _beginLocation.x;
                 GLfloat dy = _toLocation.y - _beginLocation.y;
                 GLfloat r = sqrt(dx * dx + dy * dy);
-                GLfloat rr = r > 50 ? 50 : r;
+                GLfloat rr = r > distance ? distance : r;
                 frame.origin.x  = _beginLocation.x + rr * dx / r - frame.size.width / 2.0;
                 frame.origin.y  = _beginLocation.y + rr * dy / r - frame.size.width / 2.0;
             }
@@ -111,7 +111,9 @@ namespace cc {
                     _beginLocation = location;
                     _toLocation = location;
                     
-                    GLVector2 v2 = {_toLocation.x - _beginLocation.x,_toLocation.y - _beginLocation.y};
+                    GLVector2 v2 = {
+                        (_toLocation.x - _beginLocation.x) / distance
+                        ,(_toLocation.y - _beginLocation.y) / distance};
                     
                     GLGamepadAction * action = new GLGamepadAction(this,v2);
                     
@@ -172,6 +174,24 @@ namespace cc {
         }
         
         GLControlElement::removeChild(element);
+    }
+    
+    Value GLGamepadElement::value(const char * key){
+        if(strcmp(key, "distance") == 0){
+            return Value((double) distance);
+        }
+        else {
+            return GLControlElement::value(key);
+        }
+    }
+    
+    void GLGamepadElement::setValue(const char * key,Value value){
+        if(strcmp(key, "distance") == 0){
+            distance = ValueToDouble(value, 0);
+        }
+        else {
+            GLControlElement::setValue(key,value);
+        }
     }
     
 }

@@ -106,7 +106,7 @@
     
 	// 设置视图窗口大小
     
-    glViewport(0,0,_viewport.width,_viewport.height);
+    glViewport(0,0,_viewport.width * self.contentsScale,_viewport.height * self.contentsScale);
     
     glEnable(GL_DEPTH_TEST);
     
@@ -135,6 +135,8 @@
         ctx->setViewport(_viewport.width, _viewport.height);
 
     }
+    
+    ctx->zIndex = 0;
     
     cc::GLRunContext(ctx, el);
     

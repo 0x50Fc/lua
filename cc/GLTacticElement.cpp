@@ -22,9 +22,4 @@ namespace cc {
     }
     
     
-    void GLTacticElement::onElementChanged(Element * element){
-        
-    }
-    
-    
 }

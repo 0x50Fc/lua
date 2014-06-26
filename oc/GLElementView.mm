@@ -161,4 +161,10 @@
     [self removeTouches:touches];
 }
 
+-(void) didMoveToWindow{
+    [super didMoveToWindow];
+    if(self.window){
+        self.layer.contentsScale = [self.window.screen scale];
+    }
+}
 @end

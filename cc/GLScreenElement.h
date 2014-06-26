@@ -30,6 +30,11 @@ namespace cc {
         
         virtual void setZPosition(GLfloat value);
         
+        virtual Value value(const char * key);
+        
+        virtual void setValue(const char * key,Value value);
+
+        
         DEC_CLASS
         
     private:

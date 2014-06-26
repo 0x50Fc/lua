@@ -12,19 +12,17 @@
 
 namespace cc {
     
-    IMP_CLASS(GLContext, Object)
+    IMP_CLASS(GLContext, GLViewport)
     
     GLContext::GLContext()
-        :_width(0),_height(0),_loader(NULL){
-        projectTransform = GLMatrix4MakeScale(1.0f, - 1.0f , -1.0f);
+        :_loader(NULL),zIndex(0){
         _state = new GLContextState();
     }
     
     GLContext::GLContext(GLLoader * loader)
-        :_width(0),_height(0),_loader(loader){
+        :_loader(loader),zIndex(0){
             
         loader->retain();
-        projectTransform = GLMatrix4MakeScale(1.0f, - 1.0f , -1.0f);
         _state = new GLContextState();
     }
     
@@ -57,21 +55,6 @@ namespace cc {
         }
     }
     
-    int GLContext::width(){
-        return _width;
-    }
-    
-    int GLContext::height(){
-        return _height;
-    }
-    
-    void GLContext::setViewport(int width,int height){
-        _width = width;
-        _height = height;
-        projectTransform = cc::GLMatrix4MakeScale(2.0f, - 2.0 * width / height, - 0.000001);
-        projectTransform = cc::GLMatrix4Translate(projectTransform, -0.5, -0.5 * height / width, 0);
-    }
-    
     void GLContext::translation(float x,float y,float z){
         _state->transform = GLMatrix4Translate(_state->transform, x, y, z);
     }
@@ -90,10 +73,6 @@ namespace cc {
     
     void GLContext::alpha(float alpha){
         _state->alpha = _state->alpha * alpha;
-    }
-    
-    void GLContext::zIndex(){
-        _state->zIndex += 1;
     }
     
     GLContextState * GLContext::state(){
@@ -119,14 +98,6 @@ namespace cc {
         _state = s;
     }
     
-    GLfloat GLContext::global(GLfloat screen){
-        return screen / _width;
-    }
-    
-    GLfloat GLContext::screen(GLfloat global){
-        return global * _width;
-    }
-    
     GLProgram * GLContext::program(const char * key){
         std::map<std::string,GLProgram *>::iterator i = _programs.find(key);
         return i != _programs.end() ? i->second : NULL;
@@ -150,4 +121,6 @@ namespace cc {
     GLLoader * GLContext::loader(){
         return _loader;
     }
+    
+    
 }

@@ -40,6 +40,8 @@ namespace cc {
         
         virtual ~GLSpriteElement();
         
+        virtual void begin(GLContext * context);
+        
         virtual void draw(GLContext * context);
         
         virtual Value value(const char * key);
@@ -58,6 +60,7 @@ namespace cc {
         
         DEC_CLASS
 
+        GLVector3 position;
         GLVector2 size;
         GLVector4 rect;
         GLVector2 anchor;

@@ -14,12 +14,13 @@
 
 #include "Object.h"
 #include "GLLoader.h"
+#include "GLViewport.h"
 
 namespace cc {
     
     class GLTask;
     
-    class GLSchedule : public Object {
+    class GLSchedule : public GLViewport {
     
     public:
         

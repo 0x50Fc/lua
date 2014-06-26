@@ -12,7 +12,7 @@
 
 namespace cc {
     
-    IMP_CLASS(GLSchedule,Object)
+    IMP_CLASS(GLSchedule,GLViewport)
     
     
     GLSchedule::GLSchedule()

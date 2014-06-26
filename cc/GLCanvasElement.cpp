@@ -17,8 +17,7 @@ namespace cc {
     :transform(GLMatrix4Identity)
     ,alpha(1.0)
     ,scale(1.0)
-    ,hidden(false)
-    ,position({0.0,0.0}){
+    ,hidden(false){
 
     }
     
@@ -35,7 +34,6 @@ namespace cc {
         
         context->saveState();
         
-        context->translation(position.x, position.y, position.z);
         context->scale(scale, scale, scale);
         context->alpha(alpha);
         context->transform(transform);
@@ -82,16 +80,5 @@ namespace cc {
         
     }
     
-    Value GLCanvasElement::invoke(const char * key,InvokeArgs * args){
-        if(strcmp(key, "setPosition") == 0){
-            position.x = ValueToDouble(InvokeArgsValue(args, 0), 0);
-            position.y = ValueToDouble(InvokeArgsValue(args, 1), 0);
-            position.z = ValueToDouble(InvokeArgsValue(args, 2), 0);
-            return Value();
-        }
-        else {
-            return GLElement::invoke(key, args);
-        }
-    }
     
 }

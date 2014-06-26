@@ -25,10 +25,11 @@ namespace cc {
         context->saveState();
         
         GLContextState * state = context->state();
-        
-        state->zIndex = _zPosition;
+
         state->transform = GLMatrix4Identity;
         state->alpha = 1.0;
+        
+        context->zIndex += _zPosition;
         
     }
     
@@ -40,5 +41,22 @@ namespace cc {
         _zPosition = value;
     }
     
+    Value GLScreenElement::value(const char * key){
+        if(strcmp(key, "zPosition") == 0){
+            return Value(_zPosition);
+        }
+        else {
+            return GLCanvasElement::value(key);
+        }
+    }
+    
+    void GLScreenElement::setValue(const char * key,Value value){
+        if(strcmp(key, "zPosition") == 0){
+            _zPosition = ValueToDouble(value, 0);
+        }
+        else {
+            GLCanvasElement::setValue(key,value);
+        }
+    }
     
 }

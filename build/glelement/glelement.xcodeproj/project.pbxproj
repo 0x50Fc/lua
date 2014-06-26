@@ -17,6 +17,7 @@
 		116D79D21959914800EB070B /* GLLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79D01959914800EB070B /* GLLoader.cpp */; };
 		116D79DC195AAAD100EB070B /* GLSpriteElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79DA195AAAD100EB070B /* GLSpriteElement.cpp */; };
 		116D79E4195AB51500EB070B /* GLTacticFramesElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D79E2195AB51500EB070B /* GLTacticFramesElement.cpp */; };
+		116D7A96195BF93900EB070B /* GLViewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116D7A94195BF93800EB070B /* GLViewport.cpp */; };
 		117A0DB219582C2200E028B9 /* GLLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 117A0DB119582C2200E028B9 /* GLLoader.mm */; };
 		117A0DB419582C5800E028B9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A0DB319582C5800E028B9 /* OpenGLES.framework */; };
 		117A0DB619582C6500E028B9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117A0DB519582C6500E028B9 /* ImageIO.framework */; };
@@ -29,7 +30,6 @@
 		1185C64F195323AA00F06AED /* GLRun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1185C64D195323AA00F06AED /* GLRun.cpp */; };
 		11E1B2C519591F7900D55659 /* GLSceneElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E1B2C319591F7900D55659 /* GLSceneElement.cpp */; };
 		11E1B2C81959201F00D55659 /* GLRoleElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E1B2C61959201F00D55659 /* GLRoleElement.cpp */; };
-		11E1B2CE195920A200D55659 /* GLMapElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E1B2CC195920A200D55659 /* GLMapElement.cpp */; };
 		11E48A7919596CEB005FFFD2 /* GLGamepadAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E48A7719596CEB005FFFD2 /* GLGamepadAction.cpp */; };
 		11E48A7C19596F7C005FFFD2 /* GLGamepadButtonElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E48A7A19596F7C005FFFD2 /* GLGamepadButtonElement.cpp */; };
 		11E48A7F19597866005FFFD2 /* GLLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11E48A7E19597866005FFFD2 /* GLLibrary.cpp */; };
@@ -93,6 +93,8 @@
 		116D79DB195AAAD100EB070B /* GLSpriteElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSpriteElement.h; sourceTree = "<group>"; };
 		116D79E2195AB51500EB070B /* GLTacticFramesElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTacticFramesElement.cpp; sourceTree = "<group>"; };
 		116D79E3195AB51500EB070B /* GLTacticFramesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTacticFramesElement.h; sourceTree = "<group>"; };
+		116D7A94195BF93800EB070B /* GLViewport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLViewport.cpp; sourceTree = "<group>"; };
+		116D7A95195BF93900EB070B /* GLViewport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLViewport.h; sourceTree = "<group>"; };
 		117A0DB119582C2200E028B9 /* GLLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLLoader.mm; sourceTree = "<group>"; };
 		117A0DB319582C5800E028B9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		117A0DB519582C6500E028B9 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -114,8 +116,6 @@
 		11E1B2C419591F7900D55659 /* GLSceneElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSceneElement.h; sourceTree = "<group>"; };
 		11E1B2C61959201F00D55659 /* GLRoleElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRoleElement.cpp; sourceTree = "<group>"; };
 		11E1B2C71959201F00D55659 /* GLRoleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRoleElement.h; sourceTree = "<group>"; };
-		11E1B2CC195920A200D55659 /* GLMapElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLMapElement.cpp; sourceTree = "<group>"; };
-		11E1B2CD195920A200D55659 /* GLMapElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMapElement.h; sourceTree = "<group>"; };
 		11E48A7719596CEB005FFFD2 /* GLGamepadAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLGamepadAction.cpp; sourceTree = "<group>"; };
 		11E48A7819596CEB005FFFD2 /* GLGamepadAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLGamepadAction.h; sourceTree = "<group>"; };
 		11E48A7A19596F7C005FFFD2 /* GLGamepadButtonElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLGamepadButtonElement.cpp; sourceTree = "<group>"; };
@@ -225,6 +225,8 @@
 				11E48A7819596CEB005FFFD2 /* GLGamepadAction.h */,
 				1107B8061952E86800E68726 /* GL.cpp */,
 				1107B8071952E86800E68726 /* GL.h */,
+				116D7A94195BF93800EB070B /* GLViewport.cpp */,
+				116D7A95195BF93900EB070B /* GLViewport.h */,
 				1107B8171952F29400E68726 /* GLContext.cpp */,
 				1107B8181952F29400E68726 /* GLContext.h */,
 				1185C63719530EBC00F06AED /* GLImage.cpp */,
@@ -243,8 +245,6 @@
 				11E1B2C419591F7900D55659 /* GLSceneElement.h */,
 				11E1B2C61959201F00D55659 /* GLRoleElement.cpp */,
 				11E1B2C71959201F00D55659 /* GLRoleElement.h */,
-				11E1B2CC195920A200D55659 /* GLMapElement.cpp */,
-				11E1B2CD195920A200D55659 /* GLMapElement.h */,
 				11F91F5C1959442000A32AD7 /* GLTouch.cpp */,
 				11F91F5D1959442000A32AD7 /* GLTouch.h */,
 				11E48A7D19597806005FFFD2 /* GLLibrary.h */,
@@ -351,6 +351,7 @@
 				11E48A7919596CEB005FFFD2 /* GLGamepadAction.cpp in Sources */,
 				117A0DB219582C2200E028B9 /* GLLoader.mm in Sources */,
 				1107B8051952E6C300E68726 /* GLElement.cpp in Sources */,
+				116D7A96195BF93900EB070B /* GLViewport.cpp in Sources */,
 				1107B8211953DC2100E68726 /* GLProgram.cpp in Sources */,
 				1185C6491953202300F06AED /* GLTask.cpp in Sources */,
 				117A0DBE195835B000E028B9 /* GLAnimationElement.cpp in Sources */,
@@ -361,7 +362,6 @@
 				116D79DC195AAAD100EB070B /* GLSpriteElement.cpp in Sources */,
 				11F91F581959326600A32AD7 /* GLScreenElement.cpp in Sources */,
 				11E48A7F19597866005FFFD2 /* GLLibrary.cpp in Sources */,
-				11E1B2CE195920A200D55659 /* GLMapElement.cpp in Sources */,
 				117A0DB91958317400E028B9 /* GLPVRTexture.m in Sources */,
 				11E48A7C19596F7C005FFFD2 /* GLGamepadButtonElement.cpp in Sources */,
 				1185C63919530EBC00F06AED /* GLImage.cpp in Sources */,

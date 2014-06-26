@@ -103,6 +103,14 @@ namespace cc {
     void GLLayerElement::draw(GLContext * context){
         GLCanvasElement::draw(context);
         
+        
+        if(_backgroundImage == NULL && _backgroundUri.size() > 0){
+            _backgroundImage = context->loader()->getImageForURI(_backgroundUri.c_str());
+            if(_backgroundImage){
+                _backgroundImage->retain();
+            }
+        }
+        
         GLLayerElementProgram * p = program(context);
         
         float screenWidth = context->width();
@@ -143,7 +151,7 @@ namespace cc {
             
             p->setUniform4f(p->backgroundColor,_backgroundColor);
         
-            p->setUniform4m(p->projectTransform, context->projectTransform);
+            p->setUniform4m(p->projectTransform, context->project());
             p->setUniform4m(p->transform, context->state()->transform);
             p->setUniform1f(p->alpha, context->state()->alpha);
             
@@ -160,7 +168,7 @@ namespace cc {
         GLfloat x = context->global(frame.origin.x);
         GLfloat y = context->global(frame.origin.y);
         
-        context->translation(x, y, context->state()->zIndex);
+        context->translation(x, y, context->zIndex);
         context->scale(scale, scale, scale);
         context->alpha(alpha);
         context->transform(transform);
@@ -232,6 +240,9 @@ namespace cc {
         else if(strcmp(key, "background-color") == 0){
             return Value((long long) GLColor3dToIntValue(_backgroundColor));
         }
+        else if(strcmp(key, "background-uri") == 0){
+            return Value(_backgroundUri.c_str());
+        }
         else {
             return GLCanvasElement::value(key);
         }
@@ -259,6 +270,9 @@ namespace cc {
                 _backgroundColor = GLColor3dFromIntValue(ValueToInt(value, 0));
             }
         }
+        else if(strcmp(key, "background-uri") == 0){
+            _backgroundUri = ValueToString(value, "");
+        }
         else {
             GLCanvasElement::setValue(key,value);
         }
@@ -283,6 +297,14 @@ namespace cc {
             return GLCanvasElement::invoke(key, args);
         }
         
+    }
+    
+    const char * GLLayerElement::backgroundUri(){
+        return _backgroundUri.c_str();
+    }
+    
+    void GLLayerElement::setBackgroundUri(const char * uri){
+        _backgroundUri = uri;
     }
     
 }

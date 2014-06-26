@@ -14,30 +14,12 @@ namespace cc {
     
     IMP_CLASS(GLSceneElement, GLElement)
     
-    GLSceneElement::GLSceneElement():_mapElement(NULL){
+    GLSceneElement::GLSceneElement(){
         
     }
     
     GLSceneElement::~GLSceneElement(){
 
-    }
-    
-    GLMapElement * GLSceneElement::mapElement(){
-        return _mapElement;
-    }
-    
-    void GLSceneElement::addChild(Element * element){
-        if(_mapElement ==  NULL && element->isKindOfClass(& GLMapElement::clazz)){
-            _mapElement = (GLMapElement *) element;
-        }
-        GLElement::addChild(element);
-    }
-    
-    void GLSceneElement::removeChild(Element * element){
-        if(_mapElement == element){
-            _mapElement = NULL;
-        }
-        GLElement::removeChild(element);
     }
     
     void GLSceneElement::doAction(Action * action){

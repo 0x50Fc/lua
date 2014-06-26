@@ -23,8 +23,7 @@ namespace cc {
         
         virtual ~GLTacticElement();
         
-        virtual void onElementChanged(Element * element);
-        
+
         DEC_CLASS
         
     };

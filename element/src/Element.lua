@@ -27,10 +27,17 @@ function Element:remove()
   return self;
 end
 
-function Element:elementsOfClass(class)
+function Element:elementsOfClass(class,level)
   local fn = self.object["elementsOfClass"];
   if fn and type(fn) == "function" then
-    return fn(self.object,class);
+    return fn(self.object,class,level);
+  end
+end
+
+function Element:elementOfClass(class,level)
+  local fn = self.object["elementOfClass"];
+  if fn and type(fn) == "function" then
+    return fn(self.object,class,level);
   end
 end
 

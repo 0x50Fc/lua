@@ -47,6 +47,10 @@ namespace cc {
         
         virtual void elementsOfClass(std::vector<Element *> & elements,Class * elementClass);
         
+        virtual Element * elementOfClass(Class * elementClass,int level);
+        
+        virtual Element * elementOfClass(Class * elementClass);
+        
         virtual Value value(const char * key);
         
         virtual void setValue(const char * key,Value value);
@@ -59,7 +63,13 @@ namespace cc {
         
         virtual void doAction(Action * action);
         
+        virtual void onElementChanged(Element * element);
+        
         DEC_CLASS
+        
+    protected:
+        
+        virtual void setParent(Element * parent);
         
     private:
         

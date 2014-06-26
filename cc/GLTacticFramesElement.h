@@ -36,6 +36,8 @@ namespace cc {
         
         double duration;
     
+        double afterDelay;
+        
         int visableStatus;
         
         int enabledStatus;

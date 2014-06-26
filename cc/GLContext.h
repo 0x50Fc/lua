@@ -16,29 +16,27 @@
 #include "GLProgram.h"
 #include "GLImage.h"
 #include "GLLoader.h"
+#include "GLViewport.h"
 
 namespace cc {
     
     struct GLContextState {
         GLMatrix4 transform;
         float alpha;
-        float zIndex;
         GLContextState * prev;
         GLContextState(){
             transform = GLMatrix4Identity;
             alpha = 1.0f;
             prev = NULL;
-            zIndex = 0;
         }
         GLContextState(GLContextState * state){
             transform = state->transform;
             alpha = state->alpha;
-            zIndex = state->zIndex;
             prev = NULL;
         }
     };
     
-    class GLContext : public Object{
+    class GLContext : public GLViewport{
         
     public:
         
@@ -48,14 +46,8 @@ namespace cc {
         
         virtual ~GLContext();
         
-        virtual int width();
-        
-        virtual int height();
-        
-        virtual void setViewport(int width,int height);
-        
         virtual void translation(float x,float y,float z);
-        
+    
         virtual void scale(float x,float y,float z);
         
         virtual void rotate(float radians, float x, float y, float z);
@@ -64,36 +56,27 @@ namespace cc {
         
         virtual void transform(GLMatrix4 transform);
         
-        virtual void zIndex();
-        
         virtual GLContextState * state();
         
         virtual void saveState();
         
         virtual void restoreState();
         
-        virtual GLfloat global(GLfloat screen);
-
-        virtual GLfloat screen(GLfloat global);
-        
         virtual GLProgram * program(const char * key);
         
         virtual void setProgram(const char * key,GLProgram * program);
-        
-        GLMatrix4 projectTransform;
-        
+
         virtual GLLoader * loader();
         
         DEC_CLASS
+
+        GLfloat zIndex;
         
     private:
         
         GLLoader * _loader;
         std::map<std::string,GLProgram *> _programs;
-        int _width;
-        int _height;
         GLContextState * _state;
-        
     };
     
 }

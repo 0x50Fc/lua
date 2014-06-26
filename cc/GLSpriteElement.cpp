@@ -47,7 +47,8 @@ namespace cc {
     
     
     GLSpriteElement::GLSpriteElement()
-    : _image(NULL),size({0.0,0.0}),rect({0.0,0.0,1.0,1.0}),anchor({0.5,0.5}),_program(NULL){
+        : _image(NULL),size({0.0,0.0}),rect({0.0,0.0,1.0,1.0})
+        , anchor({0.5,0.5}), _program(NULL), position({0.0,0.0,0.0}){
         
     }
     
@@ -62,6 +63,14 @@ namespace cc {
         }
     }
 
+    void GLSpriteElement::begin(GLContext * context){
+        GLCanvasElement::begin(context);
+        
+        context->translation(
+                             context->global(position.x)
+                             , context->global(position.y)
+                             , position.z);
+    }
     
     void GLSpriteElement::draw(GLContext * context){
         GLCanvasElement::draw(context);
@@ -104,10 +113,10 @@ namespace cc {
             width = context->global(width);
             height = context->global(height);
             
-            GLfloat left = - anchor.x * width;
+            GLfloat left = (anchor.x - 1.0) * width;
             GLfloat right = anchor.x * width;
-            GLfloat top = - anchor.y * width;
-            GLfloat bottom = anchor.y * width;
+            GLfloat top =  (anchor.y - 1.0) * height;
+            GLfloat bottom = anchor.y * height;
             
             GLVector3 position[6] = {
                 {left,top,0},{right,top,0},{left,bottom,0},
@@ -131,7 +140,7 @@ namespace cc {
             _image->active(0);
             _program->setUniform1i(_program->image, 0);
             
-            _program->setUniform4m(_program->projectTransform, context->projectTransform);
+            _program->setUniform4m(_program->projectTransform, context->project());
             _program->setUniform4m(_program->transform, context->state()->transform);
 
             glDrawArrays(GL_TRIANGLES, 0, 6);

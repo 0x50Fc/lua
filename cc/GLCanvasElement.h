@@ -37,11 +37,9 @@ namespace cc {
         
         virtual void setValue(const char * key,Value value);
         
-        virtual Value invoke(const char * key,InvokeArgs * args);
-        
+    
         GLfloat alpha;
         GLfloat scale;
-        GLVector3 position;
         GLMatrix4 transform;
         bool hidden;
     };

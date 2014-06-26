@@ -19,7 +19,8 @@ namespace cc {
     
     IMP_CLASS(GLTacticFramesElement, GLTacticElement)
     
-    GLTacticFramesElement::GLTacticFramesElement():duration(0),visableStatus(0),enabledStatus(0),visable(true){
+    GLTacticFramesElement::GLTacticFramesElement()
+        :duration(0),visableStatus(0),enabledStatus(0),visable(true),afterDelay(0.0){
         
     }
     
@@ -45,7 +46,19 @@ namespace cc {
                 int index ;
                 
                 if(isEnabled()){
-                    index =(int) (c * timestamp() / duration) % c;
+                    
+                    double r = afterDelay + duration;
+                    double v = timestamp() / r;
+                    
+                    v = v - (int) v - afterDelay / r;
+                    
+                    if(v >=0.0){
+                        index = (int) (c * v) % c;
+                    }
+                    else {
+                        index = defaultIndex;
+                    }
+                    
                 }
                 else {
                     index = defaultIndex;

@@ -19,7 +19,6 @@
 #include "GLGamepadButtonElement.h"
 #include "GLSceneElement.h"
 #include "GLRoleElement.h"
-#include "GLMapElement.h"
 #include "Context.h"
 #include "GLLoader.h"
 #include "GLSpriteElement.h"

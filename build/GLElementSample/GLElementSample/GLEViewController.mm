@@ -11,6 +11,7 @@
 #import "GLLibrary.h"
 
 #include "GLElementView.h"
+#include "SKLibrary.h"
 
 @interface GLEViewController (){
     
@@ -77,7 +78,9 @@
         
         _luaContext = new cc::Context();
         
-        GLLibraryLoadClass(_luaContext);
+        cc::GLLibraryLoadClass(_luaContext);
+        
+        sk::SKLibraryLoadClass(_luaContext);
         
         NSBundle * bundle = [NSBundle mainBundle];
         
@@ -169,9 +172,15 @@
         [_textLabel setText:[NSString stringWithFormat:@"Frames: %.0f/s",_frameCount / d]];
     }
     
+    CGSize viewport = [_elementView viewport];
+    
     cc::Context::setCurrent(_luaContext);
     
     if(_schedule && _rootElement){
+        
+        if(_schedule->width() != viewport.width || _schedule->height() != viewport.height){
+            _schedule->setViewport(viewport.width, viewport.height);
+        }
         
         _schedule->tick(CFAbsoluteTimeGetCurrent());
 

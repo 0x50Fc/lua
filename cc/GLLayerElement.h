@@ -74,6 +74,10 @@ namespace cc {
         
         virtual Value invoke(const char * key,InvokeArgs * args);
         
+        virtual const char * backgroundUri();
+        
+        virtual void setBackgroundUri(const char * uri);
+        
         GLVector4 frame;
         
         DEC_CLASS
@@ -83,7 +87,7 @@ namespace cc {
         virtual GLLayerElementProgram * program(GLContext * context);
         
     private:
-        
+        std::string _backgroundUri;
         GLImage * _backgroundImage;
         GLColor3d _backgroundColor;
         GLVector4 _backgroundRect;

@@ -31,7 +31,14 @@ namespace cc {
         
         virtual void removeChild(Element * element);
         
+        virtual Value value(const char * key);
+        
+        virtual void setValue(const char * key,Value value);
+
+        
         DEC_CLASS
+        
+        GLfloat distance;
         
     private:
         

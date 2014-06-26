@@ -12,7 +12,6 @@
 #include <iostream>
 
 #include "GLElement.h"
-#include "GLMapElement.h"
 #include "GLTask.h"
 
 namespace cc {
@@ -25,18 +24,10 @@ namespace cc {
         
         virtual ~GLSceneElement();
         
-        virtual GLMapElement * mapElement();
-        
-        virtual void addChild(Element * element);
-        
-        virtual void removeChild(Element * element);
-        
         virtual void doAction(Action * action);
         
         DEC_CLASS
         
-    private:
-        GLMapElement * _mapElement;
     };
 }
 

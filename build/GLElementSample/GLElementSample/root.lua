@@ -1,145 +1,239 @@
 
-PLAY_UP = 1;
-PLAY_DOWN = 2;
-PLAY_LEFT = 3;
-PLAY_RIGHT = 4;
-PLAY_RUN = 5;
+PLAY_LEFT = 1;
+PLAY_RIGHT = 2;
+PLAY_LEFT_RUN = 3;
+PLAY_RIGHT_RUN = 4;
 
-root = E("GLSceneElement")
+root = E("SKSceneElement")
+    :call("setMapSize",1400,325)
+    :call("setPlayMapPosition",120,220,10)
     :add(
-        E("GLCanvasElement")
-        :call("setPosition",0.5,0.2,0)
+        E("SKMapLayerElement")
+        :setValue("background-uri","map.jpg")
+    )
+    :add(
+        E("GLSpriteElement")
         :add(
-            E("GLRoleElement")
+            E("SKPlayerElement")
             :call("setStatus",PLAY_RIGHT)
-            :add(
-                E("GLTacticFramesElement")
-                :setValue("visableStatus",PLAY_DOWN)
-                :setValue("enabledStatus",PLAY_RUN)
-                :setValue("defaultIndex",0)
-                :setValue("duration",0.6)
-                :add(
-                    E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0,0,0.25,0.25)
-                    :setValue("uri","ma.png")
-                )
-                :add(
-                    E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.25,0,0.25,0.25)
-                    :setValue("uri","ma.png")
-                )
-                :add(
-                    E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.5,0,0.25,0.25)
-                    :setValue("uri","ma.png")
-                )
-                :add(
-                    E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.75,0,0.25,0.25)
-                    :setValue("uri","ma.png")
-                )
-            )
+            :setValue("moveSpeed",60)
             :add(
                 E("GLTacticFramesElement")
                 :setValue("visableStatus",PLAY_LEFT)
-                :setValue("enabledStatus",PLAY_RUN)
-                :setValue("defaultIndex",3)
-                :setValue("duration",0.6)
+                :setValue("duration",0.8)
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0,0.25,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-1.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.25,0.25,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-2.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.5,0.25,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-3.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.75,0.25,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-4.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-5.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-6.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-7.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_13-8.png")
                 )
             )
             :add(
                 E("GLTacticFramesElement")
                 :setValue("visableStatus",PLAY_RIGHT)
-                :setValue("enabledStatus",PLAY_RUN)
-                :setValue("defaultIndex",3)
-                :setValue("duration",0.6)
+                :setValue("duration",0.8)
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0,0.5,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-1.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.25,0.5,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-2.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.5,0.5,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-3.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.75,0.5,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-4.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-5.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-6.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-7.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",45,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_14-8.png")
                 )
             )
             :add(
                 E("GLTacticFramesElement")
-                :setValue("visableStatus",PLAY_UP)
-                :setValue("enabledStatus",PLAY_RUN)
-                :setValue("defaultIndex",0)
+                :setValue("visableStatus",PLAY_LEFT_RUN)
                 :setValue("duration",0.6)
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0,0.75,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-1.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.25,0.75,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-2.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.5,0.75,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-3.png")
                 )
                 :add(
                     E("GLSpriteElement")
-                    :call("setSize",80,100)
-                    :call("setRect",0.75,0.75,0.25,0.25)
-                    :setValue("uri","ma.png")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-4.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-5.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-6.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-7.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_21-8.png")
+                )
+            )
+            :add(
+                E("GLTacticFramesElement")
+                :setValue("visableStatus",PLAY_RIGHT_RUN)
+                :setValue("duration",0.6)
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-1.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-2.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-3.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-4.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-5.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-6.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-7.png")
+                )
+                :add(
+                    E("GLSpriteElement")
+                    :call("setSize",60,75)
+                    :call("setAnchor",0.5,1.0)
+                    :setValue("uri","npc_25-8.png")
                 )
             )
         )
     )
     :add(
         E("GLScreenElement")
+        :setValue("zPosition",9000)
         :add(
             E("GLGamepadElement")
             :add(
@@ -197,31 +291,24 @@ function root:doAction(object)
         local y = action:value("y");
         local dx = math.abs(x);
         local dy = math.abs(y);
-        
-        local roles = E(root:elementsOfClass("GLRoleElement"));
+
+        local player = E(root:elementOfClass("SKPlayerElement"));
 
         if x == 0 and y == 0 then
-            
-            roles:call("removeStatus",PLAY_RUN);
+
+            if player:pcall("hasStatus",PLAY_LEFT_RUN) then
+                player:call("setStatus",PLAY_LEFT);
+            elseif player:pcall("hasStatus",PLAY_RIGHT_RUN) then
+                player:call("setStatus",PLAY_RIGHT);
+            end
 
         else
-        
-            if dx > dy then
-                if x > 0 then
-                    roles:call("setStatus",PLAY_RIGHT,PLAY_RUN);
-                end
-                if x < 0 then
-                    roles:call("setStatus",PLAY_LEFT,PLAY_RUN);
-                end
+
+            if x > 0 then
+                player:call("setStatus",PLAY_RIGHT_RUN);
             end
-            
-            if dy > dx then
-                if y > 0 then
-                    roles:call("setStatus",PLAY_DOWN,PLAY_RUN);
-                end
-                if y < 0 then
-                    roles:call("setStatus",PLAY_UP,PLAY_RUN);
-                end
+            if x < 0 then
+                player:call("setStatus",PLAY_LEFT_RUN);
             end
 
         end

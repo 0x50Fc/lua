@@ -66,7 +66,7 @@ namespace cc {
                 return;
             }
             
-            context->zIndex();
+            context->zIndex ++;
             
             gl->begin(context);
             

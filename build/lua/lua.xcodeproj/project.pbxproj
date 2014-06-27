@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1107B81E1953D94700E68726 /* Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1107B81C1953D94700E68726 /* Log.cpp */; };
+		116EAF72195D73A500B80A08 /* Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116EAF70195D73A500B80A08 /* Assert.cpp */; };
 		11789D60195281A00052891F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11789D5F195281A00052891F /* Foundation.framework */; };
 		11789DC1195281D10052891F /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 11789D85195281D10052891F /* lapi.c */; };
 		11789DC2195281D10052891F /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 11789D87195281D10052891F /* lauxlib.c */; };
@@ -107,6 +108,8 @@
 /* Begin PBXFileReference section */
 		1107B81C1953D94700E68726 /* Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Log.cpp; sourceTree = "<group>"; };
 		1107B81D1953D94700E68726 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		116EAF70195D73A500B80A08 /* Assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assert.cpp; sourceTree = "<group>"; };
+		116EAF71195D73A500B80A08 /* Assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assert.h; sourceTree = "<group>"; };
 		11789D5C195281A00052891F /* liblua.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblua.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		11789D5F195281A00052891F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11789D63195281A00052891F /* lua-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lua-Prefix.pch"; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 				11B21C9919529055001B3A23 /* Context.h */,
 				1107B81C1953D94700E68726 /* Log.cpp */,
 				1107B81D1953D94700E68726 /* Log.h */,
+				116EAF70195D73A500B80A08 /* Assert.cpp */,
+				116EAF71195D73A500B80A08 /* Assert.h */,
 			);
 			name = cc;
 			path = ../../cc;
@@ -402,6 +407,7 @@
 				11789DDB195281D10052891F /* ltable.c in Sources */,
 				11789DCC195281D10052891F /* lfunc.c in Sources */,
 				11789DC7195281D10052891F /* lctype.c in Sources */,
+				116EAF72195D73A500B80A08 /* Assert.cpp in Sources */,
 				11789DC4195281D10052891F /* lbitlib.c in Sources */,
 				11789DE3195281D10052891F /* Makefile in Sources */,
 				11789DCD195281D10052891F /* lgc.c in Sources */,

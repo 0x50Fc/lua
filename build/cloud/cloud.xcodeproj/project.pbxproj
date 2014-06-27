@@ -1,0 +1,332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		116EAF3D195D6F8300B80A08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116EAF3C195D6F8300B80A08 /* Foundation.framework */; };
+		116EAF66195D6FCE00B80A08 /* CL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116EAF64195D6FCE00B80A08 /* CL.cpp */; };
+		116EAF75195D7AD400B80A08 /* CLDataObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 116EAF73195D7AD400B80A08 /* CLDataObject.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		116EAF6C195D739B00B80A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 116EAF67195D739B00B80A08 /* lua.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11789D5C195281A00052891F;
+			remoteInfo = lua;
+		};
+		116EAF6E195D739B00B80A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 116EAF67195D739B00B80A08 /* lua.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 11B21C9F19529D6C001B3A23;
+			remoteInfo = test;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		116EAF37195D6F8300B80A08 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		116EAF39195D6F8300B80A08 /* libcloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcloud.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		116EAF3C195D6F8300B80A08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		116EAF40195D6F8300B80A08 /* cloud-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cloud-Prefix.pch"; sourceTree = "<group>"; };
+		116EAF4A195D6F8300B80A08 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		116EAF4D195D6F8300B80A08 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		116EAF64195D6FCE00B80A08 /* CL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CL.cpp; sourceTree = "<group>"; };
+		116EAF65195D6FCE00B80A08 /* CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CL.h; sourceTree = "<group>"; };
+		116EAF67195D739B00B80A08 /* lua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = lua.xcodeproj; path = ../lua/lua.xcodeproj; sourceTree = "<group>"; };
+		116EAF73195D7AD400B80A08 /* CLDataObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLDataObject.cpp; sourceTree = "<group>"; };
+		116EAF74195D7AD400B80A08 /* CLDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDataObject.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		116EAF36195D6F8300B80A08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				116EAF3D195D6F8300B80A08 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		116EAF30195D6F8300B80A08 = {
+			isa = PBXGroup;
+			children = (
+				116EAF67195D739B00B80A08 /* lua.xcodeproj */,
+				116EAF3E195D6F8300B80A08 /* cloud */,
+				116EAF3B195D6F8300B80A08 /* Frameworks */,
+				116EAF3A195D6F8300B80A08 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		116EAF3A195D6F8300B80A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				116EAF39195D6F8300B80A08 /* libcloud.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		116EAF3B195D6F8300B80A08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				116EAF3C195D6F8300B80A08 /* Foundation.framework */,
+				116EAF4A195D6F8300B80A08 /* XCTest.framework */,
+				116EAF4D195D6F8300B80A08 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		116EAF3E195D6F8300B80A08 /* cloud */ = {
+			isa = PBXGroup;
+			children = (
+				116EAF63195D6F9200B80A08 /* cc */,
+				116EAF3F195D6F8300B80A08 /* Supporting Files */,
+			);
+			path = cloud;
+			sourceTree = "<group>";
+		};
+		116EAF3F195D6F8300B80A08 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				116EAF40195D6F8300B80A08 /* cloud-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		116EAF63195D6F9200B80A08 /* cc */ = {
+			isa = PBXGroup;
+			children = (
+				116EAF64195D6FCE00B80A08 /* CL.cpp */,
+				116EAF65195D6FCE00B80A08 /* CL.h */,
+				116EAF73195D7AD400B80A08 /* CLDataObject.cpp */,
+				116EAF74195D7AD400B80A08 /* CLDataObject.h */,
+			);
+			name = cc;
+			path = ../../../cloud;
+			sourceTree = "<group>";
+		};
+		116EAF68195D739B00B80A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				116EAF6D195D739B00B80A08 /* liblua.a */,
+				116EAF6F195D739B00B80A08 /* test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		116EAF38195D6F8300B80A08 /* cloud */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 116EAF5C195D6F8300B80A08 /* Build configuration list for PBXNativeTarget "cloud" */;
+			buildPhases = (
+				116EAF35195D6F8300B80A08 /* Sources */,
+				116EAF36195D6F8300B80A08 /* Frameworks */,
+				116EAF37195D6F8300B80A08 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cloud;
+			productName = cloud;
+			productReference = 116EAF39195D6F8300B80A08 /* libcloud.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		116EAF31195D6F8300B80A08 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = hailong.org;
+			};
+			buildConfigurationList = 116EAF34195D6F8300B80A08 /* Build configuration list for PBXProject "cloud" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 116EAF30195D6F8300B80A08;
+			productRefGroup = 116EAF3A195D6F8300B80A08 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 116EAF68195D739B00B80A08 /* Products */;
+					ProjectRef = 116EAF67195D739B00B80A08 /* lua.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				116EAF38195D6F8300B80A08 /* cloud */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		116EAF6D195D739B00B80A08 /* liblua.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblua.a;
+			remoteRef = 116EAF6C195D739B00B80A08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		116EAF6F195D739B00B80A08 /* test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = test;
+			remoteRef = 116EAF6E195D739B00B80A08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		116EAF35195D6F8300B80A08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				116EAF66195D6FCE00B80A08 /* CL.cpp in Sources */,
+				116EAF75195D7AD400B80A08 /* CLDataObject.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		116EAF5A195D6F8300B80A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		116EAF5B195D6F8300B80A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		116EAF5D195D6F8300B80A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/cloud.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cloud/cloud-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		116EAF5E195D6F8300B80A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/cloud.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cloud/cloud-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		116EAF34195D6F8300B80A08 /* Build configuration list for PBXProject "cloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				116EAF5A195D6F8300B80A08 /* Debug */,
+				116EAF5B195D6F8300B80A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		116EAF5C195D6F8300B80A08 /* Build configuration list for PBXNativeTarget "cloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				116EAF5D195D6F8300B80A08 /* Debug */,
+				116EAF5E195D6F8300B80A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 116EAF31195D6F8300B80A08 /* Project object */;
+}

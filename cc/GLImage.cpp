@@ -42,6 +42,7 @@ namespace cc {
         
         if(_texture){
             glDeleteTextures(1, &_texture);
+            glFinish();
         }
     }
     
